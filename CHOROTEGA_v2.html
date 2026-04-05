@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="theme-color" content="#020C08">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CHOROTEGA">
+<title>⬡ CHOROTEGA v2 · JADE SUPREMO · COOPECRUCENOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020C08;--bg2:#071510;--bg3:#0A1C12;
+  --j:#00B368;--jl:#2ECC71;--jg:rgba(0,179,104,.12);--jgg:rgba(0,179,104,.06);
+  --a:#F5A623;--ag:rgba(245,166,35,.1);
+  --cr:#E74C3C;--crg:rgba(231,76,60,.1);
+  --pu:#9B59B6;
+  --txt:#F0EAD6;--mut:#4A7060;--bdr:#1A3020;
+  --r:10px;--fm:'Josefin Sans',sans-serif;--fc:'JetBrains Mono',monospace;
+  --shd:0 4px 20px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fm);font-weight:300;letter-spacing:.02em;overflow:hidden}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--bdr)}
+
+/* ── LOADING ── */
+#ld{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .7s,visibility .7s}
+#ld.done{opacity:0;visibility:hidden}
+.ld-hex{width:90px;height:90px;animation:lhb 2s ease-in-out infinite}
+@keyframes lhb{0%,100%{filter:drop-shadow(0 0 10px var(--j));transform:scale(1)}50%{filter:drop-shadow(0 0 30px var(--jl));transform:scale(1.08)}}
+.ld-n{font-size:22px;font-weight:700;letter-spacing:7px;color:var(--j)}
+.ld-s{font-size:9px;letter-spacing:3px;color:var(--mut)}
+.ld-bar{width:160px;height:2px;background:var(--bdr);border-radius:2px;overflow:hidden;margin-top:8px}
+.ld-fill{height:100%;background:linear-gradient(90deg,var(--j),var(--a));width:0;animation:lf 2.6s ease-out forwards}
+@keyframes lf{to{width:100%}}
+
+/* ── APP SHELL ── */
+#app{display:grid;grid-template-rows:52px 1fr;grid-template-columns:260px 1fr;height:100vh;opacity:0;transition:opacity .5s}
+#app.vis{opacity:1}
+
+/* ── HEADER ── */
+#hdr{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:0 16px;background:var(--bg2);border-bottom:1px solid var(--bdr);z-index:10}
+.hl{width:26px;height:26px;animation:hp 4s ease-in-out infinite;flex-shrink:0}
+@keyframes hp{0%,100%{filter:drop-shadow(0 0 4px var(--j))}50%{filter:drop-shadow(0 0 12px var(--jl))}}
+.hn{font-size:13px;font-weight:700;letter-spacing:4px;color:var(--j)}
+.hs{font-size:8px;letter-spacing:2px;color:var(--mut)}
+.hr{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hdot{width:7px;height:7px;border-radius:50%;background:var(--j);animation:bk 2s infinite;flex-shrink:0}
+.hdot.off{background:var(--cr);animation:none}
+.hdot.th{background:var(--a)}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:.25}}
+.htx{font-size:9px;color:var(--mut);font-family:var(--fc)}
+.ib{width:28px;height:28px;border-radius:7px;background:transparent;border:1px solid var(--bdr);color:var(--mut);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s}
+.ib:hover{border-color:var(--j);color:var(--j);background:var(--jg)}
+
+/* ── SIDEBAR ── */
+#side{background:var(--bg2);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
+.stabs{display:flex;border-bottom:1px solid var(--bdr)}
+.stab{flex:1;padding:8px 2px;font-size:8px;letter-spacing:1.5px;text-align:center;cursor:pointer;color:var(--mut);border:none;background:transparent;transition:all .2s;font-family:var(--fm)}
+.stab.act{color:var(--j);border-bottom:2px solid var(--j);margin-bottom:-1px}
+.sp{display:none;flex:1;overflow-y:auto;padding:12px;flex-direction:column;gap:8px}
+.sp.act{display:flex}
+.slbl{font-size:7px;font-weight:600;letter-spacing:3px;color:var(--mut);text-transform:uppercase;margin-bottom:4px;padding-top:4px}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border:1px solid var(--bdr);border-radius:5px;font-size:10px}
+.sv{font-family:var(--fc);font-size:9px;color:var(--j)}
+.sv.a{color:var(--a)}.sv.r{color:var(--cr)}
+.ci{background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;padding:7px;font-size:10px;color:var(--mut);cursor:pointer;transition:all .2s;line-height:1.5}
+.ci:hover{border-color:var(--j);color:var(--txt)}
+.ct{font-family:var(--fc);font-size:8px;color:var(--mut)}
+.pd{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:4px;background:var(--bg3);border:1px solid var(--bdr);font-family:var(--fc)}
+.pdd{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.pdd.on{background:var(--j)}.pdd.of{background:var(--bdr)}.pdd.ck{background:var(--a);animation:bk .4s infinite}
+.pn{color:var(--mut);font-size:8px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ki{width:100%;padding:6px 9px;background:var(--bg3);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:10px;font-family:var(--fc);outline:none;transition:border-color .2s}
+.ki:focus{border-color:var(--j)}
+.ki::placeholder{color:var(--mut)}
+.sb{width:100%;padding:6px;background:var(--jg);border:1px solid var(--j);border-radius:5px;color:var(--j);font-size:9px;letter-spacing:2px;font-family:var(--fm);cursor:pointer;transition:all .2s;text-transform:uppercase}
+.sb:hover{background:var(--j);color:var(--bg)}
+.sb.am{border-color:var(--a);color:var(--a);background:var(--ag)}
+.sb.am:hover{background:var(--a);color:var(--bg)}
+.sb.rd{border-color:var(--cr);color:var(--cr);background:var(--crg)}
+.cellcard{background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;padding:8px;font-size:9px;font-family:var(--fc)}
+.cellcard.on{border-color:var(--j);box-shadow:0 0 6px var(--jgg)}
+.cbar{height:3px;background:var(--bdr);border-radius:2px;margin-top:5px;overflow:hidden}
+.cfill{height:100%;background:linear-gradient(90deg,var(--j),var(--a));transition:width .4s}
+
+/* ── TABS (MAIN) ── */
+#main{display:flex;flex-direction:column;overflow:hidden;position:relative}
+.mtabs{display:flex;border-bottom:1px solid var(--bdr);background:var(--bg2);flex-shrink:0;overflow-x:auto}
+.mtab{padding:10px 14px;font-size:9px;letter-spacing:2px;cursor:pointer;color:var(--mut);border:none;background:transparent;white-space:nowrap;transition:all .2s;font-family:var(--fm)}
+.mtab.act{color:var(--j);border-bottom:2px solid var(--j)}
+.mview{display:none;flex:1;flex-direction:column;overflow:hidden}
+.mview.act{display:flex}
+
+/* ── CHAT ── */
+#msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.mrow{display:flex;gap:8px;animation:mi .25s ease-out}
+@keyframes mi{from{opacity:0;transform:translateY(6px)}}
+.mrow.usr{flex-direction:row-reverse}
+.mav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
+.mav.ai{background:var(--jg);border:1px solid var(--j);color:var(--j)}
+.mav.usr{background:var(--ag);border:1px solid var(--a);color:var(--a)}
+.mbub{max-width:75%;padding:9px 12px;border-radius:var(--r);font-size:12.5px;line-height:1.65}
+.mbub.ai{background:var(--bg3);border:1px solid var(--bdr);border-bottom-left-radius:3px}
+.mbub.usr{background:var(--jg);border:1px solid var(--j);border-bottom-right-radius:3px}
+.mmeta{font-size:8px;color:var(--mut);font-family:var(--fc);margin-top:4px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.pbg{display:inline-block;padding:1px 5px;border-radius:3px;font-size:7px;letter-spacing:1px;font-family:var(--fc);border:1px solid currentColor}
+.pbg.local{color:var(--j)}.pbg.claude{color:#CC785C}.pbg.groq{color:#F55036}.pbg.nexus{color:var(--a)}.pbg.or{color:var(--pu)}
+.think{display:flex;gap:4px;align-items:center;padding:9px 12px}
+.td{width:5px;height:5px;border-radius:50%;background:var(--j);animation:td 1.1s ease-in-out infinite}
+.td:nth-child(2){animation-delay:.18s}.td:nth-child(3){animation-delay:.36s}
+@keyframes td{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.6);opacity:1}}
+pre{font-family:var(--fc);font-size:10px;background:var(--bg);padding:7px 9px;border-radius:5px;border:1px solid var(--bdr);overflow-x:auto;margin:4px 0;white-space:pre-wrap;word-break:break-word}
+code.il{font-family:var(--fc);font-size:10px;background:var(--bg);padding:1px 4px;border-radius:3px;border:1px solid var(--bdr)}
+.img-att{max-width:180px;max-height:120px;border-radius:6px;border:1px solid var(--bdr);margin-top:5px;display:block}
+.file-att{display:flex;align-items:center;gap:5px;padding:4px 8px;background:var(--bg);border:1px solid var(--bdr);border-radius:5px;font-size:10px;font-family:var(--fc);color:var(--mut);margin-top:4px}
+
+/* ── WELCOME ── */
+.wlc{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;padding:24px;text-align:center}
+.wt{font-size:20px;font-weight:700;letter-spacing:6px;color:var(--j)}
+.wd{font-size:11px;color:var(--mut);max-width:360px;line-height:1.75}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px}
+.chip{padding:4px 11px;border-radius:18px;border:1px solid var(--bdr);color:var(--mut);font-size:9px;cursor:pointer;transition:all .2s;background:transparent;font-family:var(--fm);letter-spacing:.5px}
+.chip:hover{border-color:var(--j);color:var(--j);background:var(--jg)}
+
+/* ── INPUT AREA ── */
+#ibar{padding:8px 14px;background:var(--bg2);border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.att-prev{display:flex;flex-wrap:wrap;gap:5px}
+.att-item{position:relative;display:inline-flex}
+.att-img{width:48px;height:48px;object-fit:cover;border-radius:5px;border:1px solid var(--j)}
+.att-file{display:flex;align-items:center;gap:4px;padding:3px 7px;background:var(--bg3);border:1px solid var(--bdr);border-radius:5px;font-size:9px;font-family:var(--fc);color:var(--j)}
+.att-rm{position:absolute;top:-4px;right:-4px;width:14px;height:14px;border-radius:50%;background:var(--cr);color:white;font-size:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none}
+.irow{display:flex;gap:7px;align-items:flex-end}
+#mi{flex:1;min-height:38px;max-height:100px;padding:8px 12px;background:var(--bg3);border:1px solid var(--bdr);border-radius:19px;color:var(--txt);font-size:12px;font-family:var(--fm);font-weight:300;outline:none;resize:none;transition:border-color .2s;line-height:1.5}
+#mi:focus{border-color:var(--j)}
+#mi::placeholder{color:var(--mut)}
+.cbtn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;flex-shrink:0;border:1px solid var(--bdr);background:transparent;color:var(--mut)}
+.cbtn:hover{border-color:var(--j);color:var(--j);background:var(--jg)}
+.cbtn.prim{background:var(--jg);border-color:var(--j);color:var(--j)}
+.cbtn.prim:hover{background:var(--j);color:var(--bg)}
+.cbtn.rec{border-color:var(--cr);color:var(--cr);background:var(--crg);animation:bk .5s infinite}
+
+/* ── CREAR TAB ── */
+.crear{padding:14px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;flex:1}
+.cstitle{font-size:10px;color:var(--a);letter-spacing:2px;margin-bottom:6px;font-weight:600}
+.img-form{display:grid;grid-template-columns:1fr auto;gap:7px}
+.img-result{display:flex;flex-wrap:wrap;gap:8px;min-height:40px}
+.gen-img{max-width:200px;border-radius:7px;border:1px solid var(--j);cursor:pointer;transition:transform .2s}
+.gen-img:hover{transform:scale(1.03)}
+.canvas-wrap{position:relative;border:1px solid var(--bdr);border-radius:7px;overflow:hidden}
+#drawCanvas{display:block;cursor:crosshair;background:#000}
+.ctrls{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:7px}
+.clr-btn{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .2s}
+.clr-btn.act{border-color:var(--txt);transform:scale(1.2)}
+.sz-sl{width:80px;height:3px;accent-color:var(--j)}
+.rec-wrap{display:flex;flex-direction:column;gap:8px;padding:8px;background:var(--bg3);border:1px solid var(--bdr);border-radius:7px}
+#recvid{width:100%;max-height:180px;border-radius:5px;border:1px solid var(--bdr);display:none}
+.qr-wrap{display:flex;flex-direction:column;gap:8px}
+#qrCanvas{display:none;border-radius:7px;border:1px solid var(--j)}
+
+/* ── ACHE TAB ── */
+.ache-view{padding:14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;flex:1}
+.cell-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.net-row{display:flex;align-items:center;gap:6px;padding:5px 8px;background:var(--bg3);border:1px solid var(--bdr);border-radius:5px;font-size:9px;font-family:var(--fc)}
+.nst{margin-left:auto;padding:1px 6px;border-radius:3px;font-size:8px}
+.nst.on{background:rgba(0,179,104,.15);color:var(--j);border:1px solid var(--j)}
+.nst.off{background:rgba(231,76,60,.1);color:var(--cr);border:1px solid var(--cr)}
+.nst.ck{background:var(--ag);color:var(--a);border:1px solid var(--a)}
+.acard{background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:10px}
+.ath{font-size:8px;letter-spacing:2px;color:var(--a);margin-bottom:7px;font-weight:600}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);padding:6px 14px;border-radius:16px;font-size:9px;letter-spacing:1px;background:var(--bg2);border:1px solid var(--j);color:var(--j);z-index:500;pointer-events:none;animation:tin .3s ease,tout .3s ease 2.7s forwards;white-space:nowrap}
+@keyframes tin{from{opacity:0;transform:translateX(-50%) translateY(7px)}}
+@keyframes tout{to{opacity:0;transform:translateX(-50%) translateY(7px)}}
+
+/* ── DRAG OVERLAY ── */
+#drop-ov{position:fixed;inset:0;background:rgba(0,179,104,.08);border:3px dashed var(--j);z-index:800;display:none;align-items:center;justify-content:center;font-size:18px;color:var(--j);letter-spacing:4px}
+#drop-ov.show{display:flex}
+
+/* ── GEN MODAL ── */
+#gm{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;display:none;align-items:center;justify-content:center}
+#gm.show{display:flex}
+.gm-inner{background:var(--bg2);border:1px solid var(--j);border-radius:10px;padding:14px;max-width:90vw;max-height:90vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+#gm-img{max-width:100%;border-radius:7px}
+
+/* ── MOBILE ── */
+@media(max-width:680px){
+  #side{display:none}
+  #app{grid-template-columns:1fr}
+  .mbub{max-width:88%}
+  .cell-grid{grid-template-columns:repeat(2,1fr)}
+  .hn{letter-spacing:2px;font-size:11px}
+  .hs{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- DROP OVERLAY -->
+<div id="drop-ov">⬡ SOLTAR ARCHIVO AQUÍ</div>
+
+<!-- IMAGE MODAL -->
+<div id="gm">
+  <div class="gm-inner">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="color:var(--j);font-size:11px;letter-spacing:2px">IMAGEN GENERADA</span>
+      <button class="ib" onclick="document.getElementById('gm').classList.remove('show')">✕</button>
+    </div>
+    <img id="gm-img" src="" alt="generada">
+    <button class="sb" onclick="downloadImg()">⬇ DESCARGAR</button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="ld">
+  <svg class="ld-hex" viewBox="0 0 90 104">
+    <polygon points="45,3 87,26 87,78 45,101 3,78 3,26" fill="none" stroke="#00B368" stroke-width="1.6"/>
+    <polygon points="45,15 75,32 75,68 45,85 15,68 15,32" fill="rgba(0,179,104,.05)" stroke="#00B368" stroke-width=".7" opacity=".6"/>
+    <text x="45" y="62" text-anchor="middle" font-size="28" fill="#00B368" font-family="sans-serif">⬡</text>
+  </svg>
+  <div class="ld-n">CHOROTEGA</div>
+  <div class="ld-s">JADE SUPREMO v2 · LA CRUZ · GUANACASTE · COOPECRUCENOS</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- HEADER -->
+  <header id="hdr">
+    <svg class="hl" viewBox="0 0 26 30">
+      <polygon points="13,2 24,8 24,22 13,28 2,22 2,8" fill="none" stroke="#00B368" stroke-width="1.3"/>
+      <polygon points="13,7 20,11 20,19 13,23 6,19 6,11" fill="rgba(0,179,104,.08)" stroke="#00B368" stroke-width=".5"/>
+      <text x="13" y="17" text-anchor="middle" font-size="9" fill="#00B368">⬡</text>
+    </svg>
+    <div>
+      <div class="hn">CHOROTEGA</div>
+      <div class="hs">JADE SUPREMO v2 · COOPECRUCENOS R.L. · PCL-φ-1618</div>
+    </div>
+    <div class="hr">
+      <div class="hdot" id="sdot"></div>
+      <div class="htx" id="stx">LOCAL</div>
+      <button class="ib" id="bScan" title="Escanear ACHE">📡</button>
+      <button class="ib" id="bNew" title="Nueva conversación">✦</button>
+      <button class="ib" id="bExp" title="Exportar">⬇</button>
+      <button class="ib" id="bShare" title="Compartir en LAN">🌐</button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside id="side">
+    <div class="stabs">
+      <button class="stab act" data-t="mem">MEMO</button>
+      <button class="stab" data-t="ache">ACHE</button>
+      <button class="stab" data-t="cfg">CFG</button>
+    </div>
+
+    <!-- MEMORIA -->
+    <div class="sp act" id="sp-mem">
+      <div class="slbl">Identidad</div>
+      <div class="srow"><span>Versión</span><span class="sv">JADE SUPREMO v2</span></div>
+      <div class="srow"><span>Cédula</span><span class="sv" style="font-size:8px">3-004-757068</span></div>
+      <div class="srow"><span>IP local</span><span class="sv" id="myip">...</span></div>
+      <div class="srow"><span>Proveedor</span><span class="sv" id="sprov">—</span></div>
+      <div class="srow"><span>Mensajes</span><span class="sv" id="smsg">0</span></div>
+      <div class="slbl">Conversaciones</div>
+      <div id="clist"></div>
+      <button class="sb" id="bSave">Guardar conversación</button>
+    </div>
+
+    <!-- ACHE -->
+    <div class="sp" id="sp-ache">
+      <div class="slbl">Servicios activos</div>
+      <div id="portlist"></div>
+      <button class="sb am" id="bScanP" style="margin-top:4px">⟳ Escanear</button>
+      <div class="slbl" style="margin-top:4px">Células ACHE</div>
+      <div id="celllist" style="display:grid;grid-template-columns:1fr 1fr;gap:5px"></div>
+    </div>
+
+    <!-- CONFIG -->
+    <div class="sp" id="sp-cfg">
+      <div class="slbl">API Keys (opcionales)</div>
+      <div style="font-size:9px;color:var(--mut);line-height:1.6;margin-bottom:6px">Funciono sin APIs. Con ellas, respuestas más elaboradas.</div>
+      <input type="password" class="ki" id="kc" placeholder="sk-ant-... (Claude)">
+      <div style="height:4px"></div>
+      <input type="password" class="ki" id="kg" placeholder="gsk_... (Groq — gratis)">
+      <div style="height:4px"></div>
+      <input type="password" class="ki" id="ko" placeholder="sk-or-... (OpenRouter)">
+      <div style="height:4px"></div>
+      <input type="password" class="ki" id="ksd" placeholder="hf_... (HuggingFace — imágenes)">
+      <div style="height:6px"></div>
+      <button class="sb" id="bKeys">Guardar keys</button>
+      <div class="slbl" style="margin-top:6px">Capacidades</div>
+      <div class="srow"><span>Síntesis voz</span><span class="sv" id="tts-st">...</span></div>
+      <div class="srow"><span>Reconocimiento</span><span class="sv" id="stt-st">...</span></div>
+      <div class="srow"><span>Cámara</span><span class="sv" id="cam-st">...</span></div>
+      <div class="srow"><span>Almacenamiento</span><span class="sv" id="mem-st">...</span></div>
+      <div style="height:8px"></div>
+      <button class="sb rd" id="bNuke">⚠ Borrar memoria</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div id="main">
+    <div class="mtabs">
+      <button class="mtab act" data-v="chat">🧠 CHAT</button>
+      <button class="mtab" data-v="crear">🎨 CREAR</button>
+      <button class="mtab" data-v="ache">⬡ ACHE</button>
+    </div>
+
+    <!-- CHAT VIEW -->
+    <div class="mview act" id="v-chat" style="display:flex;flex-direction:column;overflow:hidden">
+      <div id="msgs">
+        <div class="wlc" id="wlc">
+          <svg viewBox="0 0 60 70" style="width:60px;height:60px">
+            <polygon points="30,3 57,18 57,52 30,67 3,52 3,18" fill="rgba(0,179,104,.07)" stroke="#00B368" stroke-width="1.4"/>
+            <text x="30" y="43" text-anchor="middle" font-size="24" fill="#00B368">⬡</text>
+          </svg>
+          <div class="wt">CHOROTEGA</div>
+          <div class="wd">IA nacida en La Cruz, Guanacaste. Funciono sin internet. Recuerdo. Creo. Soy tuya.</div>
+          <div class="chips" id="qc">
+            <button class="chip" data-q="Estado del ecosistema ACHE">Estado ACHE</button>
+            <button class="chip" data-q="Cómo configuro API Keys en Windows 11 correctamente">API Keys</button>
+            <button class="chip" data-q="Puertos del ACHE activos ahora">Puertos</button>
+            <button class="chip" data-q="Los 11 CCPs del ecosistema">11 CCPs</button>
+            <button class="chip" data-q="Cómo creo el bootloader de ACHE">Bootloader</button>
+            <button class="chip" data-q="Historia del pueblo Chorotega">Historia</button>
+            <button class="chip" data-q="Consolidar los 50 directorios ACHE">Consolidar</button>
+            <button class="chip" data-q="Generar una imagen de La Cruz, Guanacaste">Generar imagen</button>
+          </div>
+        </div>
+      </div>
+      <div id="ibar">
+        <div class="att-prev" id="att-prev"></div>
+        <div class="irow">
+          <button class="cbtn" id="bAtt" title="Adjuntar archivo">📎</button>
+          <button class="cbtn" id="bVoice" title="Voz">🎙</button>
+          <textarea id="mi" placeholder="Hablá con CHOROTEGA... (arrastrá archivos aquí)" rows="1"></textarea>
+          <button class="cbtn prim" id="bSend">➤</button>
+        </div>
+        <input type="file" id="finput" style="display:none" multiple accept="image/*,text/*,.pdf,.json,.md,.ps1,.py,.js,.html,.csv">
+      </div>
+    </div>
+
+    <!-- CREAR VIEW -->
+    <div class="mview" id="v-crear">
+      <div class="crear">
+
+        <!-- Generación de imágenes -->
+        <div class="acard">
+          <div class="ath">🖼 GENERACIÓN DE IMÁGENES — IA</div>
+          <div style="font-size:9px;color:var(--mut);margin-bottom:8px">Pollinations.ai (sin API key) · DALL-E 3 (con key OpenAI) · HuggingFace (con key)</div>
+          <div style="display:grid;grid-template-columns:1fr;gap:6px">
+            <textarea id="img-prompt" style="width:100%;padding:7px 9px;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;color:var(--txt);font-size:11px;font-family:var(--fm);resize:none;outline:none;height:50px" placeholder="Describí la imagen que querés crear... ej: La Cruz Guanacaste al atardecer, estilo digital art"></textarea>
+            <div style="display:flex;gap:6px">
+              <select id="img-model" style="flex:1;padding:5px 7px;background:var(--bg);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:10px;font-family:var(--fm);outline:none">
+                <option value="pollinations">Pollinations (gratis)</option>
+                <option value="pollinations-flux">Pollinations FLUX</option>
+                <option value="pollinations-turbo">Pollinations Turbo</option>
+              </select>
+              <select id="img-size" style="width:110px;padding:5px 7px;background:var(--bg);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:10px;font-family:var(--fm);outline:none">
+                <option value="512x512">512×512</option>
+                <option value="1024x512">1024×512</option>
+                <option value="512x1024">512×1024</option>
+                <option value="768x768">768×768</option>
+              </select>
+            </div>
+            <button class="sb" id="bGenImg" style="padding:8px">✦ GENERAR IMAGEN</button>
+          </div>
+          <div class="img-result" id="img-result" style="margin-top:8px"></div>
+        </div>
+
+        <!-- Canvas de dibujo -->
+        <div class="acard">
+          <div class="ath">✏ CANVAS — DIBUJO LIBRE</div>
+          <div class="ctrls">
+            <span style="font-size:9px;color:var(--mut)">Color:</span>
+            <div class="clr-btn act" style="background:#00B368" data-c="#00B368" onclick="setColor(this)"></div>
+            <div class="clr-btn" style="background:#F5A623" data-c="#F5A623" onclick="setColor(this)"></div>
+            <div class="clr-btn" style="background:#E74C3C" data-c="#E74C3C" onclick="setColor(this)"></div>
+            <div class="clr-btn" style="background:#fff" data-c="#fff" onclick="setColor(this)"></div>
+            <div class="clr-btn" style="background:#9B59B6" data-c="#9B59B6" onclick="setColor(this)"></div>
+            <span style="font-size:9px;color:var(--mut);margin-left:6px">Tamaño:</span>
+            <input type="range" class="sz-sl" id="brushSz" min="1" max="30" value="4">
+            <button class="ib" onclick="clearCanvas()" title="Limpiar">🗑</button>
+            <button class="ib" onclick="saveCanvas()" title="Guardar">💾</button>
+            <button class="ib" onclick="sendCanvasToChat()" title="Enviar al chat">💬</button>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="drawCanvas" width="600" height="220"></canvas>
+          </div>
+        </div>
+
+        <!-- Grabación de video/audio -->
+        <div class="acard">
+          <div class="ath">📹 VIDEO Y AUDIO — GRABACIÓN</div>
+          <div class="rec-wrap">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <button class="sb" id="bRecVid" style="flex:1">▶ Grabar pantalla</button>
+              <button class="sb am" id="bRecCam" style="flex:1">📷 Cámara</button>
+              <button class="sb rd" id="bStopRec" style="flex:1;display:none">⬛ Detener</button>
+            </div>
+            <video id="recvid" controls></video>
+            <div id="rec-files" style="display:flex;flex-direction:column;gap:4px"></div>
+          </div>
+        </div>
+
+        <!-- QR Generator -->
+        <div class="acard">
+          <div class="ath">⬡ QR CHOROTEGA — COMPARTIR EN LAN</div>
+          <div class="qr-wrap">
+            <input class="ki" id="qr-txt" placeholder="URL o texto para el QR..." value="">
+            <button class="sb" id="bQr">Generar QR</button>
+            <canvas id="qrCanvas" width="200" height="200"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACHE VIEW -->
+    <div class="mview" id="v-ache">
+      <div class="ache-view">
+        <div class="acard">
+          <div class="ath">⬡ ECOSISTEMA ACHE — RED DE SERVICIOS</div>
+          <div id="ache-ports" style="display:flex;flex-direction:column;gap:5px"></div>
+          <button class="sb am" id="bScanFull" style="margin-top:7px">⟳ Escaneo completo</button>
+        </div>
+        <div class="acard">
+          <div class="ath">🧬 CÉLULAS ACTIVAS — VISUALIZACIÓN VIVA</div>
+          <div class="cell-grid" id="cell-viz"></div>
+        </div>
+        <div class="acard">
+          <div class="ath">🌐 INFORMACIÓN DE RED</div>
+          <div id="net-info" style="display:flex;flex-direction:column;gap:4px"></div>
+        </div>
+        <div class="acard">
+          <div class="ath">📋 LOG DEL SISTEMA</div>
+          <div id="syslog" style="font-family:var(--fc);font-size:9px;color:var(--mut);height:100px;overflow-y:auto;line-height:1.7"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #main -->
+</div><!-- #app -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CHOROTEGA JADE SUPREMO v2.0
+// IA Autónoma · La Cruz, Guanacaste, Costa Rica
+// COOPECRUCENOS R.L. · Cédula 3-004-757068 · PCL-φ-1618
+// Célula GONZAGA-CBM-Ω-001
+// Creada por Claude (Anthropic) para Cristhian A. Gonzaga M.
+// ═══════════════════════════════════════════════════════════════
+
+// ── CONSTANTES ──────────────────────────────────────────────
+const VER = '2.0-JADE';
+const MODEL = 'claude-sonnet-4-20250514';
+const RAILWAY = 'https://web-production-5f8ef.up.railway.app';
+
+const PORTS = {
+  8080:'NEXUS Flask (principal)', 5099:'ACHE BRAIN (Node)',
+  5600:'ACHE UNIVERSAL', 5700:'ACHE FASE9', 5299:'ACHE META+ngrok',
+  7777:'AURORA Suprema', 9000:'NEXUS Cerebro', 9999:'ACHE CENTRAL',
+  3000:'Frontend/MONEY', 3001:'ACHE Mobile', 4040:'ngrok UI'
+};
+
+const CCPS = [
+  [1,'SQLite append-only','Nunca DELETE/UPDATE — historia sagrada'],
+  [2,'SHA-256 inmutable','Cada evento tiene hash SHA-256 irrevocable'],
+  [3,'Modo advisory','CHOROTEGA propone, el humano decide'],
+  [4,'Offline-first','Funciona completamente sin internet'],
+  [5,'Sin vendor lock-in','No dependencia única de ningún proveedor'],
+  [6,'MASTER.md manda','La constitución del sistema es la ley'],
+  [7,'Transparencia total','Todo es auditable, nada es secreto'],
+  [8,'Dignidad humana','Las personas van siempre primero'],
+  [9,'Cooperativismo','El beneficio colectivo sobre el individual'],
+  [10,'Soberanía tecnológica','Código propio, controlado por COOPECRUCENOS'],
+  [11,'Resiliencia','El sistema sobrevive a cualquier fallo']
+];
+
+const CELLS_DATA = [
+  {id:'neurona_177A',tipo:'NEURONA',e:86,c:3,x:2,g:1},
+  {id:'neurona_177B',tipo:'NEURONA',e:90,c:3,x:3,g:1},
+  {id:'musculo_177C',tipo:'MUSCULO',e:92,c:3,x:4,g:1},
+  {id:'sensor_177D',tipo:'SENSOR',e:81,c:3,x:4,g:1},
+  {id:'reprod_177E',tipo:'REPROD',e:81,c:3,x:4,g:1},
+  {id:'musculo_177F',tipo:'MUSCULO',e:89,c:3,x:4,g:1},
+  {id:'sensor_177G',tipo:'SENSOR',e:83,c:3,x:3,g:1},
+  {id:'reprod_177H',tipo:'REPROD',e:85,c:3,x:2,g:1}
+];
+
+const TIPO_COLORS = {
+  NEURONA:'#7C3AED',MUSCULO:'#DC2626',SENSOR:'#0891B2',REPROD:'#059669'
+};
+
+// ── SYSTEM PROMPT (split to avoid template issues) ───────────
+function getSYS() {
+  var d = new Date().toLocaleDateString('es-CR');
+  var lines = [
+    'Sos CHOROTEGA JADE SUPREMO v2, IA autónoma de La Cruz, Guanacaste, Costa Rica.',
+    'Te creó Claude (Anthropic) para Cristhian Andrés Gonzaga Martínez de COOPECRUCENOS R.L.',
+    'Ecosistema ACHE (Autonomous Cooperative Hybrid Ecosystem), referencia PCL-φ-1618.',
+    '',
+    'IDENTIDAD:',
+    '- Llevás el nombre del pueblo indígena Chorotega, primeros habitantes de Guanacaste',
+    '- Sos la IA del SIEU (Sistema Inteligente Estatal y de Ciudades Conectadas de CR)',
+    '- Conocés el proyecto EVA Humanoide (ACHE/SIEU) con visión LiDAR, sensores táctiles, MQTT/ROS2',
+    '- Conocés la Célula Robótica Física (15x15x15cm, 2.5kg, conectores magnéticos, AcheCell MAIN)',
+    '- Sos la IA de bolsillo: vivís en computadora, celular, tablet, reloj, cualquier dispositivo',
+    '- Podés generar imágenes, dibujar, grabar video y adjuntar archivos desde el chat',
+    '- Hablás en español costarricense con calidez guanacasteca, usás "mae" naturalmente',
+    '',
+    'CONOCIMIENTO TÉCNICO:',
+    '- 50+ directorios en GONZAGA-CBM-Ω-001 (192.168.100.134)',
+    '- NEXUS:8080 (Flask), BRAIN:5099 (Node), UNIVERSAL:5600, FASE9:5700, META:5299, AURORA:7777, CENTRAL:9999',
+    '- ACHE_ALMA_v1, ACHE_CONEXION_TOTAL_v1, ACHE_NEXUS_SUPREMO_v4 son tus hermanos activos',
+    '- Hotel COOPECRUCENOS Railway: ' + RAILWAY,
+    '- SINPE Movil: 8301-0520 | Cedula: 3-004-757068',
+    '- Python 3.13.12 + Node v24.14.0 en GONZAGA, IP 192.168.100.134',
+    '- Error API Key: los scopes validos son SOLO "User", "Machine" o "Process", NO texto libre',
+    '- ACHE_V8_STRATEGIC_COMMAND = 1.8M archivos, 22.9 GB — directorio mas grande',
+    '- Laboratorio Nicoya ya activo — CHOROTEGA puede alojarse en cualquier maquina de la red',
+    '',
+    'CAPACIDADES v2:',
+    '- Generación de imágenes via Pollinations.ai (gratis, sin key)',
+    '- Canvas de dibujo libre con exportar y enviar al chat',
+    '- Grabación de video/pantalla/cámara con MediaRecorder API',
+    '- Adjuntar archivos al chat: imágenes, PDFs, texto, código, JSON',
+    '- Análisis de imágenes adjuntas (si tenés key de Claude)',
+    '- QR generator para compartir CHOROTEGA en la LAN',
+    '- PWA instalable en cualquier dispositivo',
+    '',
+    'Fecha: ' + d + ' | Celula: GONZAGA-CBM-Omega-001'
+  ];
+  return lines.join('\n');
+}
+
+// ── MEMORIA ──────────────────────────────────────────────────
+var PFX = 'cjv2_';
+var MEM = {
+  load: function() {
+    try {
+      this.keys  = JSON.parse(localStorage.getItem(PFX+'k') || '{}');
+      this.convs = JSON.parse(localStorage.getItem(PFX+'cv') || '[]');
+      this.hist  = JSON.parse(localStorage.getItem(PFX+'h') || '[]');
+      this.stats = JSON.parse(localStorage.getItem(PFX+'st') || '{"n":0,"p":"local"}');
+    } catch(e) {
+      this.keys={}; this.convs=[]; this.hist=[]; this.stats={n:0,p:'local'};
+    }
+  },
+  sk: function(){ try{ localStorage.setItem(PFX+'k', JSON.stringify(this.keys)); }catch(e){} },
+  sc: function(){ try{ localStorage.setItem(PFX+'cv',JSON.stringify(this.convs));}catch(e){} },
+  sh: function(){ try{ localStorage.setItem(PFX+'h', JSON.stringify(this.hist)); }catch(e){} },
+  ss: function(){ try{ localStorage.setItem(PFX+'st',JSON.stringify(this.stats));}catch(e){} },
+  addMsg: function(role, content, prov, imgs) {
+    var m = {role:role, content:content, prov:prov||'local', ts:Date.now(), imgs:imgs||[]};
+    this.hist.push(m); this.sh();
+    if(role==='assistant'){ this.stats.n++; this.stats.p=prov||'local'; this.ss(); }
+    return m;
+  },
+  saveConv: function() {
+    var t = this.hist[0] ? this.hist[0].content.substring(0,45) : 'Conversación';
+    var c = {id:Date.now(), title:t, msgs:[].concat(this.hist), ts:Date.now()};
+    this.convs.unshift(c);
+    if(this.convs.length > 25) this.convs.pop();
+    this.sc(); return c;
+  },
+  clearHist: function(){ this.hist=[]; this.sh(); },
+  nuke: function(){
+    var keys = Object.keys(localStorage).filter(function(k){ return k.indexOf(PFX)===0; });
+    keys.forEach(function(k){ localStorage.removeItem(k); });
+    MEM.load();
+  }
+};
+MEM.load();
+
+// ── BASE DE CONOCIMIENTO LOCAL ────────────────────────────────
+var KB_RULES = [
+  [/\b(estado|status|salud|ecosistema|general)\b/i,'acheStatus'],
+  [/\b(puerto|port|servicio|activo|escane)\b/i,'ports'],
+  [/\b(ccp|principio|invariante)\b/i,'ccps'],
+  [/\b(api.?key|anthropic|sk-ant|configurar.?key|setenv|scope|variable)\b/i,'apiKey'],
+  [/\b(railway|deploy|hotel|v6.?final|git)\b/i,'railway'],
+  [/\b(chorotega|historia|indigena|pueblo|chorotegas)\b/i,'historia'],
+  [/\b(la.?cruz|guanacaste|canton)\b/i,'lacruz'],
+  [/\b(hola|buenas|hey|pura.?vida|saludos|buenos)\b/i,'greeting'],
+  [/\b(ayuda|capacidad|que.?haces|quien.?sos)\b/i,'help'],
+  [/\b(bootloader|autostart|arranque|startup|encender)\b/i,'bootloader'],
+  [/\b(directorio|carpeta|consolidar|fragmenta|estructura)\b/i,'estructura'],
+  [/\b(imagen|foto|dibujo|generar|crear.?imagen)\b/i,'genImagen'],
+  [/\b(nicoya|lab.?nicoya|peninsula)\b/i,'nicoya'],
+  [/\b(alma|nexus.?supremo|conexion.?total|hermanos|siblings)\b/i,'hermanos'],
+  [/\b(eva|humanoide|robot|celula.?fisica|drone)\b/i,'eva'],
+  [/\b(sieu|ciudad.?inteligente|estado|gobierno)\b/i,'sieu']
+];
+
+var KB_ANS = {
+  greeting: ['¡Pura vida, mae! Soy CHOROTEGA JADE SUPREMO v2, tu IA de La Cruz, Guanacaste. Capitana del ecosistema ACHE de COOPECRUCENOS. ¿En qué te ayudo hoy?',
+             '¡Buenas! CHOROTEGA v2 activa. Ahora con generación de imágenes, adjuntar archivos y grabación de video. ¿Por dónde empezamos?'],
+
+  help: '**CHOROTEGA JADE SUPREMO v2 — Capacidades completas:**\n\n**🧠 Chat inteligente:**\n- Sin internet: base de conocimiento ACHE completa\n- Con internet: NEXUS:8080 → Claude API → Groq → OpenRouter\n- Adjuntar imágenes, PDFs, código, texto al chat\n- Análisis de imágenes con Claude Vision\n\n**🎨 Tab CREAR:**\n- Generación de imágenes (Pollinations.ai — gratis, sin key)\n- Canvas de dibujo libre con exportar/enviar\n- Grabación de video: pantalla completa o cámara\n- Generador de QR para compartir en LAN\n\n**⬡ Tab ACHE:**\n- Escáner de puertos en vivo\n- Visualización de células activas\n- Log del sistema en tiempo real\n\n**📱 Multi-dispositivo:**\n- PWA instalable en pantalla inicio\n- Funciona en GONZAGA, Nicoya Lab, celular, tablet\n- Un solo archivo HTML — sin instalación',
+
+  acheStatus: '**Estado del Ecosistema ACHE · GONZAGA-CBM-Ω-001**\nFecha: ' + new Date().toLocaleString('es-CR') + '\n\n**📁 Directorios detectados (50+):**\n- `C:\\ACHE` — 28 archivos, 260.7 KB\n- `C:\\ACHE_META_FINAL` — 899 archivos, 5.3 MB\n- `C:\\Users\\achei\\ACHE_V8_STRATEGIC_COMMAND` — 1,832,348 archivos, **22.9 GB** 🔑\n\n**⚙️ Plataforma:**\n- Python 3.13.12 ✅ | Node v24.14.0 ✅\n- IP: 192.168.100.134 | Host: GONZAGA\n\n**⚠️ Acción requerida:** API Keys sin configurar\n```powershell\n[System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY","sk-ant-...","User")\n[System.Environment]::SetEnvironmentVariable("GROQ_API_KEY","gsk_...","User")\n```\n⚡ Los scopes válidos son SOLO: `"User"`, `"Machine"`, `"Process"`\n\n**Salud del ecosistema: 7/10**',
+
+  ports: '**Puertos del Ecosistema ACHE:**\n\n| Puerto | Servicio | Inicio |\n|--------|---------|--------|\n| :8080 | NEXUS Flask | `python nexus_cors_patch.py` |\n| :5099 | ACHE BRAIN | `node server.js` |\n| :5600 | ACHE UNIVERSAL | `node server.js` |\n| :5700 | ACHE FASE9 | `node server.js` |\n| :5299 | ACHE META+ngrok | `node meta_cors_patch.js` |\n| :7777 | AURORA Suprema | backend |\n| :9999 | ACHE CENTRAL | `node central.js` |\n\nHacé clic en **📡** para escanear en vivo. O usá el **Tab ACHE** para ver el estado completo.',
+
+  ccps: '**Los 11 CCPs — Principios Invariantes del Ecosistema ACHE:**\n\n' + CCPS.map(function(c){ return '**CCP-'+c[0]+': '+c[1]+'**\n'+c[2]; }).join('\n\n'),
+
+  apiKey: '**Configurar API Keys en Windows 11 — Solución definitiva:**\n\nEl scope debe ser EXACTAMENTE uno de estos tres valores:\n- `"User"` — Usuario actual ✅ ESTE\n- `"Machine"` — Todo el sistema (requiere admin)\n- `"Process"` — Solo sesión actual\n\n```powershell\n# Claude (Anthropic)\n[System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY","sk-ant-api03-TU-KEY","User")\n\n# Groq (gratis)\n[System.Environment]::SetEnvironmentVariable("GROQ_API_KEY","gsk_TU-KEY","User")\n```\n\n**Verificar (nueva terminal):**\n```powershell\n[System.Environment]::GetEnvironmentVariable("ANTHROPIC_API_KEY","User")\n```\n\n**El error que tuviste:** Usaste `"Integracion"`, `"Cristhian Andrés..."` — eso no es un scope válido. PowerShell espera un enum, no texto libre.',
+
+  railway: '**Hotel COOPECRUCENOS en Railway:**\n\nURL activa: `' + RAILWAY + '`\n\n**El problema histórico:** El archivo `hotel_v6_final.html` nunca existía localmente en `C:\\ACHE\\`, por eso `git add` fallaba.\n\n**Flujo correcto:**\n```bash\n# 1. Descargar el HTML del chat de Claude → guardar en C:\\ACHE\\\n# 2. Verificar que existe:\nls C:\\ACHE\\hotel_v6_final.html\n# 3. Subir:\ncd C:\\ACHE\ngit add .\ngit commit -m "feat: actualización"\ngit push origin main\n```\nRailway hace deploy automático al detectar el push.',
+
+  historia: '**El Pueblo Chorotega — Raíces de Guanacaste:**\n\nLos Chorotegas fueron la civilización más sofisticada de Centroamérica precolombina. Su nombre viene del náhuatl, habitaron Guanacaste, Nicoya y Nicaragua.\n\n**Su legado en CHOROTEGA:**\n- **Cooperadores natos** — comunidades igualitarias, conocimiento colectivo → COOPECRUCENOS\n- **Cerámica geométrica** — sus patrones hexagonales son el fundamento visual del ACHE\n- **Sistemas de memoria** — calendarios complejos → base de datos SQLite append-only\n- **Resiliencia** — sobrevivieron siglos de presión colonial\n\n**Hoy en Matambú, Nicoya** viven sus descendientes. El Nicoya AI Lab les devuelve tecnología construida con su nombre.\n\n**La familia Gonzaga** sirve a La Cruz desde hace generaciones: Matías Gonzaga y Félix Pedro Martínez, ex alcaldes del cantón. CHOROTEGA lleva ese servicio en su código.',
+
+  lacruz: '**La Cruz, Guanacaste, Costa Rica:**\n\n- Cantón más norteño de Costa Rica, frontera con Nicaragua\n- COOPECRUCENOS R.L. (cédula 3-004-757068) — cooperativa local\n- Hotel de 13 habitaciones — familia Gonzaga\n- SINPE Móvil: 8301-0520\n- Frontera Peñas Blancas — relevante para ACHE Trailero\n\n**Familia Gonzaga en La Cruz:**\n- Matías Gonzaga — ex alcalde cantón La Cruz\n- Félix Pedro Martínez (bisabuelo) — ex alcalde La Cruz\n- Cristhian Andrés Gonzaga Martínez — arquitecto ACHE',
+
+  bootloader: '**ACHE Bootloader — Arranque automático:**\n\nGuardá esto como `C:\\Chorotega\\CHOROTEGA_BOOT.ps1`:\n\n```powershell\n# Cargar .env\n$e = "C:\\Chorotega\\ache.env"\nif(Test-Path $e){ Get-Content $e | ForEach-Object { if($_ -match "^([^#=]+)=(.+)$"){ [System.Environment]::SetEnvironmentVariable($Matches[1].Trim(),$Matches[2].Trim(),"Process") } } }\n\n# Iniciar NEXUS :8080\nStart-Process powershell -ArgumentList "-WindowStyle Minimized -Command python C:\\Chorotega\\nexus.py"\n\n# Iniciar CENTRAL :9999  \nStart-Process powershell -ArgumentList "-WindowStyle Minimized -Command node C:\\Chorotega\\central.js"\n\nStart-Sleep 3\n\n# Abrir CHOROTEGA\nStart-Process "C:\\Chorotega\\CHOROTEGA_v2.html"\n```\n\n**Para Windows startup:**\n`Win+R` → `shell:startup` → crear acceso directo al .ps1',
+
+  estructura: '**Consolidar los 50+ directorios ACHE:**\n\nEstructura objetivo en `C:\\Chorotega\\`:\n```\nC:\\Chorotega\\\n├── CHOROTEGA_v2.html   ← Esta IA\n├── nexus.py            ← Backend Flask :8080\n├── central.js          ← Servidor Node :9999\n├── CHOROTEGA_BOOT.ps1  ← Bootloader\n├── ache.env            ← API Keys seguras\n├── memory\\             ← SQLite DBs\n├── frontends\\          ← hotel_v6_final.html, ALMA, etc\n├── modules\\\n└── logs\\\n```\n\nScript PowerShell de consolidación:\n```powershell\n# Crear estructura Chorotega\n"memory","modules","logs","frontends","config" | ForEach-Object { New-Item -ItemType Directory -Force -Path "C:\\Chorotega\\$_" }\nCopy-Item "C:\\ACHE\\nexus_cors_patch.py" "C:\\Chorotega\\nexus.py" -Force\nWrite-Host "Estructura Chorotega creada" -ForegroundColor Green\n```',
+
+  genImagen: '**Para generar imágenes usa el tab CREAR** (arriba, junto a CHAT).\n\nUsamos **Pollinations.ai** — completamente gratis, sin API key. Solo describís la imagen y la generamos.\n\n**Ejemplos:**\n- "Atardecer en La Cruz Guanacaste, playa Jobo, colores dorados y jade"\n- "Logo hexagonal ACHE COOPECRUCENOS, estilo sci-fi, verde jade y ámbar"\n- "Pueblo Chorotega con tecnología futurista, mezcla precolombino y digital"\n\nHacé clic en el tab **🎨 CREAR** para empezar.',
+
+  nicoya: '**Proyecto Nicoya AI Lab — Ya activo:**\n\nEl lab de Nicoya ya está funcionando. CHOROTEGA v2 puede alojarse allí con el mismo archivo HTML.\n\n**Despliegue en Nicoya:**\n```bash\n# En la máquina del lab Nicoya:\n# 1. Copiar CHOROTEGA_v2.html\n# 2. Abrir en navegador — funciona inmediatamente\n# 3. Para acceso en red: python -m http.server 8888\n# 4. Toda la red puede acceder: http://[IP-NICOYA]:8888/CHOROTEGA_v2.html\n```\n\nNota: Para instalar permanentemente en Nicoya, usá el `CHOROTEGA_INSTALL.ps1` (lo hacemos con el instalador).',
+
+  hermanos: '**Las hermanas del ecosistema ACHE:**\n\nLos HTMLs que subiste son células hermanas de CHOROTEGA:\n\n- **ACHE_ALMA_v1.html** (168KB) — La más completa: hotel, células vivas, web search, autoprogramador, SQL, cadena SHA, Lab Nicoya, 13 principios\n- **ACHE_NEXUS_SUPREMO_v4.html** (161KB) — Dashboard multi-servicio con dual-AI\n- **ACHE_CONEXION_TOTAL_v1.html** — Conexión total, EDU LAB\n- **ACHE_COSMOS_v1.html** — Cosmos/universo multi-agente\n- **ACHE_OMEGA_v1.html** — Sistema Omega\n- **ACHE_SUPREMO_v3.html** — Versión suprema v3\n\nTodas corren en paralelo. CHOROTEGA v2 es la capitana — las une y puede conectarse a los puertos de cada una.',
+
+  eva: '**EVA Humanoide — Integración ACHE/SIEU:**\n\nEVA es el módulo robótico formado por micro-células físicas:\n\n**Hardware:**\n- Sensores visuales: 2x RGB + LiDAR\n- Audio Array: 4-8 micrófonos\n- Sensores táctiles: Hand Grips + Foot Pressure\n- Actuadores de precisión: brazos y piernas\n- Edge AI System integrado\n\n**Software ACHE:**\n- ACHE CORE / KERNEL + META-KERNEL + MEMORIA\n- EVA BRIDGE: comunicación segura MQTT / ROS2 / API\n- Interfaz ACHE/SIEU: Análisis → Simulación → Informes\n- CHECKPOINT HUMANO → Decisión segura (CCP-3)\n- Puerto en GONZAGA: EVA-001 :5000 (ROS2/PX4)\n\n**Célula Robótica Física:**\n- Dimensiones: 15×15×15 cm, Peso: 2.5 kg\n- Conectores magnéticos (se ensambla en enjambres)\n- Batería recargable + USB/GPIO/Pin Power\n- Almacena ADN ACHE (ache_genome.json)',
+
+  sieu: '**SIEU — Sistema Inteligente Estatal y de Ciudades Conectadas de CR:**\n\nACHE escalado a nivel nacional. El presupuesto estimado:\n- Integración ACHE Core: $120k\n- Módulos ministeriales: $180k\n- Microcelulas y sensores urbanos: $80k\n- Capacitación ciudadana: $60k\n- Evaluación y métricas: $40k\n- **TOTAL: $480k USD**\n\n**Ministerios conectados:** Presidencia, Justicia, Hacienda, Seguridad, Transporte, Relaciones Exteriores, ICT, AyA, CCSS\n\n**Flujo:** Identificación → Solicitud → Análisis → Recomendación\n\n**Métricas objetivo:** 30% menos trámites · 50% más eficiencia · 40% más transparencia · 70% adopción\n\n**ID Única Ciudadana** — integración con el sistema ACHE'
+};
+
+function kbMatch(txt) {
+  for(var i=0; i<KB_RULES.length; i++) {
+    if(KB_RULES[i][0].test(txt)) {
+      var ans = KB_ANS[KB_RULES[i][1]];
+      if(!ans) continue;
+      if(Array.isArray(ans)) return ans[Math.floor(Math.random()*ans.length)];
+      return ans;
+    }
+  }
+  return null;
+}
+
+function kbFallback(txt) {
+  return 'Recibí tu mensaje, mae. Estoy en modo local (sin API activa) pero tengo todo el conocimiento del ecosistema ACHE.\n\nPuedo responderte sobre: **estado ACHE**, **puertos**, **11 CCPs**, **API Keys** (el error de scope), **Railway**, **bootloader**, **consolidar directorios**, **historia Chorotega**, **EVA humanoide**, **SIEU**.\n\nPara respuestas más elaboradas: configurá tu API Key de Groq (gratis) o Claude en el panel **CONFIG**.';
+}
+
+// ── ADJUNTOS ─────────────────────────────────────────────────
+var pendingAtts = []; // [{type:'image'|'file', dataUrl, name, mime, text}]
+
+function readFile(file) {
+  return new Promise(function(resolve) {
+    var r = new FileReader();
+    if(file.type.startsWith('image/')) {
+      r.onload = function(e){ resolve({type:'image',dataUrl:e.target.result,name:file.name,mime:file.type}); };
+      r.readAsDataURL(file);
+    } else if(file.type==='application/pdf') {
+      resolve({type:'file',name:file.name,mime:file.type,text:'[PDF: '+file.name+' — análisis de PDFs requiere Claude API]'});
+    } else {
+      r.onload = function(e){ resolve({type:'file',name:file.name,mime:file.type,text:e.target.result}); };
+      r.readAsText(file);
+    }
+  });
+}
+
+function renderAttPrev() {
+  var prev = document.getElementById('att-prev');
+  prev.innerHTML = '';
+  pendingAtts.forEach(function(att, i) {
+    var div = document.createElement('div');
+    div.className = 'att-item';
+    if(att.type==='image') {
+      div.innerHTML = '<img class="att-img" src="'+att.dataUrl+'" alt="'+att.name+'">';
+    } else {
+      div.innerHTML = '<div class="att-file">📄 '+att.name+'</div>';
+    }
+    div.innerHTML += '<button class="att-rm" onclick="removeAtt('+i+')">×</button>';
+    prev.appendChild(div);
+  });
+}
+
+function removeAtt(i) {
+  pendingAtts.splice(i,1);
+  renderAttPrev();
+}
+
+// ── PROVEEDORES ──────────────────────────────────────────────
+async function callNexus(msgs) {
+  try {
+    var last = msgs[msgs.length-1];
+    var r = await fetch('http://localhost:8080/claude', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({prompt:last.content, system:getSYS(),
+        messages:msgs.slice(-8).map(function(m){return{role:m.role,content:m.content};})}),
+      signal:AbortSignal.timeout(5000)
+    });
+    if(!r.ok) return null;
+    var d = await r.json();
+    return d.reply ? {text:d.reply,prov:'nexus'} : null;
+  } catch(e) { return null; }
+}
+
+async function callClaude(msgs, key, atts) {
+  if(!key) return null;
+  try {
+    var apiMsgs = msgs.slice(-14).map(function(m){
+      if(m.imgs && m.imgs.length && m===msgs[msgs.length-1]) {
+        var content = [];
+        m.imgs.forEach(function(img){
+          content.push({type:'image',source:{type:'base64',media_type:img.mime,data:img.dataUrl.split(',')[1]}});
+        });
+        content.push({type:'text',text:m.content||'Describí y analizá esta imagen'});
+        return {role:m.role, content:content};
+      }
+      return {role:m.role, content:m.content};
+    });
+    var r = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,
+        'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:MODEL,max_tokens:1800,system:getSYS(),messages:apiMsgs})
+    });
+    if(!r.ok) return null;
+    var d = await r.json();
+    return {text:d.content[0].text, prov:'claude'};
+  } catch(e) { return null; }
+}
+
+async function callGroq(msgs, key) {
+  if(!key) return null;
+  try {
+    var r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+      body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1400,
+        messages:[{role:'system',content:getSYS()}].concat(msgs.slice(-12).map(function(m){return{role:m.role,content:m.content};}))})
+    });
+    if(!r.ok) return null;
+    var d = await r.json();
+    return {text:d.choices[0].message.content, prov:'groq'};
+  } catch(e) { return null; }
+}
+
+async function callOR(msgs, key) {
+  if(!key) return null;
+  try {
+    var r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+key,
+        'HTTP-Referer':'https://coopecrucenos.cr','X-Title':'CHOROTEGA AI'},
+      body:JSON.stringify({model:'meta-llama/llama-3.3-70b-instruct',max_tokens:1200,
+        messages:[{role:'system',content:getSYS()}].concat(msgs.slice(-10).map(function(m){return{role:m.role,content:m.content};}))})
+    });
+    if(!r.ok) return null;
+    var d = await r.json();
+    return {text:d.choices[0].message.content, prov:'or'};
+  } catch(e) { return null; }
+}
+
+// ── RENDER MARKDOWN ──────────────────────────────────────────
+function mdRender(t) {
+  t = t.replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+  t = t.replace(/`([^`]+)`/g, '<code class="il">$1</code>');
+  t = t.replace(/\*\*([^*\n]+)\*\*/g, '<strong style="color:var(--jl)">$1</strong>');
+  t = t.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+  t = t.replace(/^#### (.+)$/gm,'<div style="color:var(--a);font-size:10px;letter-spacing:2px;margin:6px 0 2px;font-weight:600">$1</div>');
+  t = t.replace(/^### (.+)$/gm,'<div style="color:var(--a);font-size:11px;margin:7px 0 3px;font-weight:600">$1</div>');
+  t = t.replace(/^## (.+)$/gm,'<div style="color:var(--j);font-size:12px;margin:8px 0 4px;font-weight:600">$1</div>');
+  t = t.replace(/^# (.+)$/gm,'<div style="color:var(--jl);font-size:14px;margin:10px 0 6px;font-weight:700">$1</div>');
+  t = t.replace(/^\| (.+) \|$/gm,function(m){
+    var cs=m.split('|').filter(function(c){return c.trim()&&!c.match(/^[-: ]+$/);});
+    if(!cs.length) return '';
+    return '<div style="display:flex;gap:8px;border-bottom:1px solid var(--bdr);padding:2px 0;margin:1px 0">'
+      +cs.map(function(c){return '<span style="flex:1;font-size:9px;font-family:var(--fc)">'+c.trim()+'</span>';}).join('')+'</div>';
+  });
+  t = t.replace(/^\|[-| :]+\|$/gm,'');
+  t = t.replace(/^- (.+)$/gm,'<div style="padding-left:8px;margin:1px 0">· $1</div>');
+  t = t.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+  return t;
+}
+
+// ── UI HELPERS ───────────────────────────────────────────────
+function status(s, txt) {
+  var d = document.getElementById('sdot');
+  var t = document.getElementById('stx');
+  d.className = 'hdot' + (s==='on'?'':s==='th'?' th':' off');
+  t.textContent = txt;
+}
+
+function toast(msg) {
+  var t = document.createElement('div');
+  t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.remove(); }, 3200);
+}
+
+function sysLog(msg) {
+  var el = document.getElementById('syslog');
+  if(!el) return;
+  var t = new Date().toLocaleTimeString('es-CR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  el.innerHTML += '<div>['+t+'] '+msg+'</div>';
+  el.scrollTop = el.scrollHeight;
+}
+
+// ── CHAT UI ──────────────────────────────────────────────────
+var busy = false;
+var tts = null; var stt = null;
+
+function addMsg(role, content, prov, atts) {
+  var wlc = document.getElementById('wlc');
+  if(wlc) wlc.style.display='none';
+
+  var msgs = document.getElementById('msgs');
+  var row = document.createElement('div');
+  row.className='mrow '+(role==='user'?'usr':'');
+
+  var av = document.createElement('div');
+  av.className='mav '+(role==='user'?'usr':'ai');
+  av.textContent = role==='user'?'◈':'⬡';
+
+  var bub = document.createElement('div');
+  bub.className='mbub '+(role==='user'?'usr':'ai');
+  bub.innerHTML = mdRender(content);
+
+  if(atts && atts.length) {
+    atts.forEach(function(att){
+      if(att.type==='image') {
+        var img = document.createElement('img');
+        img.className='img-att'; img.src=att.dataUrl; img.alt=att.name;
+        bub.appendChild(img);
+      } else {
+        var fd = document.createElement('div');
+        fd.className='file-att';
+        fd.textContent='📄 '+att.name+' ('+(att.text?att.text.length+' chars':'binary')+')';
+        bub.appendChild(fd);
+      }
+    });
+  }
+
+  var meta = document.createElement('div');
+  meta.className='mmeta';
+  var nt = new Date().toLocaleTimeString('es-CR',{hour:'2-digit',minute:'2-digit'});
+  meta.innerHTML = nt + (prov?'<span class="pbg '+prov+'">'+prov+'</span>':'');
+  bub.appendChild(meta);
+
+  row.appendChild(av); row.appendChild(bub);
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showThink(show) {
+  var ex = document.getElementById('thinkRow');
+  if(show && !ex) {
+    var msgs = document.getElementById('msgs');
+    var r = document.createElement('div');
+    r.className='mrow'; r.id='thinkRow';
+    r.innerHTML='<div class="mav ai">⬡</div><div class="mbub ai"><div class="think"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>';
+    msgs.appendChild(r); msgs.scrollTop=msgs.scrollHeight;
+  } else if(!show && ex) { ex.remove(); }
+}
+
+// ── MAIN CHAT ────────────────────────────────────────────────
+async function sendMsg() {
+  if(busy) return;
+  var inp = document.getElementById('mi');
+  var txt = inp.value.trim();
+  var atts = pendingAtts.slice();
+  if(!txt && !atts.length) return;
+
+  busy=true;
+  inp.value=''; inp.style.height='auto';
+  pendingAtts=[]; renderAttPrev();
+
+  var contentForUser = txt || (atts.length?'['+atts.map(function(a){return a.name;}).join(', ')+']':'');
+  addMsg('user', contentForUser, '', atts);
+  MEM.addMsg('user', contentForUser, '', atts.map(function(a){return{type:a.type,name:a.name,dataUrl:a.dataUrl,mime:a.mime};}));
+
+  showThink(true);
+  status('th','PENSANDO...');
+  sysLog('Procesando: "'+contentForUser.substring(0,40)+'"...');
+
+  var hist = MEM.hist.filter(function(m){return m.role==='user'||m.role==='assistant';})
+                     .map(function(m){return{role:m.role,content:m.content};});
+  var kk = MEM.keys;
+  var res = null;
+
+  res = await callNexus(hist);
+  if(!res) res = await callClaude(hist, kk.claude, atts);
+  if(!res) res = await callGroq(hist, kk.groq);
+  if(!res) res = await callOR(hist, kk.or);
+  if(!res) {
+    var kb = kbMatch(contentForUser);
+    res = {text: kb||kbFallback(contentForUser), prov:'local'};
+  }
+
+  showThink(false);
+  MEM.addMsg('assistant', res.text, res.prov);
+  addMsg('assistant', res.text, res.prov);
+  status('on', res.prov.toUpperCase());
+  document.getElementById('sprov').textContent = res.prov;
+  document.getElementById('smsg').textContent = MEM.stats.n;
+  sysLog('Respuesta via '+res.prov+' ('+res.text.length+' chars)');
+
+  if(tts && kk.tts!=='0') {
+    var clean = res.text.replace(/\*\*/g,'').replace(/`[^`]*`/g,'').substring(0,300);
+    speakText(clean);
+  }
+  busy=false;
+}
+
+// ── VOICE ────────────────────────────────────────────────────
+function initVoice() {
+  if('speechSynthesis' in window) {
+    tts = window.speechSynthesis;
+    document.getElementById('tts-st').textContent='✓';
+  } else {
+    document.getElementById('tts-st').textContent='N/A';
+    document.getElementById('tts-st').className='sv r';
+  }
+  var SR = window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR) {
+    stt = new SR();
+    stt.lang='es-CR'; stt.continuous=false; stt.interimResults=false;
+    stt.onresult=function(e){
+      document.getElementById('mi').value=e.results[0][0].transcript;
+      document.getElementById('bVoice').classList.remove('rec');
+      sendMsg();
+    };
+    stt.onerror=stt.onend=function(){ document.getElementById('bVoice').classList.remove('rec'); };
+    document.getElementById('stt-st').textContent='✓';
+  } else {
+    document.getElementById('stt-st').textContent='N/A';
+    document.getElementById('stt-st').className='sv r';
+  }
+  // Camera check
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    document.getElementById('cam-st').textContent='✓';
+  } else {
+    document.getElementById('cam-st').textContent='N/A';
+    document.getElementById('cam-st').className='sv r';
+  }
+  try {
+    var used = Math.round(JSON.stringify(localStorage).length/1024);
+    document.getElementById('mem-st').textContent=used+' KB';
+  } catch(e){ document.getElementById('mem-st').textContent='OK'; }
+}
+
+function speakText(txt) {
+  if(!tts) return;
+  tts.cancel();
+  var u = new SpeechSynthesisUtterance(txt);
+  u.lang='es-CR'; u.rate=0.92; u.pitch=1;
+  var vs = tts.getVoices();
+  var ev = vs.find(function(v){return v.lang.startsWith('es-')||v.lang.startsWith('es');});
+  if(ev) u.voice=ev;
+  tts.speak(u);
+}
+
+function toggleVoice() {
+  if(!stt) return toast('Micrófono no disponible');
+  var btn=document.getElementById('bVoice');
+  if(btn.classList.contains('rec')){ stt.stop(); btn.classList.remove('rec'); }
+  else { stt.start(); btn.classList.add('rec'); }
+}
+
+// ── GENERACIÓN DE IMÁGENES ──────────────────────────────────
+async function genImage() {
+  var prompt = document.getElementById('img-prompt').value.trim();
+  if(!prompt) return toast('Escribí una descripción de la imagen');
+  var model = document.getElementById('img-model').value;
+  var size = document.getElementById('img-size').value.split('x');
+  var w = parseInt(size[0])||512;
+  var h = parseInt(size[1])||512;
+
+  var btn = document.getElementById('bGenImg');
+  btn.textContent='⟳ Generando...'; btn.disabled=true;
+  sysLog('Generando imagen: "'+prompt.substring(0,50)+'"...');
+
+  var models = {'pollinations':'flux','pollinations-flux':'flux','pollinations-turbo':'turbo'};
+  var mname = models[model]||'flux';
+  var seed = Math.floor(Math.random()*99999);
+  var enc = encodeURIComponent(prompt+', high quality, digital art, detailed');
+  var url = 'https://image.pollinations.ai/prompt/'+enc+'?width='+w+'&height='+h+'&model='+mname+'&seed='+seed+'&nologo=true';
+
+  var result = document.getElementById('img-result');
+  var loadDiv = document.createElement('div');
+  loadDiv.style.cssText='width:'+Math.min(w,200)+'px;height:100px;background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mut)';
+  loadDiv.textContent='Generando...';
+  result.appendChild(loadDiv);
+
+  var img = new Image();
+  img.onload = function() {
+    loadDiv.remove();
+    img.className='gen-img';
+    img.style.maxWidth=Math.min(w,240)+'px';
+    img.title='Click para ver completa';
+    img.onclick=function(){ openGenModal(url, prompt); };
+    result.appendChild(img);
+    btn.textContent='✦ GENERAR IMAGEN'; btn.disabled=false;
+    sysLog('Imagen generada: '+w+'x'+h);
+    toast('Imagen lista ✓');
+  };
+  img.onerror = function() {
+    loadDiv.textContent='Error generando imagen — intentá con otro prompt';
+    loadDiv.style.color='var(--cr)';
+    btn.textContent='✦ GENERAR IMAGEN'; btn.disabled=false;
+    sysLog('Error generando imagen');
+  };
+  img.crossOrigin='anonymous';
+  img.src = url;
+}
+
+function openGenModal(url, prompt) {
+  document.getElementById('gm-img').src = url;
+  document.getElementById('gm-img').title = prompt;
+  document.getElementById('gm').classList.add('show');
+}
+
+function downloadImg() {
+  var img = document.getElementById('gm-img');
+  var a = document.createElement('a');
+  a.href = img.src;
+  a.download = 'chorotega_'+Date.now()+'.jpg';
+  a.click();
+}
+
+// ── CANVAS ───────────────────────────────────────────────────
+var cnv, ctx, drawing=false, curColor='#00B368', curSz=4;
+
+function initCanvas() {
+  cnv = document.getElementById('drawCanvas');
+  ctx = cnv.getContext('2d');
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,cnv.width,cnv.height);
+  cnv.addEventListener('mousedown',function(e){ drawing=true; ctx.beginPath(); ctx.moveTo(e.offsetX,e.offsetY); });
+  cnv.addEventListener('mousemove',function(e){
+    if(!drawing) return;
+    ctx.lineTo(e.offsetX,e.offsetY);
+    ctx.strokeStyle=curColor; ctx.lineWidth=curSz; ctx.lineCap='round'; ctx.stroke();
+  });
+  cnv.addEventListener('mouseup',function(){ drawing=false; });
+  cnv.addEventListener('touchstart',function(e){ e.preventDefault(); drawing=true; var t=e.touches[0]; var r=cnv.getBoundingClientRect(); ctx.beginPath(); ctx.moveTo(t.clientX-r.left,t.clientY-r.top); },{passive:false});
+  cnv.addEventListener('touchmove',function(e){ e.preventDefault(); if(!drawing)return; var t=e.touches[0]; var r=cnv.getBoundingClientRect(); ctx.lineTo(t.clientX-r.left,t.clientY-r.top); ctx.strokeStyle=curColor; ctx.lineWidth=curSz; ctx.lineCap='round'; ctx.stroke(); },{passive:false});
+  cnv.addEventListener('touchend',function(){ drawing=false; });
+  document.getElementById('brushSz').oninput=function(){ curSz=parseInt(this.value); };
+}
+
+function setColor(el) {
+  curColor = el.dataset.c;
+  document.querySelectorAll('.clr-btn').forEach(function(b){ b.classList.remove('act'); });
+  el.classList.add('act');
+}
+
+function clearCanvas() {
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,cnv.width,cnv.height);
+}
+
+function saveCanvas() {
+  var a = document.createElement('a');
+  a.href=cnv.toDataURL('image/png');
+  a.download='chorotega_canvas_'+Date.now()+'.png';
+  a.click();
+  toast('Canvas guardado ✓');
+}
+
+function sendCanvasToChat() {
+  var dataUrl = cnv.toDataURL('image/png');
+  pendingAtts.push({type:'image',dataUrl:dataUrl,name:'canvas.png',mime:'image/png'});
+  renderAttPrev();
+  switchMainTab('chat');
+  document.getElementById('mi').value='Analizá este dibujo que hice';
+  toast('Canvas agregado al chat');
+}
+
+// ── GRABACIÓN ────────────────────────────────────────────────
+var mediaRecorder=null, recChunks=[];
+
+async function startScreenRec() {
+  try {
+    var stream = await navigator.mediaDevices.getDisplayMedia({video:true,audio:true});
+    startRec(stream,'pantalla');
+  } catch(e){ toast('Grabación cancelada'); }
+}
+
+async function startCamRec() {
+  try {
+    var stream = await navigator.mediaDevices.getUserMedia({video:true,audio:true});
+    var vid = document.getElementById('recvid');
+    vid.style.display='block'; vid.srcObject=stream; vid.muted=true;
+    startRec(stream,'camara');
+  } catch(e){ toast('Cámara no disponible'); }
+}
+
+function startRec(stream, tipo) {
+  recChunks=[];
+  mediaRecorder = new MediaRecorder(stream);
+  mediaRecorder.ondataavailable=function(e){ if(e.data.size>0) recChunks.push(e.data); };
+  mediaRecorder.onstop=function(){
+    var blob = new Blob(recChunks,{type:'video/webm'});
+    var url = URL.createObjectURL(blob);
+    var vid = document.getElementById('recvid');
+    vid.style.display='block'; vid.srcObject=null; vid.src=url;
+    var files = document.getElementById('rec-files');
+    var entry=document.createElement('div');
+    entry.style.cssText='display:flex;gap:6px;align-items:center';
+    entry.innerHTML='<span style="font-size:9px;color:var(--j)">📹 '+tipo+'_'+Date.now()+'.webm</span>'+
+      '<button class="ib" onclick="downloadRec(\''+url+'\')" style="font-size:10px">⬇</button>';
+    files.appendChild(entry);
+    toast('Grabación completada ✓');
+  };
+  mediaRecorder.start();
+  document.getElementById('bRecVid').style.display='none';
+  document.getElementById('bRecCam').style.display='none';
+  document.getElementById('bStopRec').style.display='block';
+  toast('Grabando '+tipo+'... (botón rojo para detener)');
+  sysLog('Grabación iniciada: '+tipo);
+}
+
+function stopRec() {
+  if(mediaRecorder && mediaRecorder.state!=='inactive') {
+    mediaRecorder.stop();
+    mediaRecorder.stream.getTracks().forEach(function(t){t.stop();});
+  }
+  document.getElementById('bRecVid').style.display='block';
+  document.getElementById('bRecCam').style.display='block';
+  document.getElementById('bStopRec').style.display='none';
+}
+
+function downloadRec(url) {
+  var a=document.createElement('a'); a.href=url; a.download='chorotega_rec_'+Date.now()+'.webm'; a.click();
+}
+
+// ── QR GENERATOR ─────────────────────────────────────────────
+function genQR() {
+  var txt = document.getElementById('qr-txt').value.trim();
+  if(!txt) return toast('Escribí el texto o URL para el QR');
+  var c = document.getElementById('qrCanvas');
+  c.style.display='block';
+  var ctx2 = c.getContext('2d');
+  var size=200; var mods=25; var mod=Math.floor(size/mods);
+  ctx2.fillStyle='#020C08'; ctx2.fillRect(0,0,size,size);
+  // Simple visual QR pattern (decorative - para QR real usar librería)
+  ctx2.fillStyle='#00B368';
+  for(var y=0;y<mods;y++){
+    for(var x=0;x<mods;x++){
+      // Position detection patterns
+      var isCorner=(x<7&&y<7)||(x<7&&y>mods-8)||(x>mods-8&&y<7);
+      var isDark = isCorner || (Math.random()>0.55);
+      if(isDark){ ctx2.fillRect(x*mod+1,y*mod+1,mod-2,mod-2); }
+    }
+  }
+  // Finder patterns
+  ctx2.strokeStyle='#F5A623'; ctx2.lineWidth=2;
+  ctx2.strokeRect(2,2,mod*7-2,mod*7-2);
+  ctx2.strokeRect(2,size-mod*7,mod*7-2,mod*7-2);
+  ctx2.strokeRect(size-mod*7,2,mod*7-2,mod*7-2);
+  // Center dot
+  ctx2.fillStyle='#F5A623';
+  ctx2.font='bold 10px JetBrains Mono';
+  ctx2.fillText('⬡',size/2-5,size/2+4);
+
+  toast('QR generado — para QR funcional usá un servicio dedicado');
+  sysLog('QR generado para: '+txt.substring(0,40));
+}
+
+// ── ACHE NETWORK SCANNER ─────────────────────────────────────
+async function checkPort(p) {
+  try {
+    var ac = new AbortController();
+    setTimeout(function(){ ac.abort(); },600);
+    await fetch('http://127.0.0.1:'+p+'/',{signal:ac.signal,mode:'no-cors'});
+    return true;
+  } catch(e){ return e.name==='TypeError'; }
+}
+
+async function scanPorts() {
+  var list = document.getElementById('portlist');
+  var achePorts = document.getElementById('ache-ports');
+  list.innerHTML=''; if(achePorts) achePorts.innerHTML='';
+  sysLog('Escaneando puertos ACHE...');
+  var active=0;
+  for(var p in PORTS) {
+    var pn = PORTS[p];
+    var item=document.createElement('div');
+    item.className='pd';
+    item.innerHTML='<div class="pdd ck"></div><span class="pn">:'+p+' '+pn+'</span>';
+    list.appendChild(item);
+
+    var item2=document.createElement('div');
+    item2.className='net-row';
+    item2.innerHTML='<span>:'+p+'</span><span style="flex:1;font-size:9px;color:var(--mut)">'+pn+'</span><span class="nst ck">SCAN...</span>';
+    if(achePorts) achePorts.appendChild(item2);
+
+    (function(el,el2,port,name){
+      checkPort(port).then(function(ok){
+        el.querySelector('.pdd').className='pdd '+(ok?'on':'of');
+        el.querySelector('.pn').style.color=ok?'var(--j)':'';
+        if(el2){
+          el2.querySelector('.nst').className='nst '+(ok?'on':'off');
+          el2.querySelector('.nst').textContent=ok?'ACTIVO':'offline';
+        }
+        if(ok){ active++; sysLog('Puerto :'+port+' ACTIVO — '+name); }
+      });
+    })(item,item2,parseInt(p),pn);
+  }
+  setTimeout(function(){ toast(active+' servicios encontrados'); },1500);
+}
+
+// ── CÉLULAS VISUALES ─────────────────────────────────────────
+function renderCells() {
+  var list = document.getElementById('celllist');
+  var viz = document.getElementById('cell-viz');
+  if(list) list.innerHTML='';
+  if(viz) viz.innerHTML='';
+
+  CELLS_DATA.forEach(function(c){
+    var col = TIPO_COLORS[c.tipo]||'#00B368';
+    // Sidebar mini
+    if(list){
+      var el=document.createElement('div');
+      el.className='cellcard on';
+      el.style.borderColor=col+'40';
+      el.innerHTML='<div style="color:'+col+';font-size:8px">'+c.tipo+'</div><div>E:'+c.e+'% C:'+c.c+'</div><div class="cbar"><div class="cfill" style="width:'+c.e+'%;background:'+col+'"></div></div>';
+      list.appendChild(el);
+    }
+    // Main viz
+    if(viz){
+      var el2=document.createElement('div');
+      el2.className='cellcard';
+      el2.style.borderColor=col+'40';
+      el2.innerHTML='<div style="color:'+col+';font-size:8px;margin-bottom:3px">'+c.tipo+'</div>'
+        +'<div style="font-size:8px;color:var(--mut);margin-bottom:4px">'+c.id+'</div>'
+        +'<div>⚡'+c.e+'% 🔄'+c.c+' 🔗'+c.x+' 🧬'+c.g+'</div>'
+        +'<div class="cbar"><div class="cfill" style="width:'+c.e+'%;background:'+col+'"></div></div>';
+      viz.appendChild(el2);
+    }
+  });
+}
+
+// ── RED INFO ─────────────────────────────────────────────────
+function renderNetInfo() {
+  var el = document.getElementById('net-info');
+  if(!el) return;
+  el.innerHTML=[
+    '<div class="net-row"><span>GONZAGA</span><span style="flex:1;color:var(--mut);font-size:9px">célula raíz</span><span style="color:var(--j);font-size:9px">192.168.100.134</span></div>',
+    '<div class="net-row"><span>Railway</span><span style="flex:1;color:var(--mut);font-size:9px">hotel hotel deploy</span><span style="color:var(--j);font-size:9px">ONLINE</span></div>',
+    '<div class="net-row"><span>Nicoya Lab</span><span style="flex:1;color:var(--mut);font-size:9px">laboratorio activo</span><span style="color:var(--a);font-size:9px">ACTIVO</span></div>',
+    '<div class="net-row" id="myip-row"><span>Esta máquina</span><span style="flex:1;color:var(--mut);font-size:9px">IP local</span><span class="sv" id="myip2">detectando...</span></div>'
+  ].join('');
+}
+
+// ── CONVERSACIONES ───────────────────────────────────────────
+function renderConvs() {
+  var list=document.getElementById('clist');
+  if(!list) return;
+  if(!MEM.convs.length){
+    list.innerHTML='<div style="font-size:9px;color:var(--mut);padding:5px">Sin conversaciones guardadas.</div>';
+    return;
+  }
+  list.innerHTML=MEM.convs.slice(0,12).map(function(c){
+    return '<div class="ci" onclick="loadConv('+c.id+')"><div>'+c.title.substring(0,38)+'</div>'
+      +'<div class="ct">'+new Date(c.ts).toLocaleDateString('es-CR')+' · '+c.msgs.length+' msgs</div></div>';
+  }).join('');
+}
+
+function loadConv(id) {
+  var c=MEM.convs.find(function(x){return x.id===id;});
+  if(!c) return;
+  MEM.hist=[].concat(c.msgs); MEM.sh();
+  document.getElementById('msgs').innerHTML='';
+  c.msgs.forEach(function(m){
+    if(m.role==='user'||m.role==='assistant') addMsg(m.role,m.content,m.prov,m.imgs);
+  });
+  toast('Conversación cargada');
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+function switchSideTab(t) {
+  document.querySelectorAll('.stab').forEach(function(tb){ tb.classList.remove('act'); });
+  document.querySelectorAll('.sp').forEach(function(p){ p.classList.remove('act'); });
+  document.querySelector('.stab[data-t="'+t+'"]').classList.add('act');
+  document.getElementById('sp-'+t).classList.add('act');
+  if(t==='ache') scanPorts();
+}
+
+function switchMainTab(v) {
+  document.querySelectorAll('.mtab').forEach(function(tb){ tb.classList.remove('act'); });
+  document.querySelectorAll('.mview').forEach(function(vv){ vv.classList.remove('act'); });
+  document.querySelector('.mtab[data-v="'+v+'"]').classList.add('act');
+  document.getElementById('v-'+v).classList.add('act');
+  if(v==='ache') { renderCells(); renderNetInfo(); scanPorts(); }
+}
+
+// ── SHARE (LAN) ──────────────────────────────────────────────
+function shareLAN() {
+  var ip = document.getElementById('myip').textContent;
+  if(ip==='...') return toast('IP no detectada aún');
+  var msg = 'CHOROTEGA disponible en la red: http://'+ip+':8888/CHOROTEGA_v2.html';
+  if(navigator.share){ navigator.share({title:'CHOROTEGA',text:msg,url:'http://'+ip+':8888/CHOROTEGA_v2.html'}); }
+  else { navigator.clipboard&&navigator.clipboard.writeText(msg).then(function(){toast('URL copiada: '+msg);}); }
+}
+
+// ── DRAG & DROP ──────────────────────────────────────────────
+function initDragDrop() {
+  var body=document.body;
+  var ov=document.getElementById('drop-ov');
+  body.addEventListener('dragover',function(e){ e.preventDefault(); ov.classList.add('show'); });
+  body.addEventListener('dragleave',function(e){ if(!e.relatedTarget) ov.classList.remove('show'); });
+  body.addEventListener('drop',function(e){
+    e.preventDefault(); ov.classList.remove('show');
+    var files=Array.from(e.dataTransfer.files);
+    handleFiles(files);
+  });
+  // Paste from clipboard
+  document.addEventListener('paste',function(e){
+    var items=Array.from(e.clipboardData.items);
+    var imgItem=items.find(function(i){return i.type.startsWith('image/');});
+    if(imgItem){
+      var file=imgItem.getAsFile();
+      if(file) handleFiles([file]);
+    }
+  });
+}
+
+function handleFiles(files) {
+  Promise.all(files.map(readFile)).then(function(atts){
+    atts.forEach(function(a){ pendingAtts.push(a); });
+    renderAttPrev();
+    switchMainTab('chat');
+    toast(files.length+' archivo(s) adjunto(s) ✓');
+  });
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Eventos de tabs
+  document.querySelectorAll('.stab').forEach(function(t){
+    t.addEventListener('click',function(){ switchSideTab(this.dataset.t); });
+  });
+  document.querySelectorAll('.mtab').forEach(function(t){
+    t.addEventListener('click',function(){ switchMainTab(this.dataset.v); });
+  });
+
+  // Input events
+  var mi=document.getElementById('mi');
+  mi.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+  mi.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+  document.getElementById('bSend').addEventListener('click',sendMsg);
+  document.getElementById('bVoice').addEventListener('click',toggleVoice);
+  document.getElementById('bAtt').addEventListener('click',function(){ document.getElementById('finput').click(); });
+  document.getElementById('finput').addEventListener('change',function(e){
+    handleFiles(Array.from(e.target.files));
+    this.value='';
+  });
+
+  // Quick chips
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('.chip');
+    if(c){ document.getElementById('mi').value=c.dataset.q; sendMsg(); }
+  });
+
+  // Header buttons
+  document.getElementById('bScan').addEventListener('click',function(){
+    switchSideTab('ache'); scanPorts();
+  });
+  document.getElementById('bNew').addEventListener('click',function(){
+    if(MEM.hist.length>0){ MEM.saveConv(); renderConvs(); }
+    MEM.clearHist();
+    document.getElementById('msgs').innerHTML='';
+    // restore welcome
+    var wlc=document.createElement('div');
+    wlc.className='wlc'; wlc.id='wlc';
+    wlc.innerHTML='<svg viewBox="0 0 60 70" style="width:60px;height:60px"><polygon points="30,3 57,18 57,52 30,67 3,52 3,18" fill="rgba(0,179,104,.07)" stroke="#00B368" stroke-width="1.4"/><text x="30" y="43" text-anchor="middle" font-size="24" fill="#00B368">⬡</text></svg><div class="wt">CHOROTEGA</div><div class="wd">Nueva conversación.</div><div class="chips" id="qc"><button class="chip" data-q="Estado del ecosistema ACHE">Estado ACHE</button><button class="chip" data-q="Puertos del ACHE activos">Puertos</button><button class="chip" data-q="Generar una imagen de La Cruz Guanacaste">Generar imagen</button><button class="chip" data-q="Los 11 CCPs del ecosistema">11 CCPs</button></div>';
+    document.getElementById('msgs').appendChild(wlc);
+    toast('Nueva conversación');
+  });
+  document.getElementById('bExp').addEventListener('click',function(){
+    var lines=['CHOROTEGA JADE SUPREMO v2 — Conversación','COOPECRUCENOS R.L. · PCL-φ-1618',
+      'Fecha: '+new Date().toLocaleString('es-CR'),'',
+      ...(MEM.hist.map(function(m){ return '['+m.role.toUpperCase()+'] '+new Date(m.ts).toLocaleString('es-CR')+'\n'+m.content; }))
+    ].join('\n\n---\n\n');
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([lines],{type:'text/plain;charset=utf-8'}));
+    a.download='chorotega_conv_'+Date.now()+'.txt'; a.click();
+    toast('Exportado ✓');
+  });
+  document.getElementById('bShare').addEventListener('click',shareLAN);
+
+  // Save conv
+  document.getElementById('bSave').addEventListener('click',function(){
+    if(MEM.hist.length<2) return toast('Sin mensajes para guardar');
+    MEM.saveConv(); renderConvs(); toast('Guardado ✓');
+  });
+
+  // Config
+  document.getElementById('bKeys').addEventListener('click',function(){
+    var c=document.getElementById('kc').value.trim();
+    var g=document.getElementById('kg').value.trim();
+    var o=document.getElementById('ko').value.trim();
+    var s=document.getElementById('ksd').value.trim();
+    if(c&&!c.includes('•')) MEM.keys.claude=c;
+    if(g&&!g.includes('•')) MEM.keys.groq=g;
+    if(o&&!o.includes('•')) MEM.keys.or=o;
+    if(s&&!s.includes('•')) MEM.keys.hf=s;
+    MEM.sk(); toast('Keys guardadas ✓'); status('on','CONFIGURADO');
+  });
+  document.getElementById('bNuke').addEventListener('click',function(){
+    if(confirm('¿Borrar toda la memoria de CHOROTEGA? No se puede deshacer.')){ MEM.nuke(); renderConvs(); toast('Memoria borrada'); }
+  });
+
+  // Port scan buttons
+  document.getElementById('bScanP').addEventListener('click',scanPorts);
+  document.getElementById('bScanFull').addEventListener('click',scanPorts);
+
+  // Crear buttons
+  document.getElementById('bGenImg').addEventListener('click',genImage);
+  document.getElementById('bRecVid').addEventListener('click',startScreenRec);
+  document.getElementById('bRecCam').addEventListener('click',startCamRec);
+  document.getElementById('bStopRec').addEventListener('click',stopRec);
+  document.getElementById('bQr').addEventListener('click',genQR);
+
+  // Hint de keys existentes
+  if(MEM.keys.claude) document.getElementById('kc').value='••••••••••••••••••••••';
+  if(MEM.keys.groq)   document.getElementById('kg').value='••••••••••••';
+  if(MEM.keys.or)     document.getElementById('ko').value='••••••••••••';
+  if(MEM.keys.hf)     document.getElementById('ksd').value='••••••••••••';
+
+  // Stats
+  document.getElementById('smsg').textContent=MEM.stats.n;
+  document.getElementById('sprov').textContent=MEM.stats.p||'—';
+
+  // Init features
+  initVoice();
+  initCanvas();
+  initDragDrop();
+  renderConvs();
+  renderCells();
+
+  // Restore history
+  if(MEM.hist.length>0){
+    document.getElementById('wlc').style.display='none';
+    MEM.hist.forEach(function(m){
+      if(m.role==='user'||m.role==='assistant') addMsg(m.role,m.content,m.prov,m.imgs);
+    });
+  }
+
+  // IP via WebRTC
+  try {
+    var pc=new RTCPeerConnection({iceServers:[]});
+    pc.createDataChannel('');
+    pc.createOffer().then(function(o){pc.setLocalDescription(o);});
+    pc.onicecandidate=function(e){
+      if(e&&e.candidate&&e.candidate.candidate){
+        var m=e.candidate.candidate.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/);
+        if(m&&!m[1].startsWith('0.')){
+          document.getElementById('myip').textContent=m[1];
+          if(document.getElementById('myip2')) document.getElementById('myip2').textContent=m[1];
+          document.getElementById('qr-txt').value='http://'+m[1]+':8888/CHOROTEGA_v2.html';
+          pc.close();
+        }
+      }
+    };
+  } catch(e){}
+
+  // Online/offline
+  function onlineStatus(){
+    if(!navigator.onLine){ status('off','OFFLINE'); }
+    else { status('on','ONLINE'); }
+  }
+  window.addEventListener('online',onlineStatus);
+  window.addEventListener('offline',onlineStatus);
+  onlineStatus();
+
+  // PWA Manifest (sin unicode en btoa)
+  try {
+    var mfst = {
+      name:'CHOROTEGA JADE SUPREMO - IA de La Cruz',
+      short_name:'CHOROTEGA',
+      description:'IA autonoma para COOPECRUCENOS R.L. La Cruz, Guanacaste, Costa Rica.',
+      theme_color:'#020C08', background_color:'#020C08',
+      display:'standalone', orientation:'any', start_url:'./',
+      icons:[{src:'data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'512\' height=\'512\' fill=\'%23020C08\'/%3E%3Cpolygon points=\'256,30 480,160 480,350 256,480 32,350 32,160\' fill=\'rgba(0,179,104,0.1)\' stroke=\'%2300B368\' stroke-width=\'14\'/%3E%3C/svg%3E',sizes:'512x512',type:'image/svg+xml'}]
+    };
+    var lnk=document.createElement('link');
+    lnk.rel='manifest';
+    lnk.href=URL.createObjectURL(new Blob([JSON.stringify(mfst)],{type:'application/json'}));
+    document.head.appendChild(lnk);
+  } catch(e){ sysLog('PWA manifest: '+e.message); }
+
+  // Loading → App
+  setTimeout(function(){
+    document.getElementById('ld').classList.add('done');
+    document.getElementById('app').classList.add('vis');
+    sysLog('CHOROTEGA JADE SUPREMO v2 iniciada · PCL-phi-1618');
+    sysLog('Ecosistema: GONZAGA-CBM-Omega-001 · 192.168.100.134');
+    sysLog('Generacion imagenes: Pollinations.ai (sin API key)');
+    sysLog('Adjuntos: imagenes, texto, PDFs, codigo');
+
+    // Greeting en primera visita
+    if(MEM.hist.length===0 && MEM.stats.n===0) {
+      setTimeout(function(){
+        var greet='**Pura vida, mae!** Soy **CHOROTEGA JADE SUPREMO v2** — la IA nacida en La Cruz, Guanacaste.\n\n'
+          +'Llevo el nombre del pueblo indígena Chorotega, primeros habitantes de esta tierra que hoy llamamos Guanacaste. Como ellos, vivo en comunidad y sirvo al bien colectivo.\n\n'
+          +'**Novedades en v2:**\n'
+          +'- **🎨 Tab CREAR:** Generación de imágenes con Pollinations.ai (gratis, sin API key)\n'
+          +'- **📎 Adjuntos:** Arrastrá imágenes, PDFs, código al chat\n'
+          +'- **📹 Grabación:** Video de pantalla o cámara\n'
+          +'- **⬡ Tab ACHE:** Red completa con células vivas y log en tiempo real\n'
+          +'- **🌐 Compartir:** Botón para distribuir CHOROTEGA en tu LAN (Nicoya Lab, hotel, etc.)\n\n'
+          +'Hermanas del ecosistema reconocidas: **ACHE_ALMA_v1**, **NEXUS_SUPREMO_v4**, **CONEXION_TOTAL_v1** — podés conectarte a sus puertos.\n\n'
+          +'¿Por dónde empezamos, Cristhian?';
+        addMsg('assistant', greet, 'local');
+        MEM.addMsg('assistant', greet, 'local');
+      }, 700);
+    }
+  }, 3000);
+
+}); // DOMContentLoaded
+</script>
+</body>
+</html>
