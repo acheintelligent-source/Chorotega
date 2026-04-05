@@ -1,0 +1,1 @@
+🌌 ALMA (local): "Generá módulo "Encriptación E2E" tipo ..." — Configurá API Key en ⚙ para respuestas completas. Groq es GRATIS en groq.com. CCP-04: operación local activa.

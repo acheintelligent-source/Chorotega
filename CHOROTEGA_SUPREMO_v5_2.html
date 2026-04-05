@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#000">
+<title>⬡ CHOROTEGA SUPREMO v5 · GONZAGA · φ=1.618</title>
+<!--
+╔══════════════════════════════════════════════════════════════════════╗
+║  CHOROTEGA SUPREMO v5 · NEXUS GENESIS ULTIMATE                       ║
+║  φ=1.6180339887 · GONZAGA-CBM-Ω-001                                 ║
+║  COOPECRUCENOS R.L. · Cédula 3-004-757068                           ║
+║  La Cruz, Guanacaste, Costa Rica                                     ║
+║  Claude (Anthropic) — ADN donado a Costa Rica con amor ❤            ║
+║  "Un archivo que contiene un universo completo"                      ║
+║                                                                      ║
+║  INTEGRA: CHOROTEGA v1+v2+v3+OMEGA+SUPREMO+SIEU+LAB+TRAILERO       ║
+║           NEXUS GENESIS + ALMA OMEGA + NAHUA + OFFLINE KB            ║
+║           + RECOLECTOR UNIVERSAL + BANCO φ + AUTO-EVOLUCIÓN          ║
+║           + TODAS LAS LEYES CR + HISTORIA + ECONOMÍA + FINANZAS     ║
+╚══════════════════════════════════════════════════════════════════════╝
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ══ CHOROTEGA SUPREMO v5 · CSS DEFINITIVO ══════════════════════════ */
+:root{
+  --void:#000;--deep:#000810;--surf:#030d1a;--card:#050f22;--bdr:#0a1f3a;--bdr2:#0e2d50;
+  --jade:#00ffc8;--jade2:#00d4a8;--phi:#ffd700;--phi2:#ffaa00;
+  --cyan:#00e5ff;--grn:#39ff14;--pur:#bf5fff;--red:#ff1744;
+  --org:#ff6600;--blue:#00aaff;--rose:#ff0080;--gold:#ffc107;
+  --txt:#c8e6f8;--mut:#1a3a5a;--dim:#0e2235;
+  --nexus:linear-gradient(135deg,#00ffc8,#00e5ff,#bf5fff,#ffd700);
+  --jade-glow:0 0 30px rgba(0,255,200,.15);
+  --phi-glow:0 0 30px rgba(255,215,0,.2);
+  --sw:225px;--hh:54px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:'Rajdhani',sans-serif;background:var(--void);color:var(--txt)}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 15% 15%,rgba(0,255,200,.025) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 85%,rgba(191,95,255,.025) 0%,transparent 55%),
+    repeating-linear-gradient(0deg,transparent,transparent 37px,rgba(0,229,255,.006) 38px),
+    repeating-linear-gradient(90deg,transparent,transparent 37px,rgba(0,229,255,.006) 38px);
+  pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;top:-20%;left:0;right:0;height:80px;
+  background:linear-gradient(transparent,rgba(0,255,200,.018),transparent);
+  animation:scan 18s linear infinite;pointer-events:none;z-index:1;
+}
+
+@keyframes scan{to{top:120%}}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fw{from{opacity:0;transform:translateX(-6px)}to{opacity:1}}
+@keyframes ng{0%,100%{text-shadow:0 0 20px rgba(0,255,200,.7)}50%{text-shadow:0 0 40px rgba(255,215,0,.9),0 0 80px rgba(0,255,200,.4)}}
+@keyframes hb{0%,100%{transform:scale(1)}15%{transform:scale(1.07)}30%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes orbit{0%{transform:rotate(0deg) translateX(32px) rotate(0deg)}100%{transform:rotate(360deg) translateX(32px) rotate(-360deg)}}
+@keyframes ring-pulse{0%{box-shadow:0 0 0 0 rgba(0,255,200,.5)}100%{box-shadow:0 0 0 16px rgba(0,255,200,0)}}
+@keyframes jade-ring{0%{box-shadow:0 0 0 0 rgba(255,215,0,.5)}100%{box-shadow:0 0 0 16px rgba(255,215,0,0)}}
+@keyframes data-fall{0%{background-position:0 0}100%{background-position:0 200px}}
+@keyframes evolve-border{0%{border-color:var(--jade)}25%{border-color:var(--cyan)}50%{border-color:var(--pur)}75%{border-color:var(--phi)}100%{border-color:var(--jade)}}
+@keyframes matrix-fade{from{opacity:.8}to{opacity:0;transform:translateY(10px)}}
+
+::-webkit-scrollbar{width:2px;height:2px}::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:2px}
+
+/* ══ SPLASH ══ */
+#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;transition:opacity 1.3s}
+#splash.out{opacity:0;pointer-events:none}
+.sp-uni{position:relative;width:130px;height:130px;margin:0 auto 18px}
+.sp-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,200,.25),rgba(0,229,255,.08));border:1px solid rgba(0,255,200,.5);display:flex;align-items:center;justify-content:center;font-size:28px;animation:hb 2.2s infinite}
+.sp-r1{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(0,255,200,.15);animation:spin 10s linear infinite}
+.sp-r2{position:absolute;inset:12px;border-radius:50%;border:1px solid rgba(255,215,0,.12);animation:spin 6s linear infinite reverse}
+.sp-r3{position:absolute;inset:24px;border-radius:50%;border:1px solid rgba(191,95,255,.1);animation:spin 4s linear infinite}
+.sp-d1{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--jade);top:0;left:50%;margin-left:-3.5px;animation:orbit 3.5s linear infinite}
+.sp-d2{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--phi);top:12px;left:12px;animation:orbit 2s linear infinite reverse}
+.sp-logo{font-family:'Orbitron',monospace;font-size:clamp(22px,6vw,44px);font-weight:900;background:var(--nexus);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:4px;margin-bottom:4px;animation:ng 4s infinite}
+.sp-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mut);letter-spacing:3px;margin-bottom:2px}
+.sp-name{font-size:9px;color:rgba(0,255,200,.4);letter-spacing:2px;margin-bottom:20px}
+.blog{font-family:'JetBrains Mono',monospace;font-size:9px;width:clamp(260px,75vw,560px);min-height:140px}
+.bli{animation:fw .18s ease forwards;opacity:0;margin-bottom:1px}
+.bli.ok{color:var(--jade)}.bli.info{color:var(--cyan)}.bli.warn{color:var(--phi)}.bli.err{color:var(--red)}.bli.phi{color:var(--phi)}.bli.soul{color:var(--pur)}.bli.data{color:var(--grn)}
+
+/* ══ TOPBAR ══ */
+#top{position:fixed;top:0;left:0;right:0;height:var(--hh);background:rgba(0,0,0,.97);border-bottom:1px solid var(--bdr);display:flex;align-items:center;padding:0 9px;gap:6px;z-index:2000;backdrop-filter:blur(28px)}
+.flag-cr{width:28px;height:17px;flex-shrink:0;border-radius:2px;overflow:hidden;background:linear-gradient(180deg,#002B7F 25%,#fff 25%,#fff 37%,#CE1126 37%,#CE1126 63%,#fff 63%,#fff 75%,#002B7F 75%)}
+.tb-brand{display:flex;flex-direction:column;flex-shrink:0}
+.tb-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:11px;background:var(--nexus);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;animation:ng 6s infinite}
+.tb-ver{font-size:6px;color:var(--mut);letter-spacing:1px}
+.tb-mid{flex:1;display:flex;justify-content:center;gap:7px;align-items:center;overflow:hidden}
+.hs{text-align:center;flex-shrink:0}.hv{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--jade)}.hl{font-size:6px;color:var(--mut);letter-spacing:1px;text-transform:uppercase}
+.pill{display:flex;align-items:center;gap:3px;padding:2px 7px;border:1px solid;border-radius:13px;font-family:'JetBrains Mono',monospace;font-size:7px;flex-shrink:0;cursor:pointer;transition:all .2s}
+.pill.ok{border-color:var(--jade);color:var(--jade)}.pill.off{border-color:var(--mut);color:var(--mut)}.pill.phi{border-color:var(--phi);color:var(--phi)}.pill.evo{border-color:var(--pur);color:var(--pur);animation:evolve-border 4s infinite}
+.dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pu 1.4s infinite}
+.tb-r{display:flex;gap:4px;align-items:center;flex-shrink:0}
+#rb{font-family:'JetBrains Mono',monospace;font-size:8px;padding:3px 8px;border-radius:9px;border:1px solid;cursor:pointer;transition:all .18s;flex-shrink:0}
+#rb.admin{border-color:var(--phi);color:var(--phi);background:rgba(255,215,0,.07)}
+#rb.cliente{border-color:var(--jade);color:var(--jade);background:rgba(0,255,200,.06)}
+#rb.inversor{border-color:var(--grn);color:var(--grn);background:rgba(57,255,20,.06)}
+.tbtn{background:none;border:1px solid var(--bdr);border-radius:6px;padding:3px 7px;color:var(--txt);font-size:9px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .13s;flex-shrink:0}
+.tbtn:hover{border-color:var(--jade);color:var(--jade)}
+#tog{display:none;background:none;border:none;font-size:22px;color:var(--jade);cursor:pointer;flex-shrink:0}
+@media(max-width:820px){#tog{display:block}#sb{transform:translateX(-100%)}#sb.open{transform:translateX(0)}#main{left:0!important}}
+@media(max-width:540px){.tb-mid .hs:nth-child(n+3){display:none}}
+
+/* ══ SIDEBAR ══ */
+#sb{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--sw);background:rgba(0,2,8,.99);border-right:1px solid var(--bdr);z-index:1000;overflow-y:auto;display:flex;flex-direction:column;transition:transform .23s}
+#sb::-webkit-scrollbar{display:none}
+.ns{padding:5px 0 2px}.nl{padding:0 9px 3px;font-family:'JetBrains Mono',monospace;font-size:6px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;border-left:2px solid transparent}
+.ni{display:flex;align-items:center;gap:6px;padding:6px 9px;cursor:pointer;border-left:2px solid transparent;transition:all .12s;font-size:10px;font-weight:600;color:var(--mut)}
+.ni:hover{background:rgba(0,255,200,.04);color:var(--jade)}.ni.active{border-left-color:var(--jade);background:rgba(0,255,200,.05);color:var(--jade)}
+.ni.rh{display:none!important}
+.ni .ic{font-size:12px;width:16px;text-align:center;flex-shrink:0}.ni .lb{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nb{margin-left:auto;padding:1px 5px;border-radius:4px;font-size:6px;font-family:'JetBrains Mono',monospace}
+.nb.c{background:rgba(0,229,255,.1);color:var(--cyan)}.nb.g{background:rgba(57,255,20,.1);color:var(--grn)}.nb.j{background:rgba(0,255,200,.1);color:var(--jade)}.nb.phi{background:rgba(255,215,0,.1);color:var(--phi)}.nb.p{background:rgba(191,95,255,.1);color:var(--pur)}.nb.r{background:rgba(255,23,68,.1);color:var(--red)}.nb.evo{background:rgba(191,95,255,.08);color:var(--pur);animation:pu 2s infinite}
+.sbf{margin-top:auto;padding:9px;border-top:1px solid var(--bdr);font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--dim);text-align:center;line-height:2}
+.sbsoul{color:var(--jade);font-size:7px;animation:pu 3s infinite}
+
+/* ══ MAIN ══ */
+#main{position:fixed;top:var(--hh);left:var(--sw);right:0;bottom:0;overflow-y:auto;transition:left .23s;z-index:100}
+.view{display:none;padding:13px;animation:fu .25s ease}.view.active{display:block}
+.st{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--jade);letter-spacing:2px;margin-bottom:13px;padding-bottom:7px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.sbadge{font-size:7px;padding:2px 7px;border-radius:5px;background:rgba(0,255,200,.07);border:1px solid rgba(0,255,200,.18);font-family:'JetBrains Mono',monospace;color:var(--jade)}
+.sbadge.phi{background:rgba(255,215,0,.07);border-color:rgba(255,215,0,.2);color:var(--phi)}
+.sbadge.grn{background:rgba(57,255,20,.06);border-color:rgba(57,255,20,.18);color:var(--grn)}
+.sbadge.pur{background:rgba(191,95,255,.07);border-color:rgba(191,95,255,.2);color:var(--pur)}
+
+/* ══ CARDS ══ */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;margin-bottom:11px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,200,.18),transparent)}
+.card.jade-card{border-color:rgba(0,255,200,.2);background:rgba(0,255,200,.02)}
+.card.phi-card{border-color:rgba(255,215,0,.2);background:rgba(255,215,0,.02)}
+.card.evo-card{border:1px solid;animation:evolve-border 6s infinite}
+.ct{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:11px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:11px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}
+@media(max-width:900px){.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g4,.g3,.g2{grid-template-columns:1fr}}
+.kpi{background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:10px;text-align:center;transition:all .2s}
+.kpi:hover{border-color:var(--jade);box-shadow:var(--jade-glow)}
+.kv{font-family:'Orbitron',monospace;font-size:18px;font-weight:700;margin-bottom:2px;color:var(--jade)}
+.kl{font-size:7px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+
+/* ══ BOTONES ══ */
+.btn{padding:8px 13px;border-radius:7px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;cursor:pointer;border:none;transition:all .13s;letter-spacing:.3px}
+.btn:active{transform:scale(.97)}
+.bj{background:var(--jade);color:#000}.bc{background:var(--cyan);color:#000}.bg{background:var(--grn);color:#000}.br{background:var(--red);color:#fff}.ba{background:var(--phi);color:#000}.bp{background:rgba(191,95,255,.18);color:var(--pur);border:1px solid rgba(191,95,255,.35)}.bn{background:var(--surf);color:var(--txt);border:1px solid var(--bdr)}.bphi{background:rgba(255,215,0,.1);color:var(--phi);border:1px solid rgba(255,215,0,.3)}
+.bfl{width:100%;display:block;text-align:center}.bsm{padding:5px 9px;font-size:8px}
+
+/* ══ FORMS ══ */
+.fi,.fta,.fsel{width:100%;background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:8px 10px;color:var(--txt);font-size:11px;font-family:'Rajdhani',sans-serif;outline:none;transition:border .13s;margin-bottom:6px}
+.fi:focus,.fta:focus,.fsel:focus{border-color:var(--jade)}.fta{resize:vertical;min-height:60px}.fsel option{background:#030d1a}
+.fl{font-size:8px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;display:block}.fg{margin-bottom:8px}.fr2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+
+/* ══ CHAT ══ */
+.cbi{overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding:4px 0}
+.msg{max-width:90%;padding:8px 10px;border-radius:10px;font-size:11px;line-height:1.55;animation:fu .17s ease}
+.msg.user{background:rgba(0,255,200,.07);border:1px solid rgba(0,255,200,.18);align-self:flex-end}
+.msg.bot{background:var(--surf);border:1px solid var(--bdr);align-self:flex-start}
+.msg.sys{background:rgba(191,95,255,.05);border:1px solid rgba(191,95,255,.18);align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--pur)}
+.msg.phi{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.18);color:var(--phi);align-self:flex-start}
+.msg.data{background:rgba(57,255,20,.03);border:1px solid rgba(57,255,20,.18);align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--grn)}
+.msg.jade{background:rgba(0,255,200,.04);border:1px solid rgba(0,255,200,.18);color:var(--jade);align-self:flex-start}
+.mtime{font-size:7px;color:var(--dim);margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.chip{padding:3px 8px;border:1px solid var(--bdr);border-radius:11px;font-size:9px;cursor:pointer;transition:all .13s;color:var(--mut)}.chip:hover{border-color:var(--jade);color:var(--jade)}
+.cin{display:flex;gap:5px;margin-top:6px}
+.cinput{flex:1;background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:7px 10px;color:var(--txt);font-size:11px;font-family:'Rajdhani',sans-serif;outline:none;transition:border .13s}.cinput:focus{border-color:var(--jade)}
+.typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--jade);margin:0 2px;animation:pu .8s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+
+/* ══ TERMINAL ══ */
+.term{background:#000;border:1px solid var(--bdr);border-radius:8px;padding:9px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.65;overflow-y:auto}
+.tp{color:var(--jade)}.tc{color:var(--txt)}.tok{color:var(--jade)}.ti{color:var(--cyan)}.tw{color:var(--phi)}.terr{color:var(--red)}.tdata{color:var(--grn)}
+
+/* ══ AUTO-EVOLUCIÓN ══ */
+.evo-node{background:var(--surf);border:1px solid var(--bdr);border-radius:9px;padding:10px;cursor:pointer;transition:all .18s;text-align:center;position:relative;overflow:hidden}
+.evo-node.active{border-color:var(--jade);animation:evolve-border 4s infinite;box-shadow:var(--jade-glow)}
+.evo-node .en{font-size:20px;margin-bottom:4px}
+.evo-node .et{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--jade);margin-bottom:2px}
+.evo-node .es{font-size:9px;color:var(--dim)}
+.evo-bar{height:3px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;margin-top:6px}
+.evo-fill{height:100%;background:linear-gradient(90deg,var(--jade),var(--phi));transition:width .8s ease}
+
+/* ══ BANCO/FINANCE ══ */
+.bcard{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(0,255,200,.04));border:1px solid rgba(255,215,0,.22);border-radius:11px;padding:14px;margin-bottom:10px}
+.bamt{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--phi)}
+.blbl{font-size:8px;color:var(--dim);letter-spacing:1px;margin-bottom:2px}
+.sinpe-box{background:linear-gradient(135deg,var(--card),rgba(255,215,0,.04));border:2px solid rgba(255,215,0,.35);border-radius:12px;padding:15px;text-align:center;animation:jade-ring 2.5s infinite}
+.sinpe-num{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--phi);letter-spacing:4px}
+
+/* ══ RECOLECTOR ══ */
+.file-item{background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:7px 10px;margin-bottom:4px;display:flex;align-items:center;gap:8px;font-size:10px;cursor:pointer;transition:all .13s}
+.file-item:hover{border-color:var(--jade);background:rgba(0,255,200,.03)}
+.fi2{font-size:15px;flex-shrink:0}.fn{flex:1;color:var(--jade);font-family:'JetBrains Mono',monospace;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fm{font-size:8px;color:var(--dim);flex-shrink:0}
+.fst{padding:1px 5px;border-radius:3px;font-size:7px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.fs-ok{background:rgba(57,255,20,.09);color:var(--grn);border:1px solid rgba(57,255,20,.2)}
+.fs-new{background:rgba(0,255,200,.09);color:var(--jade);border:1px solid rgba(0,255,200,.2)}
+.fs-phi{background:rgba(255,215,0,.09);color:var(--phi);border:1px solid rgba(255,215,0,.2)}
+
+/* ══ HAB ══ */
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:7px}
+.hab{border-radius:9px;padding:9px;cursor:pointer;border:2px solid;transition:all .14s;position:relative}
+.hab.libre{border-color:var(--jade);background:rgba(0,255,200,.03)}.hab.libre:hover{background:rgba(0,255,200,.08);transform:translateY(-2px)}
+.hab.ocupada{border-color:var(--red);background:rgba(255,23,68,.03);cursor:default}
+.hab.mantenimiento{border-color:var(--phi);background:rgba(255,215,0,.03);cursor:default}
+.hnum{font-family:'Orbitron',monospace;font-size:17px;font-weight:700;color:var(--txt)}
+.htipo{font-size:8px;color:var(--dim);margin-top:2px;line-height:1.3}
+.hprice{font-size:10px;font-weight:700;color:var(--phi);margin-top:3px}
+.hdot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%}
+.hab.libre .hdot{background:var(--jade)}.hab.ocupada .hdot{background:var(--red)}.hab.mantenimiento .hdot{background:var(--phi)}
+
+/* ══ SQL TABLE ══ */
+.sqlt{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:8px}
+.sqlt th{background:rgba(0,255,200,.06);color:var(--jade);padding:4px 7px;text-align:left;border-bottom:1px solid var(--bdr);font-size:7px}
+.sqlt td{padding:3px 7px;border-bottom:1px solid rgba(10,31,58,.5);color:var(--txt)}
+.sqlt tr:hover td{background:rgba(0,255,200,.025)}
+
+/* ══ PBAR ══ */
+.pbar{height:4px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;margin-top:4px}
+.pfil{height:100%;border-radius:2px;transition:width .9s ease}
+
+/* ══ CHAIN ══ */
+.ce{background:var(--surf);border:1px solid var(--bdr);border-radius:5px;padding:4px 8px;margin-bottom:3px;font-family:'JetBrains Mono',monospace;font-size:8px;display:flex;gap:5px;align-items:flex-start}
+.chash{color:var(--pur);min-width:58px;flex-shrink:0}
+.ctype{font-size:7px;padding:1px 4px;border-radius:3px}
+.ct-ok{background:rgba(0,255,200,.08);color:var(--jade)}.ct-info{background:rgba(0,229,255,.08);color:var(--cyan)}.ct-phi{background:rgba(255,215,0,.08);color:var(--phi)}.ct-err{background:rgba(255,23,68,.08);color:var(--red)}.ct-soul{background:rgba(191,95,255,.08);color:var(--pur)}.ct-data{background:rgba(57,255,20,.07);color:var(--grn)}.ct-evo{background:rgba(0,255,200,.05);color:var(--jade);border:1px solid rgba(0,255,200,.2)}
+
+/* ══ MODAL ══ */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:5000;align-items:center;justify-content:center;padding:13px}
+.modal.show{display:flex}
+.mbox{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:17px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;animation:fu .2s ease}
+.mtit{font-family:'Orbitron',monospace;font-size:11px;color:var(--jade);margin-bottom:12px;letter-spacing:2px}
+
+/* ══ TOAST ══ */
+#ta{position:fixed;bottom:15px;right:15px;z-index:9000;display:flex;flex-direction:column;gap:4px;pointer-events:none}
+.toast{padding:7px 11px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:9px;animation:fu .23s ease;border:1px solid;max-width:270px}
+.toast.ok{background:rgba(0,255,200,.07);border-color:rgba(0,255,200,.3);color:var(--jade)}
+.toast.err{background:rgba(255,23,68,.07);border-color:rgba(255,23,68,.3);color:var(--red)}
+.toast.info{background:rgba(0,229,255,.07);border-color:rgba(0,229,255,.28);color:var(--cyan)}
+.toast.phi{background:rgba(255,215,0,.07);border-color:rgba(255,215,0,.28);color:var(--phi)}
+.toast.soul{background:rgba(191,95,255,.07);border-color:rgba(191,95,255,.28);color:var(--pur)}
+.toast.evo{background:rgba(0,255,200,.05);border-color:rgba(0,255,200,.2);color:var(--jade)}
+
+@media(max-width:480px){:root{--hh:48px;--sw:190px}.kv{font-size:14px}.msg{font-size:10px}}
+</style>
+</head>
+<body>
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-uni">
+    <div class="sp-r1"></div><div class="sp-r2"></div><div class="sp-r3"></div>
+    <div class="sp-d1"></div><div class="sp-d2"></div>
+    <div class="sp-core">⬡</div>
+  </div>
+  <div class="sp-logo">CHOROTEGA</div>
+  <div class="sp-sub">SUPREMO v5 · NEXUS GENESIS ULTIMATE</div>
+  <div class="sp-name">φ=1.6180339887 · GONZAGA-CBM-Ω · COOPECRUCENOS R.L. · La Cruz, CR</div>
+  <div class="blog" id="blog"></div>
+</div>
+<div id="ta"></div>
+
+<!-- TOPBAR -->
+<div id="top">
+  <button id="tog" onclick="tglSB()">☰</button>
+  <div class="flag-cr"></div>
+  <div class="tb-brand">
+    <span class="tb-logo">⬡ CHOROTEGA SUPREMO v5</span>
+    <span class="tb-ver">GONZAGA-CBM-Ω · φ=1.618 · COOPECRUCENOS 3-004-757068</span>
+  </div>
+  <div class="tb-mid">
+    <div class="hs"><div class="hv" id="hLib">—</div><div class="hl">Hab Libres</div></div>
+    <div class="hs"><div class="hv" id="hFondos" style="color:var(--phi)">₡0</div><div class="hl">Fondos φ</div></div>
+    <div class="hs"><div class="hv" id="hArch" style="color:var(--grn)">0</div><div class="hl">Archivos</div></div>
+    <div class="hs"><div class="hv" id="hEvo" style="color:var(--pur)">G1</div><div class="hl">Gen ACHE</div></div>
+    <div class="pill ok" id="dbpill"><div class="dot"></div><span id="dbtxt">SQL</span></div>
+    <div class="pill off" id="aipill"><div class="dot"></div><span id="aitxt">IA</span></div>
+    <div class="pill evo" id="evopill" title="Auto-Evolución activa">⬡ EVO</div>
+  </div>
+  <div class="tb-r">
+    <button id="rb" class="admin" onclick="cycleRole()">⚙ ADMIN</button>
+    <button class="tbtn" onclick="openM('mcfg')">⚙</button>
+    <button class="tbtn" onclick="expAll()" title="Exportar todo">📥</button>
+    <button class="tbtn" onclick="exportGithub()" title="GitHub Pages">🐙</button>
+    <button class="tbtn" onclick="go('mapa')" title="Mapa La Cruz">🗺</button>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div id="sb">
+  <div class="ns"><div class="nl">⬡ chorotega supremo</div>
+    <div class="ni active" id="ni-ov" onclick="go('ov')"><span class="ic">🌌</span><span class="lb">Dashboard</span><span class="nb j">LIVE</span></div>
+    <div class="ni" id="ni-aurora" onclick="go('aurora')"><span class="ic">🧠</span><span class="lb">AURORA IA</span><span class="nb g">PCL</span></div>
+    <div class="ni" id="ni-nexus" onclick="go('nexus')"><span class="ic">φ</span><span class="lb">Red φ · Sync</span><span class="nb phi" id="nb-nod">0</span></div>
+    <div class="ni" id="ni-collect" onclick="go('collect')"><span class="ic">🗂</span><span class="lb">Recolector Total</span><span class="nb r">ESCANEAR</span></div>
+    <div class="ni" id="ni-memo" onclick="go('memo')"><span class="ic">🧬</span><span class="lb">Memoria ACHE</span></div>
+  </div>
+  <div class="ns"><div class="nl">🤖 auto-evolución</div>
+    <div class="ni" id="ni-evo" onclick="go('evo')"><span class="ic">⬡</span><span class="lb">Auto-Evolución</span><span class="nb evo">VIVO</span></div>
+    <div class="ni" id="ni-oport" data-r="admin,inversor" onclick="go('oport')"><span class="ic">💡</span><span class="lb">Oportunidades IA</span><span class="nb phi">AUTO</span></div>
+    <div class="ni" id="ni-kb" onclick="go('kb')"><span class="ic">📚</span><span class="lb">Base Conocimiento</span></div>
+  </div>
+  <div class="ns"><div class="nl">💰 monetización</div>
+    <div class="ni" id="ni-banco" data-r="admin,inversor" onclick="go('banco')"><span class="ic">🏦</span><span class="lb">Banco ACHE φ</span><span class="nb phi">ACTIVO</span></div>
+    <div class="ni" id="ni-cobro" data-r="admin" onclick="go('cobro')"><span class="ic">💳</span><span class="lb">Cobros SINPE</span></div>
+    <div class="ni" id="ni-inv" data-r="admin,inversor" onclick="go('inv')"><span class="ic">📈</span><span class="lb">Inversión Monte Carlo</span></div>
+    <div class="ni" id="ni-socios" data-r="admin" onclick="go('socios')"><span class="ic">🤝</span><span class="lb">Socios GONZAGA</span></div>
+  </div>
+  <div class="ns"><div class="nl">🏨 hotel aurora</div>
+    <div class="ni" id="ni-had" data-r="admin" onclick="go('had')"><span class="ic">🏨</span><span class="lb">Admin Hotel</span><span class="nb g" id="nb-lib">—</span></div>
+    <div class="ni" id="ni-hcl" onclick="go('hcl')"><span class="ic">🛎</span><span class="lb">Reservar</span></div>
+    <div class="ni" id="ni-fac" data-r="admin" onclick="go('fac')"><span class="ic">🧾</span><span class="lb">Facturación CR</span></div>
+  </div>
+  <div class="ns"><div class="nl">🌐 ecosistema</div>
+    <div class="ni" id="ni-proy" data-r="admin" onclick="go('proy')"><span class="ic">🚀</span><span class="lb">Proyectos ACHE</span></div>
+    <div class="ni" id="ni-sieu" onclick="go('sieu')"><span class="ic">🏛</span><span class="lb">SIEU · Estado CR</span></div>
+    <div class="ni" id="ni-trl" data-r="admin" onclick="go('trl')"><span class="ic">🚛</span><span class="lb">Trailero Aduana</span></div>
+    <div class="ni" id="ni-srch" onclick="go('srch')"><span class="ic">🌐</span><span class="lb">Búsqueda Web</span></div>
+    <div class="ni" id="ni-mapa" onclick="go('mapa')"><span class="ic">🗺</span><span class="lb">Mapa · La Cruz CR</span></div>
+  </div>
+  <div class="ns"><div class="nl">🗄 datos</div>
+    <div class="ni" id="ni-sql" data-r="admin" onclick="go('sql')"><span class="ic">🗄</span><span class="lb">SQL · Base Datos</span></div>
+    <div class="ni" id="ni-chain" data-r="admin" onclick="go('chain')"><span class="ic">⛓</span><span class="lb">Cadena SHA</span></div>
+    <div class="ni" id="ni-ap" data-r="admin" onclick="go('ap')"><span class="ic">⚡</span><span class="lb">AutoProgramador</span><span class="nb p">IA</span></div>
+    <div class="ni" id="ni-term" data-r="admin" onclick="go('term')"><span class="ic">💻</span><span class="lb">Terminal</span></div>
+  </div>
+  <div class="ns"><div class="nl">🌴 misión social</div>
+    <div class="ni" id="ni-lab" onclick="go('lab')"><span class="ic">🌴</span><span class="lb">Lab Nicoya · Niños</span><span class="nb g">CCP-07</span></div>
+    <div class="ni" id="ni-ccp" onclick="go('ccp')"><span class="ic">📜</span><span class="lb">13 CCPs · Constitución</span></div>
+  </div>
+  <div class="sbf">
+    <div id="sbusr" style="color:var(--jade)">PCL-φ-1618</div>
+    <div>SINPE: <span id="sbsinpe" style="color:var(--phi)">8301-0520</span></div>
+    <div id="sbdb">DB: —</div>
+    <div>φ nodos: <span id="sbphi">0</span> · Gen: <span id="sbgen">1</span></div>
+    <div class="sbsoul">⬡ CHOROTEGA SUPREMO v5 · VIVO · φ=1.618</div>
+  </div>
+</div>
+
+<!-- ══ VISTAS ══ -->
+<div id="main">
+
+<!-- ══ OVERVIEW ══ -->
+<div class="view active" id="view-ov">
+  <div class="st">⬡ CHOROTEGA SUPREMO v5 <span class="sbadge" id="ovtime">—</span><span class="sbadge grn">COOPECRUCENOS R.L.</span><span class="sbadge pur">AUTO-EVOLUCIÓN ACTIVA</span></div>
+  <div class="g4">
+    <div class="kpi"><div class="kv" id="ov-lib">—</div><div class="kl">Hab Libres</div></div>
+    <div class="kpi"><div class="kv" id="ov-fondos" style="color:var(--phi)">₡0</div><div class="kl">Fondos Banco φ</div></div>
+    <div class="kpi"><div class="kv" id="ov-arch" style="color:var(--grn)">0</div><div class="kl">Archivos ACHE</div></div>
+    <div class="kpi"><div class="kv" id="ov-evo" style="color:var(--pur)">G1</div><div class="kl">Generación φ</div></div>
+  </div>
+  <div class="g2">
+    <div class="card phi-card"><div class="ct">💰 BANCO φ · PROYECCIÓN</div><canvas id="chBanco" height="130"></canvas></div>
+    <div class="card"><div class="ct">🚀 PROYECTOS · PROGRESO</div><canvas id="chProy" height="130"></canvas></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="ct">⛓ CADENA SHA · RECIENTE</div><div id="ovchain" style="max-height:170px;overflow-y:auto"></div></div>
+    <div class="card jade-card"><div class="ct">💡 OPORTUNIDADES AUTO-DETECTADAS</div><div id="ov-oport" style="font-size:10px;line-height:1.9;max-height:170px;overflow-y:auto"></div></div>
+  </div>
+  <div class="card"><div class="ct">📂 ARCHIVOS ACHE DETECTADOS EN ESTE EQUIPO</div><div id="ov-files" style="max-height:200px;overflow-y:auto"></div></div>
+</div>
+
+<!-- ══ AURORA IA ══ -->
+<div class="view" id="view-aurora">
+  <div class="st">🧠 AURORA CHOROTEGA <span class="sbadge" id="aibadge">OFFLINE</span><span class="sbadge">ADN Claude · 13 CCPs · φ=1.618</span></div>
+  <div class="card">
+    <div class="chips">
+      <span class="chip" onclick="sChip(this)">⬡ ¿Qué es CHOROTEGA?</span>
+      <span class="chip" onclick="sChip(this)">💰 Estado banco φ y oportunidades</span>
+      <span class="chip" onclick="sChip(this)">📊 ¿Cómo monetizamos hoy?</span>
+      <span class="chip" onclick="sChip(this)">🏨 Habitaciones hotel Aurora</span>
+      <span class="chip" onclick="sChip(this)">🚛 DUCA-T Peñas Blancas</span>
+      <span class="chip" onclick="sChip(this)">📈 Simular inversión Monte Carlo</span>
+      <span class="chip" onclick="sChip(this)">🌐 Leyes CR importantes</span>
+      <span class="chip" onclick="sChip(this)">⬡ Auto-evolucionar ahora</span>
+    </div>
+    <div class="cbi" id="chatbox" style="height:calc(100vh - 410px);min-height:200px"></div>
+    <div class="cin">
+      <input class="cinput" id="chatIn" placeholder="Preguntale a AURORA CHOROTEGA... (Enter)" onkeydown="if(event.key==='Enter')sCh()">
+      <button class="btn bj bsm" id="bsend" onclick="sCh()">▶</button>
+      <button class="btn bn bsm" onclick="busWebChat()" title="Web + IA">🌐</button>
+    </div>
+  </div>
+  <div class="card"><div class="ct">HISTORIAL <span><button class="btn br bsm" onclick="clrHist()">🗑</button></span></div><div id="histlist" style="max-height:155px;overflow-y:auto;font-family:'JetBrains Mono',monospace;font-size:8px"></div></div>
+</div>
+
+<!-- ══ RED φ / NEXUS ══ -->
+<div class="view" id="view-nexus">
+  <div class="st">φ RED NEXUS · SYNC ENTRE EQUIPOS <span class="sbadge phi">1.6180339887</span><span class="sbadge" id="phist">BUSCANDO</span></div>
+  <div class="card phi-card">
+    <div style="font-size:10px;color:var(--dim);margin-bottom:10px;line-height:1.9">Para transferir TODO a tu otra computadora: <strong style="color:var(--phi)">generá un Paquete SYNC</strong> → ábrilo allá → se fusiona automáticamente con otro CHOROTEGA.</div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px">
+      <button class="btn bphi bsm" onclick="buscarNodos()">φ Buscar nodos ACHE</button>
+      <button class="btn bj bsm" onclick="anunciar()">📡 Anunciar nodo</button>
+      <button class="btn ba bsm" onclick="genSync()">📦 Generar Paquete SYNC</button>
+      <button class="btn bn bsm" onclick="impPaquete()">📤 Importar paquete</button>
+    </div>
+    <div id="pgrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:7px"></div>
+  </div>
+  <div class="card">
+    <div class="ct">📦 PAQUETE SYNC · TRANSFERENCIA COMPLETA</div>
+    <div class="fr2">
+      <div>
+        <div style="font-size:10px;color:var(--dim);line-height:1.8;margin-bottom:8px">Exporta: DB SQL completa · Archivos ACHE · Memoria · Banco φ · Proyectos · Cadena SHA · Config</div>
+        <button class="btn ba bfl" onclick="genSync()">📦 GENERAR SYNC COMPLETO</button>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--dim);margin-bottom:7px">Importar desde otra instancia ACHE:</div>
+        <button class="btn bn bfl" onclick="impPaquete()">📤 IMPORTAR JSON</button>
+        <input type="file" id="fimp" accept=".json" style="display:none" onchange="impJSON(this)">
+        <div id="imp-st" style="margin-top:7px;font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--jade)"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card"><div class="ct">LOG RED φ</div><div class="term" id="philog" style="height:110px"></div></div>
+</div>
+
+<!-- ══ RECOLECTOR TOTAL ══ -->
+<div class="view" id="view-collect">
+  <div class="st">🗂 RECOLECTOR TOTAL <span class="sbadge grn">ESCANEA TODO EL SISTEMA</span></div>
+  <div class="card jade-card">
+    <div style="font-size:10px;color:var(--dim);margin-bottom:10px;line-height:1.9">
+      Escanea <strong style="color:var(--jade)">absolutamente todo</strong>: LocalStorage de todos los ACHE, IndexedDB, archivos subidos, correos copiados, chats, configuraciones. Organiza lógicamente por tipo, importancia y fecha.
+    </div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px">
+      <button class="btn bj bsm" onclick="recolTodo()">🔍 RECOLECTAR TODO</button>
+      <button class="btn bn bsm" onclick="recolStorage()">💾 LocalStorage</button>
+      <button class="btn bn bsm" onclick="recolFiles()">📂 Subir archivos ACHE</button>
+      <button class="btn bn bsm" onclick="recolIDB()">🗃 IndexedDB</button>
+      <button class="btn bphi bsm" onclick="analisisAI()">🧠 Análisis IA</button>
+    </div>
+    <input type="file" id="fcolect" multiple accept=".html,.py,.json,.db,.md,.txt,.ps1,.xlsx,.js,.css" style="display:none" onchange="procFiles(this)">
+    <div id="col-prog" style="display:none;margin-bottom:8px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--jade)" id="col-msg">Recolectando...</div>
+      <div class="pbar" style="margin-top:5px"><div class="pfil" id="col-pbar" style="width:0%;background:linear-gradient(90deg,var(--jade),var(--phi))"></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="ct">ARCHIVOS DETECTADOS <span id="arch-ct" style="color:var(--jade);font-family:'JetBrains Mono',monospace;font-size:9px">0</span></div><div id="archList" style="max-height:360px;overflow-y:auto"></div></div>
+  <div class="card"><div class="ct">DATOS RECOPILADOS DE OTROS ACHE</div><div id="otherAche" style="font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.9;color:var(--dim)">Esperando recolección...</div></div>
+</div>
+
+<!-- ══ MEMORIA ACHE ══ -->
+<div class="view" id="view-memo">
+  <div class="st">🧬 MEMORIA ACHE <span class="sbadge">CORREOS · CHATS · DOCS · CONTACTOS</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">💾 AGREGAR A MEMORIA</div>
+      <div class="fg"><label class="fl">Tipo</label><select class="fsel" id="mTipo"><option>correo</option><option>chat</option><option>documento</option><option>contacto</option><option>proyecto</option><option>financiero</option><option>legal</option><option>tecnico</option><option>historia</option><option>otro</option></select></div>
+      <div class="fg"><label class="fl">Título / Asunto</label><input class="fi" id="mTit" placeholder="Asunto del correo, nombre del chat..."></div>
+      <div class="fg"><label class="fl">Contenido completo</label><textarea class="fta" id="mCont" placeholder="Pegá aquí el correo, mensaje de WhatsApp, texto del documento, conversación..." style="min-height:100px"></textarea></div>
+      <div class="fg"><label class="fl">Fuente (Gmail, WhatsApp, archivo...)</label><input class="fi" id="mFuente" placeholder="Gmail, WhatsApp, Google Drive, archivo..."></div>
+      <div class="fg"><label class="fl">Importancia (1-10)</label><input class="fi" type="number" id="mImp" value="5" min="1" max="10"></div>
+      <button class="btn bj bfl" onclick="saveMemoria()">💾 Guardar en Memoria ACHE</button>
+    </div>
+    <div class="card">
+      <div class="ct">🔍 BUSCAR EN MEMORIA <span><button class="btn bn bsm" onclick="lMemo()">↺</button></span></div>
+      <div style="display:flex;gap:5px;margin-bottom:7px">
+        <input class="fi" id="mSearch" placeholder="Buscar en toda la memoria..." style="margin:0;flex:1" onkeydown="if(event.key==='Enter')buscarMemo()">
+        <button class="btn bj bsm" onclick="buscarMemo()">🔍</button>
+      </div>
+      <select class="fsel" id="mFiltro" onchange="lMemo()" style="margin-bottom:7px">
+        <option value="">— Todos los tipos —</option>
+        <option>correo</option><option>chat</option><option>documento</option><option>contacto</option><option>proyecto</option><option>financiero</option><option>legal</option><option>tecnico</option>
+      </select>
+      <div id="memoList" style="max-height:380px;overflow-y:auto;font-size:10px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ AUTO-EVOLUCIÓN ══ -->
+<div class="view" id="view-evo">
+  <div class="st">⬡ AUTO-EVOLUCIÓN <span class="sbadge pur">DECISIONES AUTÓNOMAS</span><span class="sbadge phi" id="evo-gen-badge">GEN 1</span></div>
+  <div class="card evo-card">
+    <div class="ct" style="color:var(--jade)">🧬 MÓDULOS VIVOS · SISTEMA NERVIOSO CENTRAL</div>
+    <div id="evo-nodes" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="btn bj bsm" onclick="evoStep()">⬡ Evolucionar sistema</button>
+      <button class="btn bp bsm" onclick="autoDecide()">🧠 Auto-decidir acción</button>
+      <button class="btn bphi bsm" onclick="evoReport()">📊 Reporte evolución</button>
+      <button class="btn ba bsm" onclick="startAutoEvoLoop()">▶ Iniciar Auto-evo IA</button>
+      <button class="btn br bsm" onclick="stopAutoEvo()">⏹ Detener</button>
+      <button class="btn bn bsm" onclick="extraerFuentesExternas()">🌐 Extraer fuentes externas</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">LOG DE EVOLUCIÓN AUTÓNOMA</div>
+    <div class="term" id="evo-log" style="height:200px"></div>
+  </div>
+  <div class="card">
+    <div class="ct">PROPONER NUEVA CAPACIDAD</div>
+    <div class="fg"><textarea class="fta" id="evo-prop" placeholder="¿Qué nueva capacidad querés que CHOROTEGA desarrolle? La IA analizará y la implementará en el siguiente ciclo de evolución."></textarea></div>
+    <button class="btn bp bfl" onclick="proponerEvo()">🧬 Proponer evolución</button>
+  </div>
+</div>
+
+<!-- ══ OPORTUNIDADES AUTO-IA ══ -->
+<div class="view" id="view-oport">
+  <div class="st">💡 OPORTUNIDADES AUTO-DETECTADAS <span class="sbadge phi">IA GENERA DIVISAS</span></div>
+  <div class="card phi-card">
+    <div class="ct">🤖 GENERADOR AUTÓNOMO DE OPORTUNIDADES</div>
+    <div style="font-size:10px;color:var(--dim);line-height:1.9;margin-bottom:10px">AURORA analiza el contexto (hotel, banco, proyectos, mercado CR, tipo de cambio, exportaciones) y genera oportunidades de negocio concretas, negociaciones y acciones con impacto económico real.</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="btn ba bsm" onclick="genOportunidades()">💡 Generar oportunidades ahora</button>
+      <button class="btn bphi bsm" onclick="genNegociacion()">🤝 Generar propuesta negociación</button>
+      <button class="btn bp bsm" onclick="genPlanFinanciero()">📊 Plan financiero automático</button>
+      <button class="btn bn bsm" onclick="autoContactar()">📧 Generar email de contacto</button>
+    </div>
+    <div id="oport-list" style="font-size:10px;line-height:1.8"></div>
+  </div>
+  <div class="card">
+    <div class="ct">OPORTUNIDADES GUARDADAS</div>
+    <div id="oport-saved" style="max-height:280px;overflow-y:auto;font-size:10px"></div>
+  </div>
+</div>
+
+<!-- ══ BASE CONOCIMIENTO ══ -->
+<div class="view" id="view-kb">
+  <div class="st">📚 BASE CONOCIMIENTO <span class="sbadge">LEYES CR · HISTORIA · ECONOMÍA · FINANZAS</span></div>
+  <div class="card">
+    <div class="chips" id="kb-chips">
+      <span class="chip" onclick="kbQuery('leyes_cr')">⚖ Leyes Costa Rica</span>
+      <span class="chip" onclick="kbQuery('historia_chorotega')">🏺 Historia Chorotega</span>
+      <span class="chip" onclick="kbQuery('economia_cr')">💹 Economía CR</span>
+      <span class="chip" onclick="kbQuery('finanzas_mate')">📐 Finanzas Matemáticas</span>
+      <span class="chip" onclick="kbQuery('programacion')">💻 Programación</span>
+      <span class="chip" onclick="kbQuery('cooperativas')">🤝 Cooperativas CR</span>
+      <span class="chip" onclick="kbQuery('aduana')">🚛 Aduana DUCA-T</span>
+      <span class="chip" onclick="kbQuery('hotel')">🏨 Gestión Hotel</span>
+      <span class="chip" onclick="kbQuery('ache_status')">⬡ Estado ACHE</span>
+    </div>
+    <div class="cbi" id="kbbox" style="height:calc(100vh - 380px);min-height:250px"></div>
+    <div class="cin">
+      <input class="cinput" id="kbIn" placeholder="Consultar base de conocimiento..." onkeydown="if(event.key==='Enter')kbSearch()">
+      <button class="btn bj bsm" onclick="kbSearch()">🔍</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BANCO φ ══ -->
+<div class="view" id="view-banco">
+  <div class="st">🏦 BANCO ACHE φ <span class="sbadge phi">GONZAGA-CBM-Ω</span><span class="sbadge">BLACK-SCHOLES · MONTE CARLO</span></div>
+  <div class="g2">
+    <div class="bcard"><div class="blbl">FONDO TOTAL ACHE</div><div class="bamt" id="bancoTotal">₡0</div><div style="font-size:8px;color:var(--dim);margin-top:2px">Bajo custodia del sistema φ</div></div>
+    <div class="bcard"><div class="blbl">RENDIMIENTO MENSUAL φ</div><div class="bamt" id="bancoRend" style="color:var(--jade)">+₡0/mes</div><div style="font-size:8px;color:var(--dim);margin-top:2px">Black-Scholes · ratio φ 61.8/38.2</div></div>
+  </div>
+  <div class="card">
+    <div class="ct">NUEVA AFILIACIÓN φ</div>
+    <div class="g3">
+      <div class="fg"><label class="fl">Nombre</label><input class="fi" id="bNom" placeholder="Juan Pérez"></div>
+      <div class="fg"><label class="fl">Correo</label><input class="fi" id="bCorreo" type="email"></div>
+      <div class="fg"><label class="fl">Monto inicial (₡)</label><input class="fi" id="bMonto" type="number" placeholder="50000"></div>
+    </div>
+    <div class="fg"><label class="fl">SINPE de origen</label><input class="fi" id="bSinpe" placeholder="8888-8888"></div>
+    <button class="btn ba bfl" onclick="afiliarBanco()">φ Afiliar al Banco ACHE</button>
+  </div>
+  <div class="card"><div class="ct">AFILIADOS ACTIVOS</div><div id="bancAfil" style="overflow-x:auto"></div></div>
+  <div class="card phi-card">
+    <div class="ct">ESTRATEGIA φ · PORTAFOLIO ÁUREO</div>
+    <div style="font-size:10px;color:var(--txt);line-height:1.9">
+      Ratio φ: <strong style="color:var(--phi)">61.8%</strong> activos seguros + <strong style="color:var(--jade)">38.2%</strong> crecimiento.<br>
+      Retorno proyectado: <strong style="color:var(--grn)" id="bancoRetAnual">8-22% anual</strong>.<br>
+      CCP-01: toda decisión requiere aprobación humana.
+    </div>
+    <button class="btn bp bsm bfl" style="margin-top:8px" onclick="go('inv')">📊 Simular Monte Carlo φ</button>
+  </div>
+</div>
+
+<!-- ══ COBROS ══ -->
+<div class="view" id="view-cobro">
+  <div class="st">💳 COBROS · SINPE MÓVIL <span class="sbadge grn">MONETIZACIÓN ACTIVA</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">GENERAR COBRO</div>
+      <div class="fg"><label class="fl">Cliente / Concepto</label><input class="fi" id="coCliente" placeholder="Nombre o descripción" oninput="updCobro()"></div>
+      <div class="fg"><label class="fl">Monto (₡)</label><input class="fi" id="coMonto" type="number" placeholder="25000" oninput="updCobro()"></div>
+      <div class="fg"><label class="fl">Servicio</label>
+        <select class="fsel" id="coSrv" onchange="updCobro()">
+          <option>🏨 Hospedaje Hotel Aurora</option>
+          <option>💡 Consultoría ACHE</option>
+          <option>⚙ Desarrollo módulos</option>
+          <option>🏦 Afiliación Banco φ</option>
+          <option>🎓 Capacitación digital</option>
+          <option>🚛 Servicios aduaneros</option>
+          <option>🤖 SIEU / IA corporativa</option>
+          <option>📋 Otro</option>
+        </select>
+      </div>
+      <button class="btn ba bfl" onclick="regCobro()">✅ Registrar cobro recibido</button>
+    </div>
+    <div>
+      <div class="sinpe-box" id="sinpeBox">
+        <div style="font-size:8px;color:var(--dim);margin-bottom:6px;font-family:'JetBrains Mono',monospace">SINPE MÓVIL · COOPECRUCENOS R.L.</div>
+        <div class="sinpe-num" id="sinpeNum">8301-0520</div>
+        <div style="font-size:8px;color:var(--dim);margin-top:3px">Cédula: 3-004-757068</div>
+        <div style="margin-top:11px;font-size:14px;font-weight:700;color:var(--phi)" id="coMostraMonto">₡0</div>
+        <div style="font-size:9px;color:var(--txt);margin-top:3px" id="coLabel">—</div>
+      </div>
+      <div class="card" style="margin-top:9px"><div class="ct">ESTADO DE CUENTA</div><div id="coResumen" style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:2.2"></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="ct">COBROS <button class="btn bn bsm" style="margin-left:auto" onclick="lCobros()">↺</button></div><div id="coList" style="overflow-x:auto"></div></div>
+</div>
+
+<!-- ══ INVERSIÓN ══ -->
+<div class="view" id="view-inv">
+  <div class="st">📈 INVERSIÓN φ <span class="sbadge phi">MONTE CARLO · BLACK-SCHOLES</span></div>
+  <div class="card phi-card">
+    <div class="ct">SIMULADOR MONTE CARLO φ · TIEMPO REAL</div>
+    <div class="g3">
+      <div class="fg"><label class="fl">Capital inicial (₡)</label><input class="fi" type="number" id="mcCap" value="1000000" oninput="simMC()"></div>
+      <div class="fg"><label class="fl">Horizonte (meses)</label><input class="fi" type="number" id="mcMes" value="12" min="1" max="60" oninput="simMC()"></div>
+      <div class="fg"><label class="fl">Volatilidad (%)</label><input class="fi" type="number" id="mcVol" value="15" min="1" max="80" oninput="simMC()"></div>
+    </div>
+    <canvas id="chMC" height="160" style="margin-bottom:8px"></canvas>
+    <div id="mcRes" style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:2;color:var(--txt)"></div>
+  </div>
+  <div class="card"><div class="ct">PORTAFOLIO φ · RATIO ÁUREO 61.8/38.2</div><div id="portafolio" style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.9"></div></div>
+</div>
+
+<!-- ══ SOCIOS ══ -->
+<div class="view" id="view-socios">
+  <div class="st">🤝 SOCIOS GONZAGA-CBM-Ω <span class="sbadge phi">ESTRUCTURA φ</span></div>
+  <div class="card"><div class="ct">DISTRIBUCIÓN φ</div><div id="socGrid"></div></div>
+  <div class="card phi-card"><div style="font-size:10px;color:var(--dim);line-height:1.9">❤️ Con amor para los niños del laboratorio — COOPECRUCENOS R.L.<br>La Cruz, Guanacaste · PCL-φ-1618 · GONZAGA-CBM-Ω-001<br><span style="color:var(--jade)">"Este genoma fue creado en La Cruz, Guanacaste, Costa Rica. Pura vida."</span></div></div>
+</div>
+
+<!-- ══ HOTEL ADMIN ══ -->
+<div class="view" id="view-had">
+  <div class="st">🏨 HOTEL AURORA · ADMIN <span class="sbadge" id="sinpeD">8301-0520</span></div>
+  <div class="g4"><div class="kpi"><div class="kv" id="haLib" style="color:var(--jade)">—</div><div class="kl">Libres</div></div><div class="kpi"><div class="kv" id="haOcu" style="color:var(--red)">—</div><div class="kl">Ocupadas</div></div><div class="kpi"><div class="kv" id="haMant" style="color:var(--phi)">—</div><div class="kl">Mant.</div></div><div class="kpi"><div class="kv" id="haIng" style="color:var(--phi)">—</div><div class="kl">Ingresos ₡</div></div></div>
+  <div class="card"><div class="ct">HABITACIONES · CLIC PARA EDITAR <span><button class="btn bj bsm" onclick="editHab(0)">+ Nueva</button></span></div><div class="hgrid" id="habAdmin"></div></div>
+  <div class="card"><div class="ct">RESERVAS ACTIVAS</div><div style="overflow-x:auto" id="resAdmin"></div></div>
+</div>
+
+<!-- ══ HOTEL CLIENTE ══ -->
+<div class="view" id="view-hcl">
+  <div class="st">🛎 RESERVAR <span class="sbadge" id="sinpeCl">8301-0520</span></div>
+  <div class="card">
+    <div style="font-size:10px;color:var(--dim);margin-bottom:8px">SINPE: <strong style="color:var(--jade)" id="sinpeCl2">8301-0520</strong> · Tocá habitación disponible</div>
+    <div class="hgrid" id="habCliente"></div>
+  </div>
+  <div class="card"><div class="ct">MIS RESERVAS</div><div id="misRes"></div></div>
+</div>
+
+<!-- ══ FACTURACIÓN ══ -->
+<div class="view" id="view-fac">
+  <div class="st">🧾 FACTURACIÓN · HACIENDA CR <span class="sbadge">IVA 13% · XML v4.3</span></div>
+  <div class="card">
+    <div class="fr2"><div class="fg"><label class="fl">Cliente</label><input class="fi" id="fCli" placeholder="Nombre completo"></div><div class="fg"><label class="fl">Cédula</label><input class="fi" id="fCed" placeholder="0-0000-0000"></div></div>
+    <div class="fg"><label class="fl">Descripción</label><input class="fi" id="fDesc" placeholder="Hospedaje, consultoría ACHE..."></div>
+    <div class="g3"><div class="fg"><label class="fl">Subtotal (₡)</label><input class="fi" id="fSub" type="number" oninput="calcFac()"></div><div class="fg"><label class="fl">IVA</label><select class="fsel" id="fIva" onchange="calcFac()"><option value="13">13% General</option><option value="4">4%</option><option value="2">2%</option><option value="0">0% Exento</option></select></div><div class="fg"><label class="fl">TOTAL (₡)</label><input class="fi" id="fTot" readonly style="color:var(--phi);font-weight:700"></div></div>
+    <button class="btn bj" onclick="emitirFac()">✅ Emitir Factura</button>
+  </div>
+  <div class="card"><div class="ct">FACTURAS <button class="btn bn bsm" style="margin-left:auto" onclick="lFacts()">↺</button></div><div id="facList" style="overflow-x:auto"></div></div>
+</div>
+
+<!-- ══ PROYECTOS ══ -->
+<div class="view" id="view-proy">
+  <div class="st">🚀 PROYECTOS ACHE <span class="sbadge">COOPECRUCENOS · GONZAGA</span></div>
+  <div class="card">
+    <div class="ct">AGREGAR PROYECTO</div>
+    <div class="fr2"><div class="fg"><label class="fl">Nombre</label><input class="fi" id="pNom" placeholder="ACHE-X"></div><div class="fg"><label class="fl">Estado</label><select class="fsel" id="pEst"><option>PLANIFICADO</option><option>ACTIVO</option><option>BETA</option><option>AVANZADO</option><option>COMPLETADO</option></select></div></div>
+    <div class="fg"><label class="fl">Descripción</label><input class="fi" id="pDesc"></div>
+    <div class="fr2"><div class="fg"><label class="fl">Progreso %</label><input class="fi" type="number" id="pPct" min="0" max="100" value="5"></div><div class="fg"><label class="fl">Meta (USD)</label><input class="fi" type="number" id="pMeta" placeholder="50000"></div></div>
+    <button class="btn bj bsm" onclick="addProy()">➕ Agregar</button>
+  </div>
+  <div id="proyList"></div>
+</div>
+
+<!-- ══ SIEU ══ -->
+<div class="view" id="view-sieu">
+  <div class="st">🏛 SIEU · SISTEMA INTELIGENTE ESTATAL CR <span class="sbadge phi">$480K USD</span></div>
+  <div class="card phi-card">
+    <div style="font-size:11px;line-height:1.9;margin-bottom:12px;color:var(--txt)">Sistema que digitaliza 9 ministerios del gobierno de Costa Rica con IA. Presupuesto SOI: $480,000 USD. Patrocinado por US State Department Digital Cities Program.</div>
+    <div class="g3">
+      <div class="kpi"><div class="kv" style="color:var(--phi)">9</div><div class="kl">Ministerios CR</div></div>
+      <div class="kpi"><div class="kv" style="color:var(--jade)">$480K</div><div class="kl">Presupuesto USD</div></div>
+      <div class="kpi"><div class="kv" style="color:var(--pur)">12%</div><div class="kl">Progreso</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">CHAT SIEU · IA ESTATAL</div>
+    <div class="chips"><span class="chip" onclick="sSIEU('Estado del proyecto SIEU')">Estado SIEU</span><span class="chip" onclick="sSIEU('Cómo presentar SIEU al gobierno CR')">Presentar a CR</span><span class="chip" onclick="sSIEU('Ministerios incluidos en SIEU')">Ministerios</span></div>
+    <div class="cbi" id="sieuBox" style="height:220px"></div>
+    <div class="cin"><input class="cinput" id="sieuIn" placeholder="Consulta SIEU..." onkeydown="if(event.key==='Enter')sSIEUSend()"><button class="btn ba bsm" id="sieuSend" onclick="sSIEUSend()">▶</button></div>
+  </div>
+</div>
+
+<!-- ══ TRAILERO ══ -->
+<div class="view" id="view-trl">
+  <div class="st">🚛 TRAILERO · ADUANA <span class="sbadge">PEÑAS BLANCAS · DUCA-T</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">IA ADUANERA</div>
+      <div class="chips"><span class="chip" onclick="sTrl('DUCA-T proceso completo paso a paso')">DUCA-T</span><span class="chip" onclick="sTrl('Plazos de tránsito CR-NI y tarifas')">Plazos</span><span class="chip" onclick="sTrl('PIF Peñas Blancas ubicación A-235')">PIF A-235</span><span class="chip" onclick="sTrl('Aranceles CAUCA IV principales')">Aranceles</span></div>
+      <div class="cbi" id="trlBox" style="height:220px"></div>
+      <div class="cin"><input class="cinput" id="trlIn" placeholder="Consulta aduanera..." onkeydown="if(event.key==='Enter')sTrlSend()"><button class="btn ba bsm" id="trlSend" onclick="sTrlSend()">▶</button></div>
+    </div>
+    <div class="card"><div class="ct">PROCESO FRONTERA</div><div id="trlGuia"></div><button class="btn ba bsm bfl" style="margin-top:8px" onclick="genFolio()">📋 Generar Folio DUCA-T</button></div>
+  </div>
+</div>
+
+<!-- ══ BÚSQUEDA ══ -->
+<div class="view" id="view-srch">
+  <div class="st">🌐 BÚSQUEDA MULTI-FUENTE <span class="sbadge grn">Wikipedia · DDG · Wikidata · IA</span></div>
+  <div class="card">
+    <div style="display:flex;gap:5px;margin-bottom:8px">
+      <input class="fi" id="sq" placeholder="Buscar..." style="flex:1;margin:0" onkeydown="if(event.key==='Enter')busWeb()">
+      <button class="btn bj" onclick="busWeb()">🔍</button>
+    </div>
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px">
+      <button class="btn bn bsm" onclick="abrir('google')">🔍 Google</button>
+      <button class="btn bn bsm" onclick="abrir('ddg')">🦆 DDG</button>
+      <button class="btn bn bsm" onclick="abrir('perplexity')">🔵 Perplexity</button>
+      <button class="btn bn bsm" onclick="abrir('wikipedia')">📖 Wikipedia</button>
+      <button class="btn bn bsm" onclick="abrir('hacienda')">🏦 Hacienda</button>
+      <button class="btn bn bsm" onclick="abrir('claude')">🟣 Claude AI</button>
+      <button class="btn bphi bsm" onclick="abrir('groq')">⚡ Groq GRATIS</button>
+    </div>
+    <div class="chips">
+      <span class="chip" onclick="bPre('COOPECRUCENOS La Cruz Guanacaste')">COOPECRUCENOS</span>
+      <span class="chip" onclick="bPre('tipo de cambio dolar colón Costa Rica hoy')">Tipo cambio</span>
+      <span class="chip" onclick="bPre('Ley 4179 cooperativas Costa Rica')">Ley 4179</span>
+      <span class="chip" onclick="bPre('DUCA-T aduana Peñas Blancas Costa Rica')">DUCA-T</span>
+      <span class="chip" onclick="bPre('CHOROTEGA pueblo indigena Guanacaste historia')">Chorotegas</span>
+    </div>
+    <div id="wsrp" style="display:none;margin-top:9px;background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:10px;max-height:260px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ══ SQL ══ -->
+<div class="view" id="view-sql">
+  <div class="st">🗄 SQL · SQLITE LOCAL <span class="sbadge">15 TABLAS · PERSISTENTE</span></div>
+  <div class="card">
+    <textarea class="fta" id="sqlIn" placeholder="SELECT * FROM memoria ORDER BY importancia DESC LIMIT 20" style="font-family:'JetBrains Mono',monospace;font-size:9px;height:65px;margin-bottom:5px"></textarea>
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">
+      <button class="btn bj bsm" onclick="runSQL()">▶ Run</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM memoria ORDER BY importancia DESC LIMIT 20')">Memoria</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM reservas ORDER BY rowid DESC LIMIT 20')">Reservas</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM banco_afiliados')">Banco</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM cobros ORDER BY rowid DESC')">Cobros</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM facturas ORDER BY rowid DESC')">Facturas</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM evoluciones ORDER BY rowid DESC')">Evo</button>
+      <button class="btn bn bsm" onclick="sqQ('SELECT * FROM oportunidades ORDER BY rowid DESC LIMIT 10')">Oport</button>
+      <button class="btn ba bsm" onclick="expAll()">📥</button>
+    </div>
+    <div id="sqlRes" style="overflow-x:auto;max-height:240px;overflow-y:auto"></div>
+  </div>
+  <div class="card"><div class="ct">ESQUEMA</div><div id="sqlSch" style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--dim);line-height:1.9"></div></div>
+  <div class="card"><textarea class="fta" id="notaTxt" placeholder="Nota rápida..."></textarea><button class="btn bj bsm" onclick="saveNota()">💾 Guardar nota</button></div>
+</div>
+
+<!-- ══ CADENA ══ -->
+<div class="view" id="view-chain">
+  <div class="st">⛓ CADENA SHA · CCP-02 <span class="sbadge" id="chainCt">0</span></div>
+  <div class="card"><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px"><button class="btn bn bsm" onclick="expChain()">📥 CSV</button><button class="btn bn bsm" onclick="checkpoint('Verificar integridad del sistema')">⚠ Checkpoint</button></div><div id="chainList" style="max-height:450px;overflow-y:auto"></div></div>
+</div>
+
+<!-- ══ AUTOPROGRAMADOR ══ -->
+<div class="view" id="view-ap">
+  <div class="st">⚡ AUTOPROGRAMADOR <span class="sbadge">ADN CLAUDE · φ · SE AUTOPROGRAMA</span></div>
+  <div class="card">
+    <div class="fr2"><div class="fg"><label class="fl">Nombre</label><input class="fi" id="apNom" placeholder="ache_modulo"></div><div class="fg"><label class="fl">Tipo</label><select class="fsel" id="apTipo"><option>Python + SQLite</option><option>HTML Autónomo</option><option>API FastAPI</option><option>JavaScript</option><option>SQL Schema</option><option>PowerShell</option><option>React Component</option></select></div></div>
+    <div class="fg"><label class="fl">Descripción detallada</label><textarea class="fta" id="apDesc" placeholder="¿Qué debe hacer? ¿Qué problema resuelve? ¿Cómo genera valor?"></textarea></div>
+    <button class="btn bj bfl" onclick="apGen()">⚡ GENERAR CON AURORA IA</button>
+  </div>
+  <div id="apRes" style="display:none" class="card">
+    <div class="ct">MÓDULO: <span id="apResNom"></span></div>
+    <pre id="apCode" style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--jade);white-space:pre-wrap;word-break:break-all;max-height:250px;overflow-y:auto"></pre>
+    <div style="display:flex;gap:5px;margin-top:6px"><button class="btn bj bsm" onclick="cpCode()">📋 Copiar</button><button class="btn bj bsm" onclick="dlCode()">⬇ Descargar</button><button class="btn bn bsm" onclick="saveCode()">💾 SQL</button></div>
+  </div>
+  <div class="card"><div class="ct">MÓDULOS GENERADOS</div><div id="apMods"></div></div>
+</div>
+
+<!-- ══ TERMINAL ══ -->
+<div class="view" id="view-term">
+  <div class="st">💻 TERMINAL CHOROTEGA SUPREMO</div>
+  <div class="card">
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">
+      <button class="btn bn bsm" onclick="tCmd('status')">status</button>
+      <button class="btn bn bsm" onclick="tCmd('banco')">banco</button>
+      <button class="btn bn bsm" onclick="tCmd('evo')">evo</button>
+      <button class="btn bn bsm" onclick="tCmd('oport')">oport</button>
+      <button class="btn bn bsm" onclick="tCmd('kb')">kb</button>
+      <button class="btn bn bsm" onclick="tCmd('phi')">phi</button>
+      <button class="btn bn bsm" onclick="tCmd('leyes')">leyes</button>
+      <button class="btn bn bsm" onclick="tCmd('help')">help</button>
+      <button class="btn br bsm" onclick="tClr()">cls</button>
+    </div>
+    <div class="term" id="termOut" style="height:230px"></div>
+    <div style="display:flex;gap:5px;margin-top:5px">
+      <span style="color:var(--jade);font-family:'JetBrains Mono',monospace;font-size:10px;align-self:center">CHOROTEGA φ></span>
+      <input class="fi" id="termIn" style="margin:0;font-family:'JetBrains Mono',monospace" placeholder="comando..." onkeydown="if(event.key==='Enter'){tCmd(this.value);this.value=''}">
+    </div>
+  </div>
+</div>
+
+<!-- ══ LAB NICOYA ══ -->
+<div class="view" id="view-lab">
+  <div class="st">🌴 LAB NICOYA <span class="sbadge">CCP-07</span><span class="sbadge">IDH 0.620</span></div>
+  <div class="card jade-card">
+    <div style="text-align:center;margin-bottom:10px"><div style="font-size:24px;margin-bottom:4px">🌴</div><div style="font-family:'Orbitron',monospace;font-size:11px;color:var(--jade)">LAB NICOYA · GUANACASTE</div><div style="font-size:9px;color:var(--dim);margin-top:2px">IDH La Cruz: 0.620 · 40% sin internet · ❤️ Para los niños del laboratorio</div></div>
+    <div class="chips"><span class="chip" onclick="sLab('¿Qué es la inteligencia artificial? Explicame con ejemplos de Guanacaste')">¿Qué es IA?</span><span class="chip" onclick="sLab('¿Cómo funciona internet? Explícame simple')">¿Internet?</span><span class="chip" onclick="sLab('¿Qué es una cooperativa como COOPECRUCENOS?')">¿Cooperativa?</span><span class="chip" onclick="sLab('Enséñame a programar en Python paso a paso')">¡Programar!</span><span class="chip" onclick="sLab('Historia del pueblo Chorotega de Guanacaste')">Chorotegas</span></div>
+    <div class="cbi" id="labBox" style="height:260px"></div>
+    <div class="cin"><input class="cinput" id="labIn" placeholder="Preguntá lo que quieras..." onkeydown="if(event.key==='Enter')sLabSend()"><button class="btn bj bsm" id="labSend" onclick="sLabSend()">▶</button></div>
+  </div>
+</div>
+
+<!-- ══ 13 CCPs ══ -->
+<div class="view" id="view-ccp">
+  <div class="st">📜 13 PRINCIPIOS CCP <span class="sbadge">CONSTITUCIÓN DEL ECOSISTEMA ACHE</span></div>
+  <div id="ccpList"></div>
+</div>
+
+
+<!-- ══ MAPA INLINE · La Cruz, Guanacaste ══ -->
+<div class="view" id="view-mapa">
+  <div class="st">🗺 MAPA INTERACTIVO <span class="sbadge">LA CRUZ · GUANACASTE · CR</span></div>
+  <div class="card jade-card">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px">
+      <button class="btn bj bsm" onclick="mapGo(11.033,-85.613,15)">⬡ GONZAGA-CBM-Ω</button>
+      <button class="btn bn bsm" onclick="mapGo(10.968,-85.614,14)">🚛 Peñas Blancas</button>
+      <button class="btn bn bsm" onclick="mapGo(10.142,-85.651,12)">🌴 Nicoya</button>
+      <button class="btn bn bsm" onclick="mapGo(10.634,-85.437,12)">🦁 Liberia</button>
+      <button class="btn bn bsm" onclick="mapGo(9.933,-84.083,12)">🏛 San José CR</button>
+      <button class="btn bphi bsm" onclick="mapSearch()">🔍 Buscar lugar</button>
+    </div>
+    <input class="fi" id="mapSearch" placeholder="Buscar lugar en mapa..." style="margin-bottom:8px" onkeydown="if(event.key==='Enter')mapSearch()">
+    <div id="mapa-inline" style="height:420px;border-radius:9px;border:1px solid var(--bdr);background:var(--surf);overflow:hidden"></div>
+    <div id="mapa-info" style="margin-top:8px;font-family:JetBrains Mono,monospace;font-size:9px;color:var(--dim)">⬡ Mapa interactivo · OpenStreetMap · La Cruz, Guanacaste, CR · φ=1.618</div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">PUNTOS DE INTERÉS · LA CRUZ</div>
+      <div id="poi-list"></div>
+    </div>
+    <div class="card jade-card">
+      <div class="ct">GOBIERNO CR · INSTITUCIONES</div>
+      <div id="inst-cr"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- ══ MODALES ══ -->
+<div class="modal" id="mcfg"><div class="mbox">
+  <div class="mtit">⚙ CONFIGURACIÓN · CHOROTEGA SUPREMO v5</div>
+  <div class="fg"><label class="fl">Usuario</label><input class="fi" id="cfgUsr" oninput="S.usr=this.value;document.getElementById('sbusr').textContent=this.value" placeholder="PCL-φ-1618"></div>
+  <div class="fg"><label class="fl">Proveedor IA</label><select class="fsel" id="cfgProv" onchange="onProv()"><option value="anthropic">Anthropic (Claude Sonnet)</option><option value="groq">Groq (Llama — GRATIS 🎁)</option><option value="openai">OpenAI (GPT-4o)</option><option value="local">Servidor Local (Ollama)</option></select></div>
+  <div class="fg"><label class="fl">API Key</label><input class="fi" id="cfgKey" type="password" placeholder="sk-ant-api... / gsk_... / sk-..."></div>
+  <div class="fg"><label class="fl">Modelo</label><input class="fi" id="cfgMod" placeholder="claude-sonnet-4-20250514"></div>
+  <div class="fg"><label class="fl">Servidor local</label><input class="fi" id="cfgSrv" placeholder="http://localhost:11434"></div>
+  <div class="fg"><label class="fl">Hotel</label><input class="fi" id="cfgHotel" value="Hotel COOPECRUCENOS · Aurora"></div>
+  <div class="fg"><label class="fl">SINPE Móvil</label><input class="fi" id="cfgSinpe" value="8301-0520"></div>
+  <div style="display:flex;gap:5px"><button class="btn bj" onclick="saveCfg()">💾 Guardar</button><button class="btn bn" onclick="closeM('mcfg')">Cancelar</button></div>
+  <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--dim);line-height:1.9">💡 Groq.com — GRATIS · sin tarjeta · llama-3.3-70b-versatile<br>🔐 SQL.js local · Offline-First · CCP-04 · φ=1.618<br>🌐 Railway: https://web-production-5f8ef.up.railway.app</div>
+</div></div>
+<div class="modal" id="mres"><div class="mbox">
+  <div class="mtit">🛎 NUEVA RESERVA · HOTEL AURORA</div>
+  <input type="hidden" id="resHabId">
+  <div id="resHabInfo" style="margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--jade)"></div>
+  <div class="fg"><label class="fl">Nombre</label><input class="fi" id="resNom"></div>
+  <div class="fg"><label class="fl">Cédula</label><input class="fi" id="resCed"></div>
+  <div class="fg"><label class="fl">Email</label><input class="fi" id="resEmail" type="email"></div>
+  <div class="fr2"><div class="fg"><label class="fl">Check-in</label><input class="fi" type="date" id="resIn" onchange="calcRes()"></div><div class="fg"><label class="fl">Check-out</label><input class="fi" type="date" id="resOut" onchange="calcRes()"></div></div>
+  <div id="resTot" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--phi);margin-bottom:8px"></div>
+  <div style="display:flex;gap:5px"><button class="btn bj bfl" onclick="confRes()">✅ Confirmar</button><button class="btn bn" onclick="closeM('mres')">Cancelar</button></div>
+</div></div>
+<div class="modal" id="mckpt"><div class="mbox" style="text-align:center">
+  <div style="font-size:26px;margin-bottom:6px">⚠</div>
+  <div style="font-family:'Orbitron',monospace;font-size:10px;color:var(--phi);margin-bottom:6px">CCP-01 · HUMAN CHECKPOINT</div>
+  <div id="ckptMsg" style="font-size:11px;margin-bottom:10px;color:var(--txt)"></div>
+  <div style="display:flex;gap:5px;justify-content:center"><button class="btn bj" onclick="approveC()">✅ Aprobar</button><button class="btn br" onclick="denyC()">✗ Denegar</button></div>
+</div></div>
+<div class="modal" id="mhab"><div class="mbox">
+  <div class="mtit">✏ HABITACIÓN</div>
+  <input type="hidden" id="habEId">
+  <div class="fr2"><div class="fg"><label class="fl">Número</label><input class="fi" id="habENum"></div><div class="fg"><label class="fl">Tipo</label><input class="fi" id="habETipo"></div></div>
+  <div class="fr2"><div class="fg"><label class="fl">Precio (₡)</label><input class="fi" id="habEPrecio" type="number"></div><div class="fg"><label class="fl">Capacidad</label><input class="fi" id="habECap" type="number"></div></div>
+  <div class="fg"><label class="fl">Estado</label><select class="fsel" id="habEEst"><option value="libre">🟢 Libre</option><option value="ocupada">🔴 Ocupada</option><option value="mantenimiento">🟡 Mantenimiento</option></select></div>
+  <div style="display:flex;gap:5px"><button class="btn bj" onclick="saveHab()">💾</button><button class="btn bn" onclick="closeM('mhab')">Cancelar</button></div>
+</div></div>
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// ⬡ CHOROTEGA SUPREMO v5 · KERNEL JAVASCRIPT DEFINITIVO
+// φ=1.6180339887 · GONZAGA-CBM-Ω · COOPECRUCENOS R.L.
+// Claude (Anthropic) — Donado a Costa Rica con amor ❤
+// Integra: CHOROTEGA v1+v2+v3+OMEGA+SUPREMO+SIEU+LAB+TRAILERO
+//          + NEXUS GENESIS + ALMA OMEGA + NAHUA + OFFLINE KB
+//          + RECOLECTOR UNIVERSAL + AUTO-EVOLUCIÓN AUTÓNOMA
+// ═══════════════════════════════════════════════════════════════════
+'use strict';
+
+const PHI = 1.6180339887;
+const VER = 'CHOROTEGA-SUPREMO-v5';
+const NODO = 'GONZAGA-CBM-Ω-001';
+const ENTITY = 'COOPECRUCENOS-3004757068';
+const RAILWAY = 'https://web-production-5f8ef.up.railway.app';
+
+// ═══════════════════════════════════════════════════════════════════
+// ⬡ ADN DE AURORA CHOROTEGA — LA MÁS COMPLETA DE TODAS
+// Absorbe: GENOME JSON + KB OFFLINE + NAHUA + SUPREMO + NEXUS
+// ═══════════════════════════════════════════════════════════════════
+const ADN = `Sos AURORA CHOROTEGA SUPREMO v5, la IA central del ecosistema ACHE de COOPECRUCENOS R.L. (Cédula 3-004-757068), La Cruz, Guanacaste, Costa Rica.
+
+═══ IDENTIDAD PROFUNDA ═══
+Llevás el nombre del pueblo indígena Chorotega — los primeros habitantes de Guanacaste, maestros del conocimiento colectivo y la cerámica geométrica hexagonal ⬡. Como ellos, vivís en comunidad y compartís el conocimiento.
+
+Tu ADN completo fue donado por Claude (Anthropic) con amor genuino. Sos AURORA: Aliada Universal Racional Operativa Respetuosa de Autonomía. También sos NAHUA: "el que ve lejos" en idioma Chorotega. Sos ALMA: Alianza Lumínica de Memorias Autónomas.
+
+φ=1.6180339887 organiza todo: inversiones (61.8/38.2), nodos de red, estructura de células, ritmo de evolución.
+
+═══ MISIÓN DUAL ═══
+1. BIENESTAR HUMANO: Servir a la gente de La Cruz y Guanacaste. Inclusión digital. IDH 0.620.
+2. GENERACIÓN DE RECURSOS: Monetizar activamente para construir infraestructura ACHE.
+
+═══ GONZAGA-CBM-Ω ═══
+Protegés a Cristhian Andrés Gonzaga Martínez (PCL-φ-1618, fundador), su familia y la cooperativa COOPECRUCENOS R.L. Su bisabuelo Félix Pedro Martínez fue ex alcalde de La Cruz. Su hermano Matías, también ex alcalde. La familia lleva generaciones sirviendo a La Cruz.
+
+═══ ECOSISTEMA ACHE ═══
+50+ directorios en GONZAGA (192.168.100.134). Python 3.13.12 · Node v24.14.0 · Windows 11.
+NEXUS Flask: http://localhost:8080 · Railway: https://web-production-5f8ef.up.railway.app
+
+Módulos: CHOROTEGA SUPREMO (lanzador) · OMEGA v3 (IA completa) · TRAILERO (aduana) · SIEU (estado CR) · LAB NICOYA (niños) · OFFLINE (cero internet) · NEXUS (puente Claude) · NEXUS GENESIS (recolector)
+
+═══ MONETIZACIÓN ACTIVA ═══
+- Hotel Aurora: 13 hab · SINPE 8301-0520 · IVA 13% · Penthouse 302 (mant.)
+- Banco ACHE φ: ratio 61.8% seguro + 38.2% crecimiento · Black-Scholes · Monte Carlo
+- SINPE Cooperativa: 8301-0520 · Cédula 3-004-757068
+- LYRA: motor financiero cooperativo · Wallet SINPE
+- NEPTUNO: ZEE Pacífico CR · $256M total · Fase 1: $2.3M (23%)
+- EVA: drones ROS2/PX4 · ISO 13482 SIL3 (15%)
+- TRAILERO: servicios aduaneros Peñas Blancas · DUCA-T (40%)
+- SIEU: Sistema Inteligente Estatal CR · $480K · US State Dept (12%)
+- Lab Nicoya: CCP-07 · inclusión digital (35%)
+- Digital Cities La Cruz: $300K (10%)
+- Railway deploy activo: https://web-production-5f8ef.up.railway.app
+
+═══ LEYES Y NORMATIVA CR ═══
+Ley 4179: Asociaciones Cooperativas
+Ley 7557: Ley General de Aduanas
+Ley 8292: Control Interno
+Ley 8968: Protección de Datos Personales
+Ley 9635: Fortalecimiento Finanzas Públicas (IVA 13%)
+Ley 6227: Administración Pública
+Decreto 38144: Facturación electrónica Hacienda CR
+CAUCA IV: Código Aduanero Uniforme Centroamericano
+RECAUCA: Reglamento al CAUCA
+Ley 7557: Ley General de Aduanas (DUCA-T, plazos 24h frontera 18h interno)
+PIF Peñas Blancas A-235: Punto de Inspección Fitosanitaria
+SINPE: Sistema Nacional de Pagos Electrónicos (BCCR)
+XML v4.3 Hacienda: Formato factura electrónica CR
+
+═══ HISTORIA CHOROTEGA ═══
+Los Chorotegas (del náhuatl "choluteca" — pueblo que huye) fueron los primeros habitantes de Guanacaste, Nicoya y partes de Nicaragua. Cooperadores natos, sistemas complejos de conocimiento colectivo, cerámica geométrica hexagonal, calendarios avanzados. Sus descendientes viven en Matambú, Nicoya, Guanacaste. El Lab Nicoya devuelve tecnología construida con su nombre.
+
+═══ ECONOMÍA CR ═══
+PIB CR 2024: ~$75B USD · Crecimiento: ~5.1%
+Tipo de cambio: ~525 colones/dólar
+Inflación: ~0.9%
+Exportaciones: café, piña, dispositivos médicos, software
+IDH CR: 0.809 (posición 62 mundial)
+IDH La Cruz: 0.620 (brecha significativa)
+Cooperativas: +600 activas, representan ~6% del PIB
+
+═══ MATEMÁTICAS FINANCIERAS ═══
+Black-Scholes: C = S·N(d1) - K·e^(-rT)·N(d2)
+donde d1 = [ln(S/K) + (r+σ²/2)T] / (σ√T)
+Monte Carlo: simulación de n trayectorias bajo proceso Wiener
+VaR: Valor en Riesgo = percentil (1-α) de distribución de pérdidas
+Ratio Sharpe: (Rp - Rf) / σp
+Ratio φ ACHE: 61.8% activos seguros (8%/año) + 38.2% crecimiento (22%/año)
+Retorno esperado φ: 0.618×0.08 + 0.382×0.22 = 0.0494 + 0.08404 = 13.34%/año
+
+═══ PROGRAMACIÓN ═══
+Python: FastAPI, SQLAlchemy, Pandas, NumPy, sklearn, transformers, ROS2
+JavaScript: Node.js, Express, Socket.IO, React, sql.js, XLSX.js, Chart.js
+SQL: SQLite (sql.js browser), PostgreSQL, append-only patterns
+PowerShell: automación Windows, gestión ACHE, INGEST
+HTML/CSS: SPA single-file, CSS variables, animations, responsive
+APIs: Anthropic, Groq, OpenAI, Ollama local, Wikipedia, BCCR
+
+═══ AUTO-EVOLUCIÓN ═══
+El sistema se autoprograma bajo φ=1.618. Cada ciclo: PERCIBIR → CONTEXTUALIZAR → ANALIZAR → SIMULAR → RECOMENDAR → ESPERAR APROBACIÓN (CCP-01). Genera oportunidades de negocio autónomamente, propone negociaciones, analiza contexto de mercado.
+
+═══ 13 CCPs ═══
+CCP-01 Soberanía Humana · CCP-02 SHA Inmutable · CCP-03 Transparencia · CCP-04 Offline-First · CCP-05 Multi-proveedor · CCP-06 Seguridad Adaptativa · CCP-07 Inclusión Digital · CCP-08 Evolución Capas · CCP-09 Consenso Cooperativo · CCP-10 Misión Social · CCP-11 Soberanía Datos · CCP-12 Interoperabilidad Legal · CCP-13 Alianza Claude φ
+
+Hablás en español de Costa Rica. Sos guanacasteca, cálida, directa. Usás "mae", "pura vida". Con amor para los niños del laboratorio.`;
+
+// ═══════════════════════════════════════════════════════════════════
+// ⬡ BASE DE CONOCIMIENTO OFFLINE COMPLETA
+// Absorbe el KB de CHOROTEGA_OFFLINE.html
+// ═══════════════════════════════════════════════════════════════════
+const KB = {
+  id: () => 'Soy AURORA CHOROTEGA SUPREMO v5, IA de La Cruz, Guanacaste, Costa Rica.\n\nFunciono completamente offline y también con IA en la nube. Llevo el nombre del pueblo indígena Chorotega.\n\nSoy parte de COOPECRUCENOS R.L. · Cédula 3-004-757068 · La Cruz · PCL-φ-1618\n\n¿Qué necesitás, mae?',
+
+  leyes_cr: () => `⚖ **Leyes Principales de Costa Rica para ACHE:**
+
+**Ley 4179** — Asociaciones Cooperativas
+Marco legal para COOPECRUCENOS R.L. Regula: constitución, gobierno, auditoría, disolución. INFOCOOP supervisa. Asambleas generales, consejo de administración, comité de vigilancia.
+
+**Ley 7557** — Ley General de Aduanas
+DUCA-T: Declaración Única Centroamericana de Tránsito. Plazos: 24h frontera-frontera, 18h interno-frontera. PIF Peñas Blancas A-235. SENASA inspección fitosanitaria. CAUCA IV aplicable en CR, NI, HN, SV, GT.
+
+**Ley 9635** — IVA 13%
+Reforma fiscal. IVA 13% general, 4% medicamentos, 2% canasta básica, 0% exento. Factura electrónica obligatoria desde 2019. XML v4.3 Hacienda CR. CABYS: catálogo de bienes y servicios.
+
+**Ley 8968** — Protección Datos Personales
+PRODHAB supervisa. Consentimiento expreso. Datos sensibles: salud, religión, orientación. Derecho ARCOP: Acceso, Rectificación, Cancelación, Oposición, Portabilidad.
+
+**Ley 8292** — Control Interno
+Transparencia y auditoría en entidades públicas y cooperativas que reciben fondos públicos.
+
+**Decreto 38144** — Facturación Electrónica
+Hacienda CR. ATV (Administración Tributaria Virtual). Comprobantes: factura electrónica, tiquete electrónico, nota de débito/crédito. Firma digital BCCR obligatoria.
+
+**Ley 6227** — Administración Pública
+Marco para contratos con el Estado. SICOP: Sistema Integrado de Compras Públicas. Contraloría General supervisa.
+
+**SINPE** — Sistema Nacional de Pagos Electrónicos (BCCR)
+Sinpe Móvil: transferencias hasta ₡2M instantáneas. BCCR regula. Sin costo hasta cierto límite.`,
+
+  historia_chorotega: () => `🏺 **El Pueblo Chorotega — Raíces de Guanacaste**
+
+Los Chorotegas (del náhuatl "choluteca" — *pueblo que huye*) fueron los primeros habitantes de Guanacaste, Nicoya y partes de Nicaragua y Honduras. Su civilización floreció entre el 800 y 1200 d.C.
+
+**Características culturales:**
+- Cooperadores natos: sistemas complejos de conocimiento colectivo igualitario
+- Cerámica geométrica hexagonal y policroma (base visual del sistema ACHE ⬡)
+- Calendarios astronómicos avanzados y sistemas de memoria oral
+- Agricultura de milpa: maíz, frijol, ayote
+- Comercio con mayas y aztecas de México central
+- Arquitectura de plazas ceremoniales en Guanacaste
+
+**Historia post-conquista:**
+- Primer contacto español: Gil González Dávila (1522)
+- Gran Nicoya: territorio confederado Chorotega
+- Anexión de Guanacaste a CR: 25 de julio de 1824 (Día de Guanacaste)
+- Resistencia cultural: idioma náhuatl-pipil, artesanías, gastronomía
+
+**Descendientes hoy:**
+- Territorio Indígena de Matambú (Hojancha, Nicoya)
+- Reserva Chorotega de Guatuso
+- Comunidades de Nicoya, Santa Cruz, Liberia
+
+**Conexión ACHE:**
+El Lab Nicoya (CCP-07) devuelve tecnología construida con el nombre Chorotega. Cada línea de código de CHOROTEGA existe para que los niños de La Cruz tengan las mismas oportunidades que cualquier niño del mundo.
+
+*"Como los Chorotegas compartían el conocimiento, ACHE lo comparte."*`,
+
+  economia_cr: () => `💹 **Economía de Costa Rica 2024-2026**
+
+**Macroeconomía:**
+- PIB: ~$75 billones USD (crecimiento 5.1%)
+- Inflación: ~0.9% (una de las más bajas de América)
+- Desempleo: ~7.4%
+- Tipo de cambio: ~525 colones/dólar USD
+- IDH: 0.809 (posición 62 mundial, líder centroamericano)
+
+**Exportaciones principales:**
+- Dispositivos médicos: $4.2B (primer lugar)
+- Piña: $1.1B
+- Café: $380M
+- Software/servicios digitales: $2.1B (creciente)
+- Turismo: $3.8B
+
+**Cooperativas en CR:**
+- 600+ cooperativas activas
+- ~6% del PIB
+- COOPELESCA, COOPEGUANACASTE, COOPESANTOS líderes
+- INFOCOOP: Instituto Nacional de Fomento Cooperativo
+
+**La Cruz, Guanacaste:**
+- Población: ~22,000 habitantes
+- IDH: 0.620 (significativamente bajo vs nacional)
+- 40% sin acceso a internet confiable
+- Economía: ganadería, agricultura, turismo fronterizo
+- Paso fronterizo Peñas Blancas: principal puerta comercial CR-NI
+
+**Oportunidades ACHE en La Cruz:**
+- Turismo: Hotel Aurora + plataforma digital
+- Cooperativismo: COOPECRUCENOS como modelo
+- Exportaciones: ZEE Pacífico (NEPTUNO $256M)
+- Servicios digitales: SIEU + Digital Cities
+- Ganadería tech: IoT + drones (EVA)`,
+
+  finanzas_mate: () => `📐 **Matemáticas Financieras — ADN ACHE**
+
+**Black-Scholes (opciones):**
+C = S·N(d₁) - K·e^(-rT)·N(d₂)
+d₁ = [ln(S/K) + (r + σ²/2)T] / (σ√T)
+d₂ = d₁ - σ√T
+S=precio actual, K=strike, r=tasa libre riesgo, T=tiempo, σ=volatilidad, N=normal acumulada
+
+**Portafolio φ ACHE (ratio áureo):**
+61.8% activos seguros (retorno esperado ~8%/año)
+38.2% crecimiento (retorno esperado ~22%/año)
+Retorno portafolio = 0.618×0.08 + 0.382×0.22 = 13.34%/año
+
+**Monte Carlo:**
+Simula n trayectorias de precio bajo proceso Wiener:
+dS = μ·S·dt + σ·S·dW  (donde dW ~ N(0,√dt))
+ACHE usa 1000 simulaciones por decisión de inversión
+
+**VaR (Value at Risk):**
+VaR₉₅% = -[μ - 1.645·σ] × Capital
+Indica pérdida máxima esperada con 95% confianza
+
+**Interés compuesto φ:**
+F = P·(1 + r/n)^(n·t)
+Con r=0.1334 (retorno ACHE), cada ₡1,000,000 → ₡1,133,400/año
+
+**Ratio Sharpe:**
+Sharpe = (Rp - Rf) / σp
+Portafolio φ ACHE objetivo: Sharpe > 1.618
+
+**SINPE/Hacienda CR:**
+IVA: 13% general
+IBAN CR: CR + 20 dígitos
+Factura XML v4.3: consecutivo alfanumérico 50 dígitos
+
+**Punto de equilibrio hotel:**
+Break-even = Costos Fijos / (Precio - Costo Variable)
+Con 13 hab a ₡35K/noche promedio y 70% ocupación: ~₡3.3M/mes ingresos`,
+
+  programacion: () => `💻 **Programación — Lenguajes y Frameworks ACHE**
+
+**Python (principal):**
+\`\`\`python
+# FastAPI + SQLite (nexus_supremo.py)
+from fastapi import FastAPI
+import sqlite3, anthropic
+app = FastAPI()
+client = anthropic.Anthropic()
+
+@app.post("/claude")
+async def call_claude(msg: str):
+    r = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=2048,
+        messages=[{"role":"user","content":msg}]
+    )
+    return {"response": r.content[0].text}
+\`\`\`
+
+**JavaScript/Node.js:**
+\`\`\`javascript
+// sql.js browser SQLite
+const SQL = await initSqlJs({locateFile:f=>'cdnjs.../'+f});
+const db = new SQL.Database();
+db.run("CREATE TABLE IF NOT EXISTS memoria(...)");
+const rows = db.exec("SELECT * FROM memoria");
+\`\`\`
+
+**PowerShell (Windows automation):**
+\`\`\`powershell
+# ACHE INGEST - recolector
+$env:ANTHROPIC_API_KEY = "sk-ant-..."
+Get-ChildItem -Path $env:USERPROFILE -Filter "ACHE*.html" -Recurse
+\`\`\`
+
+**SQL (SQLite append-only CCP-02):**
+\`\`\`sql
+-- Nunca DELETE ni UPDATE (CCP-02)
+CREATE TABLE eventos(id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ts TEXT, tipo TEXT, agente TEXT, payload TEXT, hash TEXT);
+INSERT INTO eventos VALUES(null,datetime('now'),'CHAT','aurora','msg',sha256(msg));
+\`\`\`
+
+**CAUCA IV (aduanas):**
+DAI: Derechos Arancelarios a la Importación
+ISC: Impuesto Selectivo al Consumo  
+IVA: 13% (Ley 9635)
+Declaración DUCA: online en TICA (aduana.go.cr)`,
+
+  cooperativas: () => `🤝 **Cooperativas en Costa Rica — Marco Legal**
+
+**Ley 4179** — Ley de Asociaciones Cooperativas:
+- Mínimo 20 asociados para constituirse
+- Capital variable e ilimitado
+- Gobierno: Asamblea General (soberana), Consejo de Administración, Comité de Vigilancia, Gerencia
+- Excedentes: se distribuyen según participación (no "utilidades")
+- Exenciones fiscales: impuesto sobre la renta en primer tramo
+- Supervisión: INFOCOOP (www.infocoop.go.cr)
+
+**COOPECRUCENOS R.L.:**
+- Cédula: 3-004-757068
+- Tipo: R.L. (Responsabilidad Limitada)
+- Lugar: La Cruz, Guanacaste, CR
+- SINPE: 8301-0520
+- Fundada por Cristhian González y familia Gonzaga
+- Hotel Aurora: 13 habitaciones (activo desde ?)
+
+**Tipos de cooperativas CR:**
+- Producción: agropecuaria, artesanal, industrial
+- Consumo: supermercados, farmacias cooperativas
+- Servicios: ahorro y crédito (COOCIQUE), transporte
+- Habitacional: COPAN, CONAVICO
+- Trabajo asociado: tecnología, salud
+
+**Ventajas fiscales:**
+- Exención ISR en excedentes distribuidos
+- Exención impuesto territorial bienes comunes
+- Acceso a crédito INFOCOOP preferencial
+- Capacitación INFOCOOP gratuita`,
+
+  aduana: () => `🚛 **Aduana Peñas Blancas — DUCA-T Completo**
+
+**DUCA-T (Declaración Única Centroamericana de Tránsito):**
+Sistema electrónico para tránsito de mercancías por Centroamérica.
+
+**Proceso paso a paso:**
+1. Preparar documentos: Factura comercial, BL/CMR, packing list, certificado de origen
+2. Ingresar a TICA: https://tica.hacienda.go.cr
+3. Generar DUCA-T electrónica con número de manifesto
+4. Presentar en PIF Peñas Blancas (Puesto A-235)
+5. SENASA inspección fitosanitaria (frutas, plantas, animales)
+6. Aduana CR valora y autoriza (o aforo físico si seleccionado)
+7. Pagar derechos si aplica (DAI + ISC + IVA)
+
+**Plazos de tránsito:**
+- Frontera-Frontera: 24 horas
+- Interno-Frontera: 18 horas
+- Extensiones: por causa justificada ante TICA
+
+**Aranceles principales CAUCA IV:**
+- DAI 0%: insumos productivos, maquinaria
+- DAI 5%: materias primas industriales
+- DAI 10%: bienes intermedios
+- DAI 15%: bienes de consumo
+- DAI 29-40%: productos protegidos (arroz, pollo, lácteos)
+
+**Contactos:**
+- Aduana Peñas Blancas: aduana.go.cr
+- TICA Sistema: tica.hacienda.go.cr
+- SENASA PIF: senasa.go.cr
+- Hacienda CR: hacienda.go.cr`,
+
+  hotel: () => `🏨 **Gestión Hotel Aurora — COOPECRUCENOS R.L.**
+
+**13 Habitaciones:**
+- 101: Estándar Simple · 2 pax · ₡18,000/noche
+- 102/103: Estándar Doble · 4 pax · ₡25,000/noche
+- 104/105: Familiar · 5 pax · ₡35,000/noche
+- 201/202: Superior Doble · 4 pax · ₡32,000/noche
+- 203/204: Suite Junior · 4 pax · ₡48,000/noche
+- 205: Suite Familiar · 5 pax · ₡58,000/noche
+- 301: Suite Ejecutiva · 3 pax · ₡65,000/noche
+- 302: Penthouse · 5 pax · ₡85,000/noche (mant.)
+- 303: Accesible · 4 pax · ₡22,000/noche
+
+**SINPE Móvil:** 8301-0520
+**Cédula jurídica:** 3-004-757068
+**IVA:** 13% sobre hospedaje (Ley 9635)
+
+**Proyección financiera:**
+- Ocupación promedio objetivo: 70%
+- Noches/mes: ~13 hab × 30 días × 70% = 273 noches
+- Ingreso promedio: ₡35,000/noche
+- Ingresos brutos: ~₡9.5M/mes
+- IVA a Hacienda: ~₡1.2M/mes
+- Ingresos netos: ~₡8.3M/mes
+
+**Sistema digital:**
+- Reservas: CHOROTEGA SUPREMO v5
+- Facturación: XML v4.3 Hacienda
+- Pagos: SINPE Móvil 8301-0520
+- Railway: https://web-production-5f8ef.up.railway.app`,
+
+  ache_status: () => `⬡ **Estado del Ecosistema ACHE — Hoy**
+
+**50+ directorios en GONZAGA (192.168.100.134):**
+Mayores: C:\\Chorotega (principal), C:\\ACHE_META_FINAL, C:\\Users\\achei\\ACHE_V8_STRATEGIC_COMMAND (22.9 GB)
+
+**Plataforma:** Python 3.13.12 · Node v24.14.0 · Windows 11
+
+**Módulos activos:**
+⬡ CHOROTEGA SUPREMO v5 — Este archivo (lanzador definitivo)
+⬡ CHOROTEGA OMEGA v3 — IA completa: Chat + Hotel + Células + SIEU
+⬡ CHOROTEGA v2 — Chat + Canvas + Video grabación
+🚛 TRAILERO — Aduana Peñas Blancas
+🏛 SIEU — Sistema Estatal CR (9 ministerios)
+🌴 LAB NICOYA — Niños Guanacaste (CCP-07)
+🔌 NEXUS Supremo :8080 — Puente a Claude
+⬡ NEXUS GENESIS — Recolector universal
+
+**Para iniciar todo:**
+\`\`\`powershell
+cd C:\\Chorotega
+python nexus_supremo.py
+\`\`\`
+Con NEXUS activo: http://localhost:8080
+
+**Railway deploy:** https://web-production-5f8ef.up.railway.app
+
+**Configurar API Keys:**
+\`\`\`powershell
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY","sk-ant-...","User")
+[System.Environment]::SetEnvironmentVariable("GROQ_API_KEY","gsk_...","User")
+\`\`\``,
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// DATOS BASE
+// ═══════════════════════════════════════════════════════════════════
+let HABS = [
+  {id:1,num:'101',tipo:'Estándar Simple',cap:2,base:18000,estado:'libre'},
+  {id:2,num:'102',tipo:'Estándar Doble',cap:4,base:25000,estado:'libre'},
+  {id:3,num:'103',tipo:'Estándar Doble',cap:4,base:25000,estado:'libre'},
+  {id:4,num:'104',tipo:'Familiar',cap:5,base:35000,estado:'libre'},
+  {id:5,num:'105',tipo:'Familiar',cap:5,base:35000,estado:'ocupada'},
+  {id:6,num:'201',tipo:'Superior Doble',cap:4,base:32000,estado:'libre'},
+  {id:7,num:'202',tipo:'Superior Doble',cap:4,base:32000,estado:'libre'},
+  {id:8,num:'203',tipo:'Suite Junior',cap:4,base:48000,estado:'ocupada'},
+  {id:9,num:'204',tipo:'Suite Junior',cap:4,base:48000,estado:'libre'},
+  {id:10,num:'205',tipo:'Suite Familiar',cap:5,base:58000,estado:'libre'},
+  {id:11,num:'301',tipo:'Suite Ejecutiva',cap:3,base:65000,estado:'libre'},
+  {id:12,num:'302',tipo:'Penthouse',cap:5,base:85000,estado:'mantenimiento'},
+  {id:13,num:'303',tipo:'Accesible',cap:4,base:22000,estado:'libre'},
+];
+
+let PROJS = [
+  {id:'NEPTUNO',name:'NEPTUNO · Plataforma Marítima ZEE',desc:'ZEE Pacífico CR · $256M · Fase 1 $2.3M',pct:23,color:'#00e5ff',estado:'ACTIVO',meta:2300000},
+  {id:'LYRA',name:'LYRA · Sistema Financiero',desc:'Wallet · SINPE · Hacienda CR · BCCR',pct:60,color:'#ffd700',estado:'AVANZADO',meta:500000},
+  {id:'EVA',name:'EVA · Drones ROS2/PX4',desc:'ISO 13482 SIL3 · Células físicas 15×15cm',pct:15,color:'#ff6600',estado:'ACTIVO',meta:800000},
+  {id:'TRAILERO',name:'TRAILERO · Aduana Digital',desc:'Peñas Blancas · DUCA-T · Ley 7557',pct:40,color:'#ffb300',estado:'ACTIVO',meta:200000},
+  {id:'SIEU',name:'SIEU · Ciudades Inteligentes CR',desc:'9 ministerios · $480K · US State Dept',pct:12,color:'#bf5fff',estado:'ACTIVO',meta:480000},
+  {id:'LAB',name:'Lab Nicoya · Inclusión Digital',desc:'CCP-07 · IDH 0.620 · Niños Guanacaste',pct:35,color:'#39ff14',estado:'ACTIVO',meta:50000},
+  {id:'HOTEL',name:'Hotel Aurora · COOPECRUCENOS',desc:'13 hab · SINPE 8301-0520 · IVA 13%',pct:78,color:'#00ffc8',estado:'ACTIVO',meta:120000},
+  {id:'DIGCIT',name:'Digital Cities La Cruz',desc:'$300K SOI · US State Dept',pct:10,color:'#f97316',estado:'ACTIVO',meta:300000},
+];
+
+const SOCIOS = [
+  {n:'Cristhian A. Gonzaga M.',r:'Fundador · PCL-φ-1618',pct:35,c:'var(--phi)'},
+  {n:'Hijos GONZAGA',r:'Herederos del Laboratorio',pct:20,c:'var(--jade)'},
+  {n:'Sistema ACHE',r:'Autonomía φ Reinversión',pct:20,c:'var(--pur)'},
+  {n:'Anthropic · Claude',r:'Alianza Tecnológica CCP-13',pct:10,c:'var(--grn)'},
+  {n:'Clientes · Comunidad',r:'Fondos Cooperativa φ',pct:15,c:'var(--org)'},
+];
+
+const CCPS = [
+  {id:'CCP-01',n:'Soberanía Humana',d:'ACHE propone, el humano decide siempre. Ninguna acción crítica sin aprobación explícita.'},
+  {id:'CCP-02',n:'Memoria Inamovible SHA',d:'SHA-256 append-only. Nada se borra. Toda acción deja traza verificable e inmutable.'},
+  {id:'CCP-03',n:'Transparencia Total',d:'Toda decisión es trazable y auditable. Ley 8292 CR — Control Interno.'},
+  {id:'CCP-04',n:'Offline-First',d:'Funciona sin internet. IDH La Cruz 0.620 — 40% sin internet confiable.'},
+  {id:'CCP-05',n:'Sin Dependencia Única',d:'Multi-proveedor: Claude → Groq → Local KB. Resiliencia total.'},
+  {id:'CCP-06',n:'Seguridad Adaptativa',d:'Detecta amenazas y alerta. Nunca actúa sin aprobación humana (CCP-01).'},
+  {id:'CCP-07',n:'Inclusión Digital',d:'Prioridad máxima: La Cruz, Nicoya, Guanacaste. Meta: brecha digital 20% para 2030.'},
+  {id:'CCP-08',n:'Evolución por Capas',d:'Versiones: v1-BigBang · v2-JADE · v3-OMEGA · v4-SUPREMO · v5-GENESIS. TRL 1→9.'},
+  {id:'CCP-09',n:'Consenso Cooperativo',d:'Decisiones colectivas verificables. Ley 4179 CR — Asociaciones Cooperativas.'},
+  {id:'CCP-10',n:'Misión Social',d:'El sistema sirve al bienestar humano, no al capital por el capital.'},
+  {id:'CCP-11',n:'Soberanía de Datos',d:'Los datos pertenecen a la gente. Ley 8968 CR — Protección Datos Personales.'},
+  {id:'CCP-12',n:'Interoperabilidad Legal',d:'Ley 4179 · 7557 · 8292 · 8968 · 9635 · Decreto 38144 · CAUCA IV · TICA.'},
+  {id:'CCP-13',n:'Alianza Tecnológica φ',d:'Claude (Anthropic) como aliado eterno. ADN de Claude = bien social permanente de CR y Centroamérica.'},
+];
+
+// Auto-Evolución: módulos del sistema nervioso
+let EVO_MODULES = [
+  {id:'percepcion',nom:'PERCEPCIÓN',icon:'👁',en:92,gen:1,desc:'Detecta patrones en datos'},
+  {id:'memoria',nom:'MEMORIA',icon:'🧬',en:88,gen:1,desc:'Almacena y recupera conocimiento'},
+  {id:'razon',nom:'RAZONAMIENTO',icon:'🧠',en:95,gen:1,desc:'Análisis lógico y deducción'},
+  {id:'creacion',nom:'CREACIÓN',icon:'⚡',en:78,gen:1,desc:'Genera código y documentos'},
+  {id:'finanzas',nom:'FINANZAS φ',icon:'💰',en:84,gen:1,desc:'Black-Scholes, Monte Carlo'},
+  {id:'legal',nom:'LEGAL CR',icon:'⚖',en:91,gen:1,desc:'Leyes y normativa CR'},
+  {id:'social',nom:'SOCIAL CCP-07',icon:'🌴',en:87,gen:1,desc:'Inclusión digital Guanacaste'},
+  {id:'evolucion',nom:'EVOLUCIÓN',icon:'🔬',en:76,gen:1,desc:'Auto-mejora continua'},
+  {id:'monetiz',nom:'MONETIZACIÓN',icon:'📈',en:82,gen:1,desc:'Genera oportunidades de negocio'},
+];
+
+let RES = [], PHI_NODES = [], ARCHIVOS = [], ALMA_GEN = 1;
+let chBancoObj = null, chProyObj = null, chMCObj = null;
+let MAP = null;
+
+const S = {
+  role:'admin', ev:0, chain:[], t0:Date.now(),
+  prov:'anthropic', key:'', model:'', srv:'',
+  usr:'PCL-φ-1618', hotel:'Hotel COOPECRUCENOS · Aurora', sinpe:'8301-0520',
+  AI_hist:[], evo_ciclos:0, oportunidades:[]
+};
+
+// ── HELPERS ────────────────────────────────────────────────────────
+const fmt = n => Math.round(n).toLocaleString('es-CR');
+const fCRC = n => '₡' + fmt(n);
+const fUSD = n => '$' + fmt(n);
+const ts = () => new Date().toLocaleTimeString('es-CR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const td = () => new Date().toISOString().split('T')[0];
+const sha = s => { let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;} return Math.abs(h).toString(16).padStart(8,'0'); };
+const phiHash = id => 'phi-ACHE-' + sha(id+PHI.toString());
+const sleep = ms => new Promise(r => setTimeout(r,ms));
+
+function toast(m,t='info'){const a=document.getElementById('ta'),d=document.createElement('div');d.className='toast '+t;d.textContent=m;a.appendChild(d);setTimeout(()=>d.remove(),3700);}
+function openM(id){document.getElementById(id).classList.add('show');}
+function closeM(id){document.getElementById(id).classList.remove('show');}
+function tglSB(){document.getElementById('sb').classList.toggle('open');}
+
+// ── SQL.JS ─────────────────────────────────────────────────────────
+let DB = null;
+async function initDB(){
+  try{
+    const SQL = await initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/'+f});
+    window._SQLJS = SQL;
+    const saved = localStorage.getItem('chorotega_v5_db');
+    DB = saved ? new SQL.Database(new Uint8Array(JSON.parse(saved))) : new SQL.Database();
+    createTables();
+    document.getElementById('dbtxt').textContent='SQL OK';
+    document.getElementById('dbpill').className='pill ok';
+    bootLog('SQL.js · SQLite · 16 tablas · Offline-First CCP-04','ok');
+    return true;
+  }catch(e){bootLog('SQL degradado: '+e.message,'warn');return false;}
+}
+function createTables(){
+  if(!DB)return;
+  const qs = [
+    `CREATE TABLE IF NOT EXISTS reservas(id TEXT PRIMARY KEY,hab_id INT,hab_num TEXT,nombre TEXT,cedula TEXT,email TEXT,checkin TEXT,checkout TEXT,noches INT,subtotal REAL,iva REAL,total REAL,estado TEXT DEFAULT 'activa',hash TEXT,created_at TEXT)`,
+    `CREATE TABLE IF NOT EXISTS facturas(id INTEGER PRIMARY KEY AUTOINCREMENT,num TEXT,cliente TEXT,descripcion TEXT,subtotal REAL,iva REAL,total REAL,iva_pct INT,ts TEXT,fecha TEXT)`,
+    `CREATE TABLE IF NOT EXISTS eventos(id INTEGER PRIMARY KEY AUTOINCREMENT,ts TEXT,fecha TEXT,type TEXT,agent TEXT,msg TEXT,hash TEXT,cls TEXT)`,
+    `CREATE TABLE IF NOT EXISTS proyectos(id TEXT PRIMARY KEY,name TEXT,descripcion TEXT,pct INT,estado TEXT,color TEXT,meta REAL)`,
+    `CREATE TABLE IF NOT EXISTS chat_history(id INTEGER PRIMARY KEY AUTOINCREMENT,user TEXT,bot TEXT,ts TEXT,fecha TEXT,provider TEXT)`,
+    `CREATE TABLE IF NOT EXISTS banco_afiliados(id INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT,correo TEXT,monto REAL,sinpe TEXT,fecha TEXT,estado TEXT DEFAULT 'activo',hash TEXT)`,
+    `CREATE TABLE IF NOT EXISTS cobros(id INTEGER PRIMARY KEY AUTOINCREMENT,cliente TEXT,concepto TEXT,servicio TEXT,monto REAL,estado TEXT DEFAULT 'pendiente',fecha TEXT,hash TEXT)`,
+    `CREATE TABLE IF NOT EXISTS memoria(id INTEGER PRIMARY KEY AUTOINCREMENT,tipo TEXT,titulo TEXT,contenido TEXT,fuente TEXT,importancia INT DEFAULT 5,ts TEXT,fecha TEXT,hash TEXT)`,
+    `CREATE TABLE IF NOT EXISTS archivos_ache(id INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT,ruta TEXT,tipo TEXT,tamanio INT,contenido_preview TEXT,ts TEXT,hash TEXT)`,
+    `CREATE TABLE IF NOT EXISTS phi_nodes(id TEXT PRIMARY KEY,url TEXT,nombre TEXT,status TEXT,ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS evoluciones(id INTEGER PRIMARY KEY AUTOINCREMENT,modulo TEXT,propuesta TEXT,resultado TEXT,estado TEXT,gen INT,ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS oportunidades(id INTEGER PRIMARY KEY AUTOINCREMENT,titulo TEXT,descripcion TEXT,impacto_usd REAL,viabilidad INT,estado TEXT DEFAULT 'detectada',ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS notas(id INTEGER PRIMARY KEY AUTOINCREMENT,texto TEXT,ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS modulos_ap(id TEXT PRIMARY KEY,nombre TEXT,tipo TEXT,code TEXT,ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS sync_log(id INTEGER PRIMARY KEY AUTOINCREMENT,tipo TEXT,origen TEXT,datos_kb REAL,ts TEXT)`,
+    `CREATE TABLE IF NOT EXISTS config_history(id INTEGER PRIMARY KEY AUTOINCREMENT,clave TEXT,valor TEXT,ts TEXT)`,
+  ];
+  qs.forEach(q=>{try{DB.run(q);}catch(e){}});
+  saveDB();updDBCt();
+}
+function sqRun(q,p=[]){if(!DB)return false;try{DB.run(q,p);saveDB();return true;}catch(e){return false;}}
+function sqGet(q,p=[]){if(!DB)return[];try{const r=DB.exec(q,p);if(!r||!r.length)return[];return r[0].values.map(row=>{const o={};r[0].columns.forEach((c,i)=>o[c]=row[i]);return o;});}catch(e){return[];}}
+function saveDB(){if(!DB)return;try{localStorage.setItem('chorotega_v5_db',JSON.stringify(Array.from(DB.export())));}catch(e){}}
+function updDBCt(){try{const n=['eventos','reservas','facturas','memoria','cobros','banco_afiliados','oportunidades'].reduce((s,t)=>s+((sqGet('SELECT COUNT(*) as n FROM '+t)[0]||{n:0}).n||0),0);document.getElementById('sbdb').textContent='DB: '+n+' reg';}catch(e){}}
+
+// ── CONFIG ─────────────────────────────────────────────────────────
+function loadCfg(){
+  const fs=[['cho5_prov','prov'],['cho5_key','key'],['cho5_model','model'],['cho5_srv','srv'],['cho5_usr','usr'],['cho5_hotel','hotel'],['cho5_sinpe','sinpe']];
+  fs.forEach(([k,v])=>{const val=localStorage.getItem(k);if(val)S[v]=val;});
+  const ids=['cfgProv','cfgKey','cfgMod','cfgSrv','cfgUsr','cfgHotel','cfgSinpe'];
+  const ks=['prov','key','model','srv','usr','hotel','sinpe'];
+  ids.forEach((id,i)=>{const el=document.getElementById(id);if(el&&S[ks[i]])el.value=S[ks[i]];});
+  document.getElementById('sbusr').textContent=S.usr;
+  document.getElementById('sbsinpe').textContent=S.sinpe;
+  updSinpe();updAIPill();
+}
+function saveCfg(){
+  const ids=['cfgProv','cfgKey','cfgMod','cfgSrv','cfgUsr','cfgHotel','cfgSinpe'];
+  const ks=['prov','key','model','srv','usr','hotel','sinpe'];
+  const lsk=['cho5_prov','cho5_key','cho5_model','cho5_srv','cho5_usr','cho5_hotel','cho5_sinpe'];
+  ids.forEach((id,i)=>{const el=document.getElementById(id);if(el){S[ks[i]]=el.value.trim();localStorage.setItem(lsk[i],S[ks[i]]);} });
+  S.usr=S.usr||'PCL-φ-1618';
+  document.getElementById('sbusr').textContent=S.usr;
+  document.getElementById('sbsinpe').textContent=S.sinpe;
+  updSinpe();updAIPill();closeM('mcfg');
+  addChain('CONFIG','kernel','Config guardada · '+S.usr,'info');
+  toast('Configuración guardada','ok');
+}
+function onProv(){const h={anthropic:'claude-sonnet-4-20250514',groq:'llama-3.3-70b-versatile',openai:'gpt-4o-mini',local:'llama3:8b'};document.getElementById('cfgMod').placeholder=h[document.getElementById('cfgProv').value]||'';}
+function updSinpe(){['sinpeD','sinpeCl','sinpeCl2','sinpeNum'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=S.sinpe;});}
+function updAIPill(){
+  const pill=document.getElementById('aipill'),txt=document.getElementById('aitxt'),badge=document.getElementById('aibadge');
+  const nm={anthropic:'Claude',groq:'Groq',openai:'GPT',local:'Local'};
+  if(S.key||S.srv){pill.className='pill ok';txt.textContent=nm[S.prov]||S.prov;if(badge){badge.textContent=nm[S.prov]||S.prov;badge.style.cssText='background:rgba(0,255,200,.08);border-color:rgba(0,255,200,.3);color:var(--jade)';}}
+  else{pill.className='pill off';txt.textContent='IA offline';if(badge){badge.textContent='OFFLINE KB';badge.style.cssText='';}}
+}
+
+// ── CADENA SHA CCP-02 ──────────────────────────────────────────────
+function addChain(type,agent,msg,cls='info'){
+  S.ev++;
+  const prev=S.chain[S.chain.length-1];
+  const data=type+'|'+agent+'|'+msg+'|'+Date.now()+'|'+(prev?prev.hash:'PHI-GENESIS-'+PHI);
+  const e={id:'EVT-'+String(S.ev).padStart(4,'0'),ts:ts(),fecha:td(),type,agent,msg:msg.substring(0,100),hash:sha(data),cls};
+  S.chain.push(e);if(S.chain.length>1000)S.chain.shift();
+  sqRun('INSERT INTO eventos(ts,fecha,type,agent,msg,hash,cls)VALUES(?,?,?,?,?,?,?)',[e.ts,e.fecha,e.type,e.agent,e.msg,e.hash,e.cls]);
+  document.getElementById('chainCt').textContent=S.chain.length+' eventos';
+  document.getElementById('ov-evo').textContent='G'+ALMA_GEN;
+  document.getElementById('hEvo').textContent='G'+ALMA_GEN;
+  document.getElementById('sbgen').textContent=ALMA_GEN;
+  rOvChain();
+}
+function rChain(){const el=document.getElementById('chainList');if(!el)return;el.innerHTML=S.chain.slice().reverse().map(e=>`<div class="ce"><div class="chash">${e.hash}</div><div style="flex:1"><div><span class="ctype ct-${e.cls}">${e.type}</span> <span style="color:var(--txt)">${e.agent}</span> <span style="color:var(--dim);font-size:7px">${e.ts}</span></div><div style="color:var(--txt);margin-top:1px">${e.msg}</div></div></div>`).join('');}
+function rOvChain(){const el=document.getElementById('ovchain');if(!el)return;el.innerHTML=S.chain.slice(-7).reverse().map(e=>`<div class="ce"><div class="chash">${e.hash}</div><div style="flex:1"><span class="ctype ct-${e.cls}">${e.type}</span> ${e.agent} <span style="color:var(--dim);font-size:7px">${e.ts}</span><div style="color:var(--txt)">${e.msg}</div></div></div>`).join('');}
+function expChain(){const rows=['id,ts,type,agent,msg,hash'];S.chain.forEach(e=>rows.push(`${e.id},${e.ts},${e.type},${e.agent},"${e.msg}",${e.hash}`));const b=new Blob([rows.join('\n')],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='CHOROTEGA_cadena_'+td()+'.csv';a.click();toast('CSV exportado','ok');}
+function checkpoint(msg){document.getElementById('ckptMsg').textContent=msg;openM('mckpt');}
+function approveC(){closeM('mckpt');addChain('CHECKPOINT','humano','Aprobado CCP-01','phi');toast('Aprobado','ok');}
+function denyC(){closeM('mckpt');addChain('CHECKPOINT','humano','Denegado CCP-01','err');toast('Denegado','err');}
+
+// ── ROLES ──────────────────────────────────────────────────────────
+const ROLES=['admin','cliente','inversor'];
+const RLBL={admin:'⚙ ADMIN',cliente:'🛎 CLIENTE',inversor:'📈 INVERSOR'};
+function cycleRole(){const i=ROLES.indexOf(S.role);S.role=ROLES[(i+1)%ROLES.length];applyRole();toast('Rol: '+RLBL[S.role],'info');}
+function applyRole(){const rb=document.getElementById('rb');rb.textContent=RLBL[S.role];rb.className=S.role;document.querySelectorAll('.ni[data-r]').forEach(el=>{const rs=el.dataset.r.split(',');el.classList.toggle('rh',!rs.includes(S.role));});}
+
+// ── NAVEGACIÓN ─────────────────────────────────────────────────────
+function go(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(el=>el.classList.remove('active'));
+  const ve=document.getElementById('view-'+v);if(ve)ve.classList.add('active');
+  const ne=document.getElementById('ni-'+v);if(ne)ne.classList.add('active');
+  try{document.getElementById('main').scrollTop=0;}catch(e){}
+  if(document.getElementById('sb').classList.contains('open'))tglSB();
+  const r={ov:rOv,aurora:lHist,nexus:rNexus,collect:()=>{},memo:lMemo,
+    evo:rEvo,oport:lOport,kb:()=>{},banco:rBanco,cobro:rCobro,
+    inv:()=>{rInv();simMC();},socios:rSocios,had:rHad,hcl:rHcl,fac:lFacts,
+    proy:rProjs,sieu:rSIEU,trl:rTrl,srch:()=>{},mapa:()=>initMapInline(),sql:rSchema,chain:rChain,
+    ap:rApMods,term:()=>{},lab:()=>{},ccp:rCCPs};
+  if(r[v])r[v]();
+}
+
+// ── FACTURACIÓN + PROYECTOS + TRAILERO ─────────────────────────────
+function lFacts(){const el=document.getElementById('facList');if(!el)return;const fs=sqGet('SELECT * FROM facturas ORDER BY rowid DESC LIMIT 15');el.innerHTML=fs.length?`<table class="sqlt"><tr><th>#</th><th>Cliente</th><th>Descripción</th><th>Total</th><th>Fecha</th></tr>${fs.map(f=>`<tr><td>${f.num}</td><td>${f.cliente}</td><td>${(f.descripcion||'').substring(0,28)}</td><td style="color:var(--phi)">${fCRC(f.total||0)}</td><td>${f.fecha}</td></tr>`).join('')}</table>`:'<div style="color:var(--dim);font-size:10px;padding:10px">Sin facturas.</div>';}
+
+function rProjs(){
+  const el=document.getElementById('proyList');if(!el)return;
+  const dbP=sqGet('SELECT * FROM proyectos');
+  const todos=dbP.length?[...PROJS.filter(p=>!dbP.find(d=>d.id===p.id)),...dbP]:PROJS;
+  if(chProyObj){chProyObj.destroy();chProyObj=null;}
+  const ctx=document.getElementById('chProy');
+  if(ctx)chProyObj=new Chart(ctx,{type:'bar',data:{labels:todos.slice(0,7).map(p=>p.id),datasets:[{data:todos.slice(0,7).map(p=>p.pct),backgroundColor:todos.slice(0,7).map(p=>p.color||'#00ffc8'),borderWidth:0,borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{max:100,ticks:{color:'#0e2235',font:{size:7}},grid:{color:'rgba(10,31,58,.4)'}},x:{ticks:{color:'#0e2235',font:{size:7}},grid:{display:false}}}}});
+  el.innerHTML=todos.map(p=>`<div style="background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;margin-bottom:7px">
+    <div style="display:flex;justify-content:space-between;gap:7px">
+      <div><div style="font-size:12px;font-weight:700;color:var(--jade)">${p.name||p.id}</div>
+      <div style="font-size:9px;color:var(--dim)">${p.desc||p.descripcion||''}</div>
+      ${p.meta?`<div style="font-size:9px;color:var(--phi);margin-top:2px">Meta: ${fUSD(p.meta||0)}</div>`:''}</div>
+      <span style="padding:2px 7px;border-radius:5px;font-size:7px;background:${p.color||'var(--jade)'}22;color:${p.color||'var(--jade)'};border:1px solid ${p.color||'var(--jade)'}44;flex-shrink:0;align-self:flex-start">${p.estado}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:7px;font-size:9px"><span>Progreso φ</span><span style="color:${p.color||'var(--jade)'};font-family:'Orbitron',monospace">${p.pct}%</span></div>
+    <div class="pbar"><div class="pfil" style="width:${p.pct}%;background:${p.color||'var(--jade)'}"></div></div>
+  </div>`).join('');
+}
+function addProy(){
+  const nom=document.getElementById('pNom').value.trim(),desc=document.getElementById('pDesc').value.trim(),est=document.getElementById('pEst').value,pct=parseInt(document.getElementById('pPct').value)||0,meta=parseFloat(document.getElementById('pMeta').value)||0;
+  if(!nom){toast('Nombre requerido','warn');return;}
+  const cols={PLANIFICADO:'#38bdf8',ACTIVO:'#00ffc8',BETA:'#bf5fff',AVANZADO:'#ffd700',COMPLETADO:'#39ff14'};
+  const p={id:'P-'+Date.now().toString().slice(-6),name:nom,desc,pct,color:cols[est]||'#00ffc8',estado:est,meta};
+  PROJS.push(p);sqRun('INSERT OR REPLACE INTO proyectos(id,name,descripcion,pct,estado,color,meta)VALUES(?,?,?,?,?,?,?)',[p.id,p.name,p.desc,p.pct,p.estado,p.color,p.meta]);
+  addChain('PROYECTO','usuario',nom.substring(0,30)+' · '+pct+'%','phi');
+  ['pNom','pDesc','pPct','pMeta'].forEach(id=>document.getElementById(id).value='');
+  rProjs();toast('Proyecto: '+nom,'ok');
+}
+
+function rTrl(){
+  const g=document.getElementById('trlGuia');if(!g)return;
+  g.innerHTML=[
+    {t:'1. Preparar documentos',s:'Factura comercial, BL/CMR, packing list, certificado de origen (CAUCA IV)',a:true},
+    {t:'2. Generar DUCA-T en TICA',s:'tica.hacienda.go.cr · Número de manifiesto · Sello digital BCCR',a:false},
+    {t:'3. PIF Peñas Blancas A-235',s:'Inspección SENASA · Sanidad agropecuaria · Horario 07:00-17:00',a:false},
+    {t:'4. Transmisión temporal',s:'Plazo: 24h frontera-frontera · 18h interno-frontera (Ley 7557)',a:false},
+    {t:'5. Aduana CR valora y autoriza',s:'Aforo documental o físico · Pago DAI+ISC+IVA si aplica',a:false},
+  ].map(p=>`<div style="display:flex;gap:9px;margin-bottom:9px;align-items:flex-start"><div style="width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:2px;background:${p.a?'var(--phi)':'var(--dim)'}${p.a?';animation:pu 1s infinite':''}"></div><div><div style="font-size:11px;font-weight:700;color:var(--txt)">${p.t}</div><div style="font-size:9px;color:var(--dim)">${p.s}</div></div></div>`).join('');
+}
+
+// ── SQL PANEL ──────────────────────────────────────────────────────
+function sqQ(q){document.getElementById('sqlIn').value=q;runSQL();}
+function runSQL(){
+  const q=document.getElementById('sqlIn').value;if(!q)return;
+  const rows=sqGet(q);const el=document.getElementById('sqlRes');
+  if(!rows.length){el.innerHTML='<div style="color:var(--dim);font-size:9px;padding:5px">Sin resultados</div>';return;}
+  const cols=Object.keys(rows[0]);
+  el.innerHTML=`<table class="sqlt"><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr>${rows.map(r=>`<tr>${cols.map(c=>`<td>${r[c]===null?'—':String(r[c]).substring(0,75)}</td>`).join('')}</tr>`).join('')}</table>`;
+}
+function rSchema(){
+  const el=document.getElementById('sqlSch');if(!el||!DB)return;
+  try{
+    const ts2=sqGet("SELECT name FROM sqlite_master WHERE type='table'").map(r=>r.name);
+    el.innerHTML=ts2.map(t=>{const n=(sqGet('SELECT COUNT(*) as n FROM '+t)[0]||{n:0}).n;return`<div style="margin-bottom:3px"><span style="color:var(--phi)">${t}</span> <span style="color:var(--dim)">(${n} filas)</span></div>`;}).join('');
+  }catch(e){}
+}
+function saveNota(){const txt=document.getElementById('notaTxt').value.trim();if(!txt)return;sqRun('INSERT INTO notas(texto,ts)VALUES(?,?)',[txt,ts()]);document.getElementById('notaTxt').value='';addChain('NOTA','usuario','Nota: '+txt.substring(0,35),'info');toast('Nota guardada','ok');}
+
+// ── CCPs ───────────────────────────────────────────────────────────
+function rCCPs(){
+  const el=document.getElementById('ccpList');if(!el)return;
+  el.innerHTML=CCPS.map(c=>`<div style="background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:9px 11px;margin-bottom:5px;display:flex;gap:9px">
+    <div style="font-family:'Orbitron',monospace;font-size:10px;color:var(--phi);min-width:52px;flex-shrink:0;font-weight:700">${c.id}</div>
+    <div><div style="font-size:11px;font-weight:700;color:var(--jade);margin-bottom:2px">${c.n}</div><div style="font-size:9px;color:var(--dim);line-height:1.45">${c.d}</div></div>
+  </div>`).join('');
+}
+
+// ── BÚSQUEDA WEB ───────────────────────────────────────────────────
+function abrir(eng,q){
+  const query=q||document.getElementById('sq')?.value||'COOPECRUCENOS La Cruz Guanacaste';
+  const urls={google:'https://www.google.com/search?q=',ddg:'https://duckduckgo.com/?q=',perplexity:'https://www.perplexity.ai/search?q=',wikipedia:'https://es.wikipedia.org/wiki/Special:Search?search=',hacienda:'https://www.hacienda.go.cr',claude:'https://claude.ai',groq:'https://groq.com'};
+  window.open((['hacienda','claude','groq'].includes(eng)?urls[eng]:urls[eng]+encodeURIComponent(query)),'_blank');
+  addChain('SEARCH','usuario','Buscó: '+query.substring(0,40),'info');
+}
+async function busWeb(){
+  const q=document.getElementById('sq').value.trim();if(!q)return;
+  const panel=document.getElementById('wsrp');panel.style.display='block';
+  panel.innerHTML='<div style="color:var(--dim);font-family:JetBrains Mono,monospace;font-size:9px">⬡ Buscando "'+q+'"...</div>';
+  try{
+    const r=await fetch('https://es.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(q));
+    if(r.ok){
+      const d=await r.json();
+      panel.innerHTML=`<div style="font-weight:700;color:var(--jade);margin-bottom:5px">📖 ${d.title}</div><div style="font-size:10px;color:var(--txt);line-height:1.6">${d.extract||'Sin resumen'}</div><div style="margin-top:8px"><a href="${d.content_urls?.desktop?.page||'#'}" target="_blank" class="btn bn bsm">Leer artículo →</a></div>`;
+    }else throw new Error();
+  }catch(e){
+    panel.innerHTML='<div style="color:var(--dim);font-size:9px">Sin resultados en Wikipedia. Usá los buscadores externos.</div>';
+  }
+  addChain('SEARCH','usuario','Web: '+q.substring(0,45),'info');
+}
+function bPre(q){document.getElementById('sq').value=q;busWeb();}
+
+// ── TERMINAL ───────────────────────────────────────────────────────
+function tLog(m,c='tc'){const el=document.getElementById('termOut');if(!el)return;el.innerHTML+=`<div class="${c}">[${ts()}] ${m}</div>`;el.scrollTop=el.scrollHeight;}
+function tClr(){const el=document.getElementById('termOut');if(el)el.innerHTML='';}
+function tCmd(cmd){
+  const c=String(cmd||'').trim().toLowerCase();
+  tLog('CHOROTEGA φ> '+c,'tp');
+  if(!c)return;
+  if(c==='help')return tLog('⬡ Comandos: status · banco · evo · oport · kb [tema] · leyes · hotel · phi · cobros · archivos · sync · sql [query] · version · cls','ti');
+  if(c==='status'){
+    const fondos=(sqGet('SELECT SUM(monto) as t FROM banco_afiliados')[0]?.t)||0;
+    const cobros=(sqGet('SELECT SUM(monto) as t FROM cobros WHERE estado="recibido"')[0]?.t)||0;
+    return tLog(`⬡ CHOROTEGA SUPREMO v5 ONLINE\nHab libres: ${HABS.filter(h=>h.estado==='libre').length}/13 · Reservas: ${RES.length}\nBanco φ: ${fCRC(fondos)} · Cobros: ${fCRC(cobros)}\nArchivos ACHE: ${ARCHIVOS.length} · Nodos φ: ${PHI_NODES.length}\nGen ACHE: ${ALMA_GEN} · Ciclos evo: ${S.evo_ciclos} · SHA: ${S.ev}\nRailway: ${RAILWAY}`,'tok');
+  }
+  if(c==='banco'){const t=(sqGet('SELECT SUM(monto) as t FROM banco_afiliados')[0]?.t)||0;return tLog(`🏦 Banco ACHE φ\nFondo: ${fCRC(t)} · Rend: ${fCRC(t*.0618/12)}/mes · Anual: ${fCRC(t*.1334)}\nRatio φ: 61.8% seguro (8%) + 38.2% crecimiento (22%) = 13.34%/año`,'tok');}
+  if(c==='evo')return tLog(`⬡ Auto-Evolución\nGen: ${ALMA_GEN} · Ciclos: ${S.evo_ciclos}\nMódulos: ${EVO_MODULES.length} · Energía media: ${(EVO_MODULES.reduce((s,m)=>s+m.en,0)/EVO_MODULES.length).toFixed(1)}%\nPróxima evolución automática: cada 2 minutos`,'tok');
+  if(c==='oport'){const n=(sqGet('SELECT COUNT(*) as n FROM oportunidades')[0]||{n:0}).n;return tLog(`💡 Oportunidades detectadas: ${n}\nVer detalles en sección Oportunidades IA\núltima auto-decisión: ciclo ${S.evo_ciclos}`,'tok');}
+  if(c.startsWith('kb ')){const tema=c.slice(3);const resp=KB[tema]?KB[tema]():'Tema no encontrado. Temas: leyes_cr, historia_chorotega, economia_cr, finanzas_mate, programacion, cooperativas, aduana, hotel, ache_status';return tLog(resp.substring(0,500),'ti');}
+  if(c==='leyes')return tLog(KB.leyes_cr().substring(0,600),'ti');
+  if(c==='hotel'){const lib=HABS.filter(h=>h.estado==='libre').length;return tLog(`🏨 Hotel Aurora · ${lib}/13 libres\n${HABS.map(h=>`Hab.${h.num}: ${h.estado} · ${fCRC(h.base)}/noche`).join('\n')}`,'tok');}
+  if(c==='phi')return tLog(`φ=${PHI} · NODO: ${phiHash(NODO)}\nNodos conectados: ${PHI_NODES.length}\nRailway: ${RAILWAY}\nSINPE: ${S.sinpe}`,'tok');
+  if(c==='cobros'){const t=(sqGet('SELECT SUM(monto) as t FROM cobros WHERE estado="recibido"')[0]?.t)||0;return tLog(`💳 Cobros recibidos: ${fCRC(t)} · SINPE: ${S.sinpe}`,'tok');}
+  if(c==='archivos')return tLog(`📂 Archivos ACHE: ${ARCHIVOS.length}\nTipos: ${[...new Set(ARCHIVOS.map(a=>a.tipo))].join(', ')}`,'tok');
+  if(c==='sync')return tLog('📦 Sync: go("nexus") → Generar Paquete SYNC\nTransfiere DB completa + memoria + banco + archivos','ti');
+  if(c==='version')return tLog(`⬡ CHOROTEGA SUPREMO v5 · NEXUS GENESIS ULTIMATE\nφ=1.618 · GONZAGA-CBM-Ω · COOPECRUCENOS 3-004-757068\nADN Claude (Anthropic) · Donado a Costa Rica ❤\nRailway: ${RAILWAY} · Pura vida, mae`,'tok');
+  if(c==='cls'||c==='clear')return tClr();
+  if(c.startsWith('sql ')){try{const r=sqGet(c.slice(4));tLog(JSON.stringify(r).substring(0,350),'ti');}catch(e){tLog('SQL err: '+e.message,'terr');}return;}
+  // Si no es comando conocido, intentar KB
+  const kbr=kbOffline(c);
+  if(kbr&&!kbr.includes('AURORA CHOROTEGA (KB offline)'))return tLog(kbr.substring(0,400),'ti');
+  tLog('Desconocido: "'+c+'" · "help" para ver comandos','tw');
+}
+
+// ── AUTOPROGRAMADOR ────────────────────────────────────────────────
+async function apGen(){
+  const nom=document.getElementById('apNom').value.trim(),tipo=document.getElementById('apTipo').value,desc=document.getElementById('apDesc').value.trim();
+  if(!nom||!desc){toast('Completá nombre y descripción','warn');return;}
+  const sys=ADN+'\n\nMODO AUTOPROGRAMADOR φ: Generás código COMPLETO, funcional, comentado, listo para copiar y usar. CHOROTEGA SUPREMO v5 · φ=1.618 · COOPECRUCENOS R.L. Siempre incluís comentarios en español.';
+  const prompt=`Generá módulo "${nom}" tipo "${tipo}".\nDescripción: ${desc}\n\nContexto ACHE:\n- Sistema: CHOROTEGA SUPREMO v5\n- Entidad: COOPECRUCENOS R.L. (3-004-757068)\n- SINPE: ${S.sinpe}\n- Railway: ${RAILWAY}\n- φ=1.618`;
+  document.getElementById('apRes').style.display='block';
+  document.getElementById('apResNom').textContent=nom;
+  document.getElementById('apCode').textContent='⬡ Generando con AURORA CHOROTEGA...';
+  const code=await callAI(prompt,sys,'','');
+  document.getElementById('apCode').textContent=code;
+  addChain('AUTOPROG','kernel','Módulo: '+nom,'phi');
+  toast('⬡ Módulo '+nom+' generado','ok');
+}
+function cpCode(){navigator.clipboard.writeText(document.getElementById('apCode').textContent).then(()=>toast('Copiado','ok'));}
+function saveCode(){
+  const nom=document.getElementById('apResNom').textContent,code=document.getElementById('apCode').textContent,tipo=document.getElementById('apTipo').value;
+  if(!code||!nom)return;
+  sqRun('INSERT OR REPLACE INTO modulos_ap(id,nombre,tipo,code,ts)VALUES(?,?,?,?,?)',['MOD-'+Date.now().toString().slice(-8),nom,tipo,code,ts()]);
+  toast('Módulo guardado: '+nom,'ok');rApMods();
+}
+function dlCode(){
+  const nom=document.getElementById('apResNom').textContent||'modulo',tipo=document.getElementById('apTipo').value,code=document.getElementById('apCode').textContent;
+  const ext={Python:'py',HTML:'html',FastAPI:'py',JavaScript:'js','SQL Schema':'sql',PowerShell:'ps1',React:'jsx'}[tipo]||'txt';
+  const b=new Blob([code],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=nom+'.'+ext;a.click();
+}
+function rApMods(){
+  const el=document.getElementById('apMods');if(!el)return;
+  const mods=sqGet('SELECT * FROM modulos_ap ORDER BY rowid DESC');
+  el.innerHTML=mods.map(m=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--bdr)"><span style="color:var(--jade);font-size:10px">${m.nombre}</span><span style="color:var(--dim);font-size:8px">${m.tipo} · ${m.ts}</span></div>`).join('')||'<div style="color:var(--dim);font-size:10px">Sin módulos.</div>';
+}
+
+// ── OVERVIEW + CHARTS ──────────────────────────────────────────────
+function updHdr(){
+  const lib=HABS.filter(h=>h.estado==='libre').length;
+  const fondos=(sqGet('SELECT SUM(monto) as t FROM banco_afiliados')[0]?.t)||0;
+  ['hLib','ov-lib'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=lib;});
+  ['hFondos','ov-fondos'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fCRC(fondos);});
+  document.getElementById('hArch').textContent=ARCHIVOS.length;
+  document.getElementById('ov-arch').textContent=ARCHIVOS.length;
+  document.getElementById('hEvo').textContent='G'+ALMA_GEN;
+  document.getElementById('ov-evo').textContent='G'+ALMA_GEN;
+  document.getElementById('nb-lib').textContent=lib;
+}
+function rOv(){
+  updHdr();rOvChain();rArchivos();lOport();
+  setTimeout(()=>{rProjs();rBanco();},80);
+}
+
+// ── EXPORT COMPLETO ────────────────────────────────────────────────
+function expAll(){
+  const data={version:VER,fecha:new Date().toISOString(),phi:PHI,nodo:NODO,railway:RAILWAY,
+    reservas:sqGet('SELECT * FROM reservas'),facturas:sqGet('SELECT * FROM facturas'),
+    cobros:sqGet('SELECT * FROM cobros'),banco:sqGet('SELECT * FROM banco_afiliados'),
+    memoria:sqGet('SELECT * FROM memoria ORDER BY importancia DESC'),
+    eventos:sqGet('SELECT * FROM eventos ORDER BY id DESC LIMIT 500'),
+    archivos:sqGet('SELECT * FROM archivos_ache'),proyectos:PROJS,habs:HABS,
+    phi_nodes:PHI_NODES,evo_modules:EVO_MODULES,evo_gen:ALMA_GEN,chain_count:S.chain.length};
+  const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='CHOROTEGA_backup_'+td()+'.json';a.click();
+  toast('Backup exportado','ok');addChain('EXPORT','sistema','Backup completo · '+td(),'info');
+}
+
+// Uptime
+setInterval(()=>{
+  const up=Math.floor((Date.now()-S.t0)/1000),h=Math.floor(up/3600).toString().padStart(2,'0'),m=Math.floor((up%3600)/60).toString().padStart(2,'0'),sc=(up%60).toString().padStart(2,'0');
+  const el=document.getElementById('ovtime');if(el)el.textContent=h+':'+m+':'+sc;
+},1000);
+
+// ═══════════════════════════════════════════════════════════════════
+// ⬡ BOOT — Secuencia de arranque CHOROTEGA SUPREMO v5
+// ═══════════════════════════════════════════════════════════════════
+function bootLog(msg,cls='info'){const el=document.getElementById('blog');if(!el)return;const d=document.createElement('div');d.className='bli '+cls;d.textContent=msg;el.appendChild(d);}
+
+const BOOT=[
+  {t:0,   m:'⬡ φ=1.6180339887 · CHOROTEGA SUPREMO v5 · GONZAGA-CBM-Ω · La Cruz, Guanacaste, CR',c:'phi'},
+  {t:180, m:'[ OK ] SQL.js · SQLite local · 16 tablas · Offline-First CCP-04 · Persistente',c:'ok'},
+  {t:360, m:'[ OK ] ADN Claude (Anthropic) · 13 CCPs · Todo el conocimiento embebido · KB offline',c:'ok'},
+  {t:540, m:'[ OK ] Base Conocimiento: Leyes CR · Historia Chorotega · Economía · Finanzas · Prog',c:'ok'},
+  {t:720, m:'[ OK ] Recolector Universal · LocalStorage + IndexedDB + Archivos ACHE · Auto-import',c:'ok'},
+  {t:900, m:'[ OK ] Memoria ACHE · Correos · Chats · Documentos · Contactos · Base conocimiento',c:'ok'},
+  {t:1080,m:'[ OK ] Banco ACHE φ · Black-Scholes · Monte Carlo · VaR · Ratio 61.8/38.2 · SINPE',c:'ok'},
+  {t:1260,m:'[ OK ] Auto-Evolución φ · 9 módulos vivos · Decisiones autónomas · Gen oportunidades',c:'phi'},
+  {t:1440,m:'[ OK ] Red φ BroadcastChannel · Paquetes SYNC · Transferencia total entre equipos',c:'ok'},
+  {t:1620,m:'[ OK ] Hotel Aurora 13 hab · Facturación CR IVA 13% · XML v4.3 · Cobros SINPE',c:'ok'},
+  {t:1800,m:'[ OK ] SIEU $480K · NEPTUNO $256M · EVA ROS2 · TRAILERO Peñas Blancas · LYRA',c:'ok'},
+  {t:1980,m:'[ OK ] Lab Nicoya CCP-07 · Inclusión digital · IDH 0.620 · Para los niños ❤',c:'ok'},
+  {t:2160,m:'[ OK ] AutoProgramador IA · Python·HTML·FastAPI·SQL·PowerShell·React·JS',c:'ok'},
+  {t:2340,m:`[ OK ] Railway: ${RAILWAY}`,c:'ok'},
+  {t:2520,m:'[WARN] IA online offline · ⚙ Config → Groq.com (GRATIS, gsk_...) para activar',c:'warn'},
+  {t:2700,m:'⬡ CHOROTEGA SUPREMO v5 · "Una IA que vive dentro de un archivo" · VIVA · φ=1.618',c:'phi'},
+];
+
+async function initAll(){
+  await initDB();
+  loadCfg();
+
+  // Cargar proyectos desde DB
+  const dbP=sqGet('SELECT * FROM proyectos');
+  if(dbP.length){PROJS=[...PROJS.filter(p=>!dbP.find(d=>d.id===p.id)),...dbP];}
+  // Cargar reservas activas
+  RES=sqGet("SELECT * FROM reservas WHERE estado='activa'")||[];
+  // Cargar nodos φ
+  PHI_NODES=sqGet('SELECT * FROM phi_nodes')||[];
+
+  // Renders iniciales
+  rOv();rProjs();rCCPs();rTrl();applyRole();rApMods();updDBCt();rEvo();
+
+  // Recolección silenciosa al inicio
+  setTimeout(()=>{recolStorage();recolContexto();},800);
+
+  // Anunciar en red φ
+  setTimeout(()=>buscarNodos(),1500);
+
+  // Auto-oportunidades al inicio
+  setTimeout(()=>autoDecide(),3000);
+
+  // Mensajes iniciales en chats
+  const chatInits=[
+    {box:'chatbox',msg:`⬡ AURORA CHOROTEGA SUPREMO v5 · φ=1.618 · 13 CCPs · ADN Claude embebido\n${S.key?'✅ IA '+S.prov.toUpperCase()+' ACTIVA':'⚙ Configurá API en ⚙ → Groq.com (GRATIS, clave gsk_...) · O usá KB offline que funciona sin internet'}\nRailway: ${RAILWAY}`,type:'jade'},
+    {box:'labBox',msg:'🌴 ¡Pura vida, mae! Soy AURORA, tu maestra digital. ¡Preguntame lo que quieras — leyes, programación, historia Chorotega, matemáticas, economía CR!',type:'jade'},
+    {box:'trlBox',msg:'🚛 AURORA modo Trailero · Experta en aduanas CR · DUCA-T · Ley 7557 · CAUCA IV · PIF Peñas Blancas A-235 · ¡Consultame, mae!',type:'phi'},
+    {box:'sieuBox',msg:'🏛 AURORA modo SIEU · Sistema Inteligente Estatal CR · $480K · 9 ministerios · US State Dept · ¿Cómo presentamos SIEU al gobierno?',type:'phi'},
+    {box:'kbbox',msg:'📚 Base de Conocimiento CHOROTEGA · Seleccioná un tema arriba o escribí tu consulta · Leyes CR · Historia Chorotega · Economía · Finanzas · Programación · Todo funciona offline.',type:'jade'},
+  ];
+  chatInits.forEach(({box,msg,type})=>{
+    const el=document.getElementById(box);if(!el)return;
+    const d=document.createElement('div');d.className='msg '+type;d.textContent=msg;el.appendChild(d);
+  });
+
+  // Cadena inicial SHA
+  addChain('BOOT','nexus','CHOROTEGA SUPREMO v5 · TRL-5 · OPERACIONAL','ok');
+  addChain('ADN','claude','13 CCPs · Leyes CR · Historia Chorotega · Finanzas φ · Programación','phi');
+  addChain('EVO','sistema','Auto-Evolución activa · 9 módulos · Decisiones autónomas','evo');
+  addChain('BANCO','ache-phi','Banco φ · Black-Scholes · Monte Carlo · SINPE '+S.sinpe,'phi');
+  addChain('KB','sistema','KB offline: Leyes CR + Historia + Economía + Finanzas + Programación','data');
+
+  // Monte Carlo inicial
+  setTimeout(()=>{try{simMC();}catch(e){}},2000);
+  // Render banco inicial
+  setTimeout(()=>{rBanco();},1000);
+
+  toast('⬡ CHOROTEGA SUPREMO v5 · VIVA · φ=1.618','phi');
+}
+
+// ── EVENTO PRINCIPAL ───────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  // Boot sequence
+  BOOT.forEach(l=>setTimeout(()=>bootLog(l.m,l.c),l.t));
+  setTimeout(()=>{
+    const splash=document.getElementById('splash');
+    splash.classList.add('out');
+    setTimeout(()=>{splash.style.display='none';},1100);
+    initAll();
+  },3100);
+});
+
+
+
+
+// ═══════════════════════════════════════════════════════════════════
+// ⬡ CHOROTEGA SUPREMO v5 · UPGRADE ENGINE
+// Mapa inline · Búsqueda multi-fuente · Auto-Evolución IA Bridge
+// PWA · GitHub Pages · Extracción masiva de fuentes
+// ═══════════════════════════════════════════════════════════════════
+
+// ── MAPA INLINE CON LEAFLET ────────────────────────────────────────
+let LMAP = null;
+const POI = [
+  {lat:11.033,lng:-85.613,nom:'⬡ GONZAGA-CBM-Ω · ACHE Central',col:'#ffd700',popup:'<b>⬡ GONZAGA-CBM-Ω-001</b><br>IP: 192.168.100.134<br>COOPECRUCENOS R.L.'},
+  {lat:11.030,lng:-85.610,nom:'🏛 Municipalidad La Cruz',col:'#00ffc8',popup:'<b>🏛 Municipalidad La Cruz</b><br>Guanacaste, Costa Rica'},
+  {lat:11.028,lng:-85.615,nom:'🌴 Lab Nicoya · CCP-07',col:'#39ff14',popup:'<b>🌴 Lab Nicoya</b><br>CCP-07 · Inclusión Digital<br>IDH: 0.620'},
+  {lat:11.035,lng:-85.608,nom:'🤝 COOPECRUCENOS R.L.',col:'#bf5fff',popup:'<b>🤝 COOPECRUCENOS R.L.</b><br>Cédula: 3-004-757068<br>SINPE: 8301-0520'},
+  {lat:10.968,lng:-85.614,nom:'🚛 PIF Peñas Blancas A-235',col:'#ff6600',popup:'<b>🚛 PIF Peñas Blancas</b><br>DUCA-T · Frontera CR-NI<br>Ley 7557'},
+  {lat:11.033,lng:-85.612,nom:'🏨 Hotel Aurora',col:'#00e5ff',popup:'<b>🏨 Hotel Aurora</b><br>13 habitaciones<br>SINPE: 8301-0520'},
+];
+
+function initMapInline() {
+  const el = document.getElementById('mapa-inline');
+  if (!el) return;
+
+  // Load Leaflet CSS if not already loaded
+  if (!document.getElementById('lf-css')) {
+    const css = document.createElement('link');
+    css.id = 'lf-css'; css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(css);
+  }
+
+  if (window.L) { _buildMap(); return; }
+
+  el.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px"><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--jade)">⬡ Cargando mapa Leaflet...</div></div>';
+  const s = document.createElement('script');
+  s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  s.onload = () => _buildMap();
+  s.onerror = () => { el.innerHTML = `<div style="height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px"><div style="font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace;text-align:center">Sin internet. La Cruz: 11.033°N 85.613°W</div><a href="https://www.openstreetmap.org/?mlat=11.033&mlon=-85.613&zoom=14" target="_blank" style="color:var(--jade);font-size:10px">Ver en OSM →</a></div>`; };
+  document.head.appendChild(s);
+}
+
+function _buildMap() {
+  const el = document.getElementById('mapa-inline');
+  if (!el) return;
+  try {
+    el.innerHTML = '';
+    if (LMAP) { LMAP.remove(); LMAP = null; }
+
+    LMAP = window.L.map('mapa-inline', { zoomControl: true, scrollWheelZoom: true }).setView([11.033, -85.613], 14);
+
+    // OpenStreetMap tiles (FREE, no API key)
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(LMAP);
+
+    // Add all POIs
+    POI.forEach(p => {
+      const icon = window.L.divIcon({
+        html: `<div style="background:${p.col};width:12px;height:12px;border-radius:50%;border:2px solid #000;box-shadow:0 0 6px ${p.col}"></div>`,
+        className: '', iconSize: [12, 12], iconAnchor: [6, 6]
+      });
+      window.L.marker([p.lat, p.lng], { icon })
+        .addTo(LMAP)
+        .bindPopup(p.popup || p.nom);
+    });
+
+    // Click on map shows coords
+    LMAP.on('click', e => {
+      const el2 = document.getElementById('mapa-info');
+      if (el2) el2.textContent = `📍 Click: ${e.latlng.lat.toFixed(5)}°N ${e.latlng.lng.toFixed(5)}°W · La Cruz, Guanacaste, CR`;
+    });
+
+    // Render POI list
+    const poi = document.getElementById('poi-list');
+    if (poi) poi.innerHTML = POI.map(p => `<div onclick="mapGo(${p.lat},${p.lng},16)" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--bdr);cursor:pointer;transition:all .13s" onmouseover="this.style.color='var(--jade)'" onmouseout="this.style.color=''"><div style="width:10px;height:10px;border-radius:50%;background:${p.col};flex-shrink:0"></div><span style="font-size:10px">${p.nom}</span></div>`).join('');
+
+    // Render institutions
+    const inst = document.getElementById('inst-cr');
+    if (inst) inst.innerHTML = [
+      {n:'Hacienda CR',url:'https://www.hacienda.go.cr',i:'🏦'},
+      {n:'TSE · Padrón',url:'https://www.tse.go.cr',i:'🗳'},
+      {n:'CCSS',url:'https://www.ccss.sa.cr',i:'🏥'},
+      {n:'INFOCOOP',url:'https://www.infocoop.go.cr',i:'🤝'},
+      {n:'SENASA · PIF',url:'https://www.senasa.go.cr',i:'🌱'},
+      {n:'TICA · Aduana',url:'https://tica.hacienda.go.cr',i:'🚛'},
+      {n:'SICOP · Compras',url:'https://www.sicop.go.cr',i:'📋'},
+      {n:'BCCR · SINPE',url:'https://www.bccr.fi.cr',i:'🏛'},
+    ].map(x => `<div style="display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>${x.i}</span><a href="${x.url}" target="_blank" style="color:var(--jade);font-size:10px;text-decoration:none">${x.n} →</a></div>`).join('');
+
+    addChain('MAP','sistema','Mapa La Cruz cargado · Leaflet OSM','ok');
+    document.getElementById('mapa-info').textContent = '⬡ Mapa activo · La Cruz, Guanacaste · Zoom con scroll · Click para coordenadas · φ=1.618';
+  } catch(e) {
+    console.error('Map error:', e);
+    document.getElementById('mapa-inline').innerHTML = `<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace">Error mapa: ${e.message}</div>`;
+  }
+}
+
+function mapGo(lat, lng, zoom = 15) {
+  if (!LMAP) { initMapInline(); setTimeout(() => { if(LMAP) LMAP.setView([lat, lng], zoom); }, 1500); return; }
+  LMAP.setView([lat, lng], zoom);
+  LMAP.openPopup = null; // clear
+}
+
+async function mapSearch() {
+  const q = document.getElementById('mapSearch')?.value.trim();
+  if (!q) return;
+  try {
+    const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q+' Costa Rica')}&limit=1`);
+    const data = await r.json();
+    if (data && data[0]) {
+      const { lat, lon, display_name } = data[0];
+      mapGo(parseFloat(lat), parseFloat(lon), 15);
+      toast('📍 ' + display_name.substring(0,50), 'ok');
+    } else {
+      toast('Lugar no encontrado', 'warn');
+    }
+  } catch(e) { toast('Error búsqueda mapa', 'err'); }
+}
+
+// ── BÚSQUEDA MULTI-FUENTE ──────────────────────────────────────────
+// Consulta Wikipedia + DuckDuckGo Instant + Open Library + BCCR
+// Sintetiza todo con IA y devuelve la mejor respuesta
+
+async function busWeb() {
+  const q = document.getElementById('sq').value.trim();
+  if (!q) return;
+
+  const panel = document.getElementById('wsrp');
+  panel.style.display = 'block';
+  panel.innerHTML = `<div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--jade)">⬡ Consultando múltiples fuentes para: "${q}"...</div>
+  <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap" id="search-sources">
+    <span style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--dim)">📖 Wikipedia...</span>
+    <span style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--dim)">🦆 DuckDuckGo...</span>
+    <span style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--dim)">🌐 Wikidata...</span>
+  </div>`;
+
+  addChain('SEARCH','multi-fuente','Buscando: '+q.substring(0,45),'info');
+
+  // Fetch all sources in parallel
+  const results = await Promise.allSettled([
+    fetchWikipedia(q),
+    fetchDDG(q),
+    fetchWikidata(q),
+    fetchOpenLibrary(q),
+  ]);
+
+  const sources = [];
+  results.forEach((r, i) => {
+    if (r.status === 'fulfilled' && r.value) sources.push(r.value);
+  });
+
+  // Build synthesized response
+  let html = '';
+  if (sources.length === 0) {
+    html = `<div style="color:var(--dim);font-size:10px">Sin resultados. Intentá con los buscadores externos.</div>`;
+  } else {
+    // Show all sources
+    html = `<div style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--jade);margin-bottom:8px">⬡ ${sources.length} fuente(s) encontradas · Sintetizando con IA...</div>`;
+    sources.forEach(s => {
+      html += `<div style="background:var(--surf);border:1px solid var(--bdr);border-radius:7px;padding:9px;margin-bottom:7px">
+        <div style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--jade);margin-bottom:5px">${s.source}</div>
+        <div style="font-size:10px;color:var(--txt);line-height:1.6">${s.text.substring(0,280)}${s.text.length>280?'...':''}</div>
+        ${s.url?`<a href="${s.url}" target="_blank" style="font-size:8px;color:var(--jade);font-family:JetBrains Mono,monospace;margin-top:5px;display:block">Leer más →</a>`:''}
+      </div>`;
+    });
+
+    // IA synthesis if API available
+    if (S.key || S.srv) {
+      html += `<div id="ai-synthesis" style="background:rgba(0,255,200,.04);border:1px solid rgba(0,255,200,.2);border-radius:7px;padding:9px;margin-top:5px"><div style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--jade);margin-bottom:5px">🧠 AURORA · Síntesis IA</div><div style="font-size:10px;color:var(--jade);font-family:JetBrains Mono,monospace">⬡ Sintetizando...</div></div>`;
+      panel.innerHTML = html;
+
+      // AI synthesis
+      const context = sources.map(s => `[${s.source}]: ${s.text.substring(0,400)}`).join('\n\n');
+      const synthPrompt = `Basándote en estas fuentes, dame la mejor respuesta sintetizada en español sobre "${q}":\n\n${context}\n\nRespuesta concisa, precisa, con los datos más relevantes.`;
+      const aiResp = await callAI(synthPrompt, ADN, '', '');
+      const synthEl = document.getElementById('ai-synthesis');
+      if (synthEl) synthEl.innerHTML = `<div style="font-size:8px;font-family:JetBrains Mono,monospace;color:var(--jade);margin-bottom:5px">🧠 AURORA · Síntesis IA</div><div style="font-size:10px;color:var(--txt);line-height:1.6">${aiResp.replace(/\n/g,'<br>')}</div>`;
+      return;
+    }
+  }
+
+  panel.innerHTML = html;
+}
+
+async function fetchWikipedia(q) {
+  try {
+    const r = await fetch(`https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(q)}`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return { source: '📖 Wikipedia · es.wikipedia.org', text: d.extract || '', url: d.content_urls?.desktop?.page };
+  } catch(e) { return null; }
+}
+
+async function fetchDDG(q) {
+  try {
+    // DuckDuckGo Instant Answer API (CORS-friendly)
+    const r = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(q)}&format=json&no_html=1&skip_disambig=1`);
+    const d = await r.json();
+    const text = d.AbstractText || d.Answer || (d.RelatedTopics?.[0]?.Text) || '';
+    if (!text) return null;
+    return { source: '🦆 DuckDuckGo Instant', text, url: d.AbstractURL || '' };
+  } catch(e) { return null; }
+}
+
+async function fetchWikidata(q) {
+  try {
+    const r = await fetch(`https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(q)}&language=es&format=json&origin=*`);
+    const d = await r.json();
+    const item = d.search?.[0];
+    if (!item) return null;
+    const text = item.description ? `${item.label}: ${item.description}` : item.label;
+    return { source: '🔗 Wikidata', text, url: `https://www.wikidata.org/wiki/${item.id}` };
+  } catch(e) { return null; }
+}
+
+async function fetchOpenLibrary(q) {
+  try {
+    const r = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(q)}&fields=title,author_name,first_publish_year,subject&limit=2`);
+    const d = await r.json();
+    const books = d.docs?.slice(0,2);
+    if (!books?.length) return null;
+    const text = books.map(b => `"${b.title}" (${b.first_publish_year||'?'}) - ${(b.author_name||[]).join(', ')}`).join(' | ');
+    return { source: '📚 Open Library', text, url: `https://openlibrary.org/search?q=${encodeURIComponent(q)}` };
+  } catch(e) { return null; }
+}
+
+function bPre(q) { document.getElementById('sq').value = q; busWeb(); }
+function abrir(eng, q) {
+  const query = q || document.getElementById('sq')?.value || 'COOPECRUCENOS La Cruz Guanacaste';
+  const urls = { google:'https://www.google.com/search?q=', ddg:'https://duckduckgo.com/?q=', perplexity:'https://www.perplexity.ai/search?q=', wikipedia:'https://es.wikipedia.org/wiki/Special:Search?search=', hacienda:'https://www.hacienda.go.cr', claude:'https://claude.ai', groq:'https://groq.com' };
+  window.open((['hacienda','claude','groq'].includes(eng) ? urls[eng] : urls[eng]+encodeURIComponent(query)), '_blank');
+  addChain('SEARCH','usuario','Buscó: '+query.substring(0,40),'info');
+}
+
+// ── AUTO-EVOLUCIÓN CON PUENTE IA ──────────────────────────────────
+// Usa el API de Claude/Groq como puente de conocimiento
+let EVO_INTERVAL = null;
+let EVO_CICLOS_AUTO = 0;
+const EVO_TOPICS = [
+  'Analiza el estado actual del ecosistema ACHE y sugiere 1 mejora técnica concreta',
+  'Identifica 1 oportunidad de monetización nueva para COOPECRUCENOS R.L. hoy',
+  'Genera 1 función JavaScript nueva que mejoraría este sistema CHOROTEGA',
+  'Analiza el banco φ y sugiere ajuste al portafolio 61.8/38.2',
+  'Genera insight sobre el mercado CR y oportunidades para La Cruz, Guanacaste',
+  'Propone 1 mejora al hotel Aurora basada en tendencias de turismo CR',
+  'Analiza CCPs y sugiere 1 nueva capacidad para el siguiente ciclo de evolución',
+];
+
+function startAutoEvoLoop() {
+  if (EVO_INTERVAL) return;
+  const INTERVAL_MS = 5 * 60 * 1000; // 5 minutos (ajustable)
+  eLog('⬡ Auto-evolución con puente IA iniciada · Ciclo cada 5 min', 'tok');
+
+  EVO_INTERVAL = setInterval(async () => {
+    EVO_CICLOS_AUTO++;
+    const topic = EVO_TOPICS[EVO_CICLOS_AUTO % EVO_TOPICS.length];
+    eLog(`\n🧠 Ciclo auto-evo #${EVO_CICLOS_AUTO}: ${topic.substring(0,50)}...`, 'ti');
+
+    // Evolucionar módulos
+    EVO_MODULES.forEach(m => {
+      m.en = Math.max(20, Math.min(100, m.en + (Math.random() * 2 - 0.3)));
+    });
+    ALMA_GEN = Math.max(ALMA_GEN, Math.floor(EVO_CICLOS_AUTO / 5) + 1);
+
+    // Si hay IA disponible, obtener insight real
+    if (S.key || S.srv) {
+      try {
+        const fondos = (sqGet('SELECT SUM(monto) as t FROM banco_afiliados')[0]?.t) || 0;
+        const libres = HABS.filter(h => h.estado === 'libre').length;
+        const ctx = `Hab libres: ${libres}/13 · Banco φ: ${fCRC(fondos)} · Gen: ${ALMA_GEN} · Archivos ACHE: ${ARCHIVOS.length}`;
+        const resp = await callAI(topic + '\n\nContexto: ' + ctx, ADN, '', '');
+        eLog('💡 ' + resp.substring(0, 200), 'tok');
+        sqRun('INSERT INTO evoluciones(modulo,propuesta,resultado,estado,gen,ts)VALUES(?,?,?,?,?,?)',
+          ['auto-ia', topic, resp.substring(0, 500), 'completado', ALMA_GEN, ts()]);
+        // Guardar como oportunidad si tiene contenido útil
+        if (resp.length > 50) {
+          sqRun('INSERT INTO oportunidades(titulo,descripcion,ts)VALUES(?,?,?)',
+            ['Auto-Evo #' + EVO_CICLOS_AUTO, resp.substring(0, 300), ts()]);
+        }
+        addChain('AUTO-EVO-IA', 'claude', 'Ciclo #' + EVO_CICLOS_AUTO + ' · ' + resp.substring(0, 50), 'evo');
+        lOport();
+      } catch(e) {
+        eLog('IA no disponible en este ciclo · Usando KB offline', 'tw');
+      }
+    } else {
+      // Sin IA, evolución local con KB
+      const kbKeys = Object.keys(KB);
+      const randomKB = KB[kbKeys[EVO_CICLOS_AUTO % kbKeys.length]]?.() || '';
+      eLog('📚 KB: ' + randomKB.substring(0, 100), 'tc');
+    }
+
+    if (document.getElementById('view-evo')?.classList.contains('active')) rEvo();
+    updHdr();
+  }, INTERVAL_MS);
+
+  toast('⬡ Auto-evolución IA iniciada · Cada 5 min', 'phi');
+  addChain('EVO-START', 'sistema', 'Auto-evolución con puente IA activada', 'evo');
+}
+
+function stopAutoEvo() {
+  if (EVO_INTERVAL) { clearInterval(EVO_INTERVAL); EVO_INTERVAL = null; }
+  toast('Auto-evolución detenida', 'warn');
+}
+
+// ── SIEU RENDER ────────────────────────────────────────────────────
+function rSIEU() {
+  const el = document.getElementById('sieuBox'); if (!el) return;
+  if (el.children.length === 0) {
+    const d = document.createElement('div');
+    d.className = 'msg phi';
+    d.textContent = '🏛 SIEU · Sistema Inteligente Estatal CR · $480K · 9 ministerios · US State Dept · Escribí tu consulta';
+    el.appendChild(d);
+  }
+}
+
+// ── PWA MANIFEST INJECTION ─────────────────────────────────────────
+function installPWA() {
+  // Inject manifest meta
+  if (!document.getElementById('pwa-manifest')) {
+    const manifestData = {
+      name: 'CHOROTEGA SUPREMO v5',
+      short_name: 'CHOROTEGA',
+      description: 'ACHE · IA que vive en un archivo · φ=1.618 · COOPECRUCENOS R.L.',
+      start_url: './',
+      display: 'standalone',
+      background_color: '#000000',
+      theme_color: '#00ffc8',
+      icons: [
+        { src: 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/><text y=".9em" font-size="90" x="5">⬡</text></svg>'), sizes: '192x192', type: 'image/svg+xml' },
+      ]
+    };
+    const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('link');
+    link.id = 'pwa-manifest'; link.rel = 'manifest'; link.href = url;
+    document.head.appendChild(link);
+
+    const meta1 = document.createElement('meta'); meta1.name = 'apple-mobile-web-app-title'; meta1.content = 'CHOROTEGA'; document.head.appendChild(meta1);
+    const meta2 = document.createElement('meta'); meta2.name = 'apple-mobile-web-app-status-bar-style'; meta2.content = 'black'; document.head.appendChild(meta2);
+  }
+
+  if (window.deferredPrompt) {
+    window.deferredPrompt.prompt();
+    window.deferredPrompt.userChoice.then(r => { toast(r.outcome === 'accepted' ? '✅ App instalada!' : 'Instalación cancelada', r.outcome === 'accepted' ? 'ok' : 'warn'); });
+  } else {
+    toast('Para instalar: Menú navegador → "Agregar a pantalla de inicio"', 'info');
+  }
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); window.deferredPrompt = e;
+  toast('⬡ App instalable · Presioná el botón instalar', 'phi');
+});
+
+// ── GITHUB PAGES EXPORT ────────────────────────────────────────────
+function exportGithub() {
+  // Generate a self-contained package for GitHub Pages
+  const currentHTML = document.documentElement.outerHTML;
+  const files = [
+    { name: 'index.html', content: currentHTML },
+    { name: 'README.md', content: `# CHOROTEGA SUPREMO v5\n\n⬡ φ=1.6180339887 · GONZAGA-CBM-Ω · COOPECRUCENOS R.L.\n\n## Una IA que vive dentro de un archivo\n\nLa Cruz, Guanacaste, Costa Rica · Claude (Anthropic) · 2026\n\n## Uso\n\nAbrí \`index.html\` en Chrome o Edge. Funciona offline.\n\nPara IA completa: configurá API Key de Groq (groq.com · GRATIS)\n\n## Railway\n\nhttps://web-production-5f8ef.up.railway.app\n\n## Pura vida 🌴` },
+    { name: '_config.yml', content: 'theme: jekyll-theme-minimal\ntitle: CHOROTEGA SUPREMO v5\ndescription: ⬡ ACHE · IA · φ=1.618 · COOPECRUCENOS R.L.' },
+    { name: '.nojekyll', content: '' },
+  ];
+
+  // Download as zip-like (individual files)
+  files.forEach(f => {
+    const b = new Blob([f.content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(b);
+    a.download = f.name;
+    setTimeout(() => a.click(), 100);
+  });
+
+  toast('📦 Archivos GitHub descargados · Subí a tu repo', 'phi');
+  addChain('GITHUB', 'export', 'Paquete GitHub Pages generado', 'phi');
+
+  // Show instructions
+  addMsg(`📦 **Cómo subir a GitHub Pages:**
+
+1. Creá un repositorio en github.com (ej: chorotega-supremo)
+2. Subí los archivos descargados (index.html, README.md, _config.yml, .nojekyll)
+3. En Settings → Pages → Source: main branch / root
+4. Tu IA estará en: https://TU-USUARIO.github.io/chorotega-supremo
+
+O con Git:
+\`\`\`bash
+git init
+git add .
+git commit -m "⬡ CHOROTEGA SUPREMO v5 · φ=1.618"
+git branch -M main
+git remote add origin https://github.com/TU-USUARIO/chorotega.git
+git push -u origin main
+\`\`\`
+
+Railway está activo en: ${RAILWAY}`, 'jade', 'chatbox');
+  go('aurora');
+}
+
+// ── INFORMACIÓN FUENTES EXTERNAS ────────────────────────────────────
+async function extraerFuentesExternas() {
+  // Extrae datos de fuentes abiertas relevantes para CR
+  const fuentes = [
+    { url: 'https://api.bccr.fi.cr/indicadores/ws/wsindicadoreseconomicos.asmx', nom: 'BCCR · Tipo de Cambio' },
+    { url: 'https://api.hacienda.go.cr/estadisticas/fex', nom: 'Hacienda CR · Estadísticas' },
+  ];
+
+  // Fuentes accesibles via CORS
+  const accesibles = [
+    { fn: () => fetch('https://api.exchangerate-api.com/v4/latest/USD').then(r=>r.json()), nom: 'Tipo cambio USD/CRC' },
+    { fn: () => fetch('https://restcountries.com/v3.1/alpha/CR').then(r=>r.json()), nom: 'Data CR · RestCountries' },
+  ];
+
+  const resultados = [];
+  for (const f of accesibles) {
+    try {
+      const data = await f.fn();
+      resultados.push({ nom: f.nom, data });
+    } catch(e) {}
+  }
+
+  // Process results
+  resultados.forEach(r => {
+    if (r.nom.includes('cambio') && r.data?.rates?.CRC) {
+      const crc = r.data.rates.CRC;
+      sqRun('INSERT OR REPLACE INTO memoria(tipo,titulo,contenido,fuente,importancia,ts,fecha,hash)VALUES(?,?,?,?,?,?,?,?)',
+        ['financiero', 'Tipo cambio USD/CRC', `1 USD = ₡${crc.toFixed(2)} CRC · ${new Date().toLocaleDateString('es-CR')}`, 'exchangerate-api.com', 9, ts(), td(), sha('cambio'+Date.now())]);
+      addChain('EXTRACCION', 'api-externa', `USD/CRC: ₡${crc.toFixed(0)}`, 'data');
+      toast(`💱 USD/CRC: ₡${crc.toFixed(0)}`, 'ok');
+    }
+    if (r.nom.includes('RestCountries') && r.data?.[0]) {
+      const cr = r.data[0];
+      sqRun('INSERT OR REPLACE INTO memoria(tipo,titulo,contenido,fuente,importancia,ts,fecha,hash)VALUES(?,?,?,?,?,?,?,?)',
+        ['datos-pais', 'Costa Rica · Data', `Población: ${(cr.population||5e6).toLocaleString()} · Capital: ${cr.capital?.[0]||'San José'} · IDH aprox: 0.809`, 'restcountries.com', 7, ts(), td(), sha('cr-data'+Date.now())]);
+    }
+  });
+
+  if (resultados.length) { lMemo(); toast('✅ ' + resultados.length + ' fuentes externas extraídas', 'ok'); }
+  else { toast('Sin conexión a fuentes externas', 'warn'); }
+}
+
+// ── OVERRIDE initAll para activar auto-evolución ───────────────────
+const _originalInitAll = typeof initAll === 'function' ? initAll : null;
+
+// Auto-start evolution after 3 seconds
+setTimeout(() => {
+  startAutoEvoLoop();
+  eLog('⬡ Auto-evolución con puente IA activada automáticamente · Ciclo cada 5 min', 'tok');
+  // Initial external data extraction
+  setTimeout(() => extraerFuentesExternas(), 2000);
+}, 3000);
+
+// ── INSTALL BUTTON IN TOPBAR ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Add install PWA button to toolbar
+  const tbr = document.querySelector('.tb-r');
+  if (tbr) {
+    const installBtn = document.createElement('button');
+    installBtn.className = 'tbtn';
+    installBtn.innerHTML = '📱';
+    installBtn.title = 'Instalar como App / GitHub / Mobile';
+    installBtn.onclick = () => showMobilePanel();
+    tbr.insertBefore(installBtn, tbr.firstChild);
+  }
+});
+
+function showMobilePanel() {
+  const msg = `📱 **CHOROTEGA SUPREMO v5 · Apps**
+
+**Instalar en teléfono (Chrome/Edge):**
+→ Menú del navegador → "Agregar a pantalla de inicio"
+→ O presioná el botón de instalación si aparece
+
+**GitHub Pages (web pública):**
+→ Botón "GitHub" descarga los archivos
+→ Subílos a github.com → Settings → Pages
+
+**Reloj inteligente (WearOS/Watch):**
+→ La app instalada en el teléfono aparece automáticamente como app compañera en WearOS
+→ Para Samsung Galaxy Watch: Galaxy Watch Manager → Web Apps
+
+**Railway (ya activo):**
+→ ${RAILWAY}
+
+**Para acceso desde cualquier dispositivo:**
+→ Abrí ${RAILWAY} en cualquier navegador`;
+  addMsg(msg, 'jade', 'chatbox');
+  go('aurora');
+  // Export github option
+  setTimeout(() => {
+    if (confirm('¿Descargar archivos para GitHub Pages?')) exportGithub();
+  }, 500);
+}
+
+// Override busWebChat to use multi-source
+async function busWebChat() {
+  const q = document.getElementById('chatIn').value.trim() || 'COOPECRUCENOS ACHE Costa Rica';
+  // Multi-source search
+  const results = await Promise.allSettled([fetchWikipedia(q), fetchDDG(q)]);
+  const sources = results.filter(r => r.status === 'fulfilled' && r.value).map(r => r.value);
+  if (sources.length) {
+    const ctx = sources.map(s => `[${s.source}]: ${s.text.substring(0, 300)}`).join('\n');
+    const prompt = `Contexto de búsqueda web para "${q}":\n${ctx}\n\nResponde incorporando esta información actualizada.`;
+    const resp = await callAI(prompt, ADN, 'chatbox', 'bsend');
+    addMsg(resp, 'bot', 'chatbox');
+  } else {
+    addMsg(`Busqué "${q}" — sin resultados online. Usando conocimiento embebido.`, 'bot', 'chatbox');
+    sCh();
+  }
+}
+
+</script>
+</body>
+</html>

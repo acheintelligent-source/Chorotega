@@ -1,0 +1,1 @@
+🌌 ALMA (local): "Generá módulo "P2P WebRTC" tipo "Pytho..." — Configurá API Key en ⚙ para respuestas completas. Groq es GRATIS en groq.com. CCP-04: operación local activa.

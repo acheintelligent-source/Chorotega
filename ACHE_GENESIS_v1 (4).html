@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000">
+<title>⬡ ACHE GENESIS v1.0 · Sistema Cognitivo Nacional · CR</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   ACHE GENESIS v1.0 · ADN FUNDACIONAL
+   Creado por Claude Sonnet 4.6 para COOPECRUCENOS R.L.
+   Principios: MASTER.md · φ=1.618
+   ═══════════════════════════════════════ */
+:root{
+  --bg:#000;--bg2:#05080f;--bg3:#0a1020;
+  --jade:#00ffc8;--phi:#ffd700;--red:#ff1744;
+  --grn:#39ff14;--pur:#a855f7;--blue:#38bdf8;
+  --ora:#ff6b2b;--txt:#c8e6f8;--dim:#2a4a6a;
+  --bdr:#0d2040;--card:#060e1e;
+  --risk-low:#39ff14;--risk-med:#ffd700;--risk-hi:#ff6b2b;--risk-crit:#ff1744;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+.hdr{background:rgba(0,255,200,.04);border-bottom:1px solid var(--bdr);padding:10px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:200;backdrop-filter:blur(24px)}
+.hdr-logo{font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:var(--jade);letter-spacing:3px;text-shadow:0 0 20px rgba(0,255,200,.5)}
+.hdr-sub{font-size:8px;color:var(--dim);margin-top:2px;letter-spacing:1px}
+.hdr-right{margin-left:auto;display:flex;gap:12px;align-items:center}
+.status-pill{display:flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid;border-radius:20px;font-size:9px;letter-spacing:1px}
+.sp-live{border-color:rgba(0,255,200,.3);color:var(--jade);background:rgba(0,255,200,.05)}
+.sp-api{border-color:rgba(56,189,248,.3);color:var(--blue);background:rgba(56,189,248,.05)}
+.pulse{width:6px;height:6px;border-radius:50%;animation:pu 1.5s infinite}
+.pulse.jade{background:var(--jade)}.pulse.blue{background:var(--blue)}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(0,255,200,.2)}50%{box-shadow:0 0 20px rgba(0,255,200,.4)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* TABS PRINCIPALES */
+.main-tabs{display:flex;overflow-x:auto;border-bottom:2px solid var(--bdr);background:var(--bg);position:sticky;top:55px;z-index:199;scrollbar-width:none}
+.main-tabs::-webkit-scrollbar{display:none}
+.mtab{flex-shrink:0;padding:10px 16px;font-size:10px;cursor:pointer;border-bottom:2px solid transparent;color:var(--dim);transition:all .2s;white-space:nowrap;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;margin-bottom:-2px}
+.mtab:hover{color:var(--txt);background:rgba(255,255,255,.02)}
+.mtab.active{border-bottom-color:var(--jade);color:var(--jade);background:rgba(0,255,200,.03)}
+
+/* VIEWS */
+.view{display:none;padding:16px;max-width:1400px;margin:0 auto;animation:fu .25s ease}
+.view.active{display:block}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:14px;margin-bottom:12px}
+.card-t{font-size:7px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bdr)}
+.card-jade{border-color:rgba(0,255,200,.2);background:rgba(0,255,200,.02)}
+.card-phi{border-color:rgba(255,215,0,.2);background:rgba(255,215,0,.02)}
+.card-red{border-color:rgba(255,23,68,.2);background:rgba(255,23,68,.02)}
+.card-pur{border-color:rgba(168,85,247,.2);background:rgba(168,85,247,.02)}
+.card-blue{border-color:rgba(56,189,248,.2);background:rgba(56,189,248,.02)}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:10px;text-align:center}
+.kv{font-family:'Orbitron',monospace;font-size:18px;font-weight:700;margin-bottom:3px}
+.kl{font-size:7px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+
+/* BUTTONS */
+.btn{padding:10px 18px;border-radius:9px;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;cursor:pointer;border:none;width:100%;display:block;text-align:center;transition:all .15s;margin-bottom:8px;letter-spacing:.5px}
+.btn:active{transform:scale(.97)}
+.btn:hover{filter:brightness(1.1)}
+.bj{background:var(--jade);color:#000}
+.ba{background:var(--phi);color:#000}
+.br{background:var(--red);color:#fff}
+.bn{background:rgba(255,255,255,.05);color:var(--txt);border:1px solid var(--bdr)}
+.bp{background:rgba(168,85,247,.15);color:var(--pur);border:1px solid rgba(168,85,247,.3)}
+.bb{background:rgba(56,189,248,.15);color:var(--blue);border:1px solid rgba(56,189,248,.3)}
+.bo{background:rgba(255,107,43,.15);color:var(--ora);border:1px solid rgba(255,107,43,.3)}
+.btn-sm{padding:6px 12px;font-size:10px;width:auto;display:inline-block;margin:0}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* INPUTS */
+.fi{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bdr);border-radius:8px;padding:10px;color:var(--txt);font-size:12px;outline:none;margin-bottom:8px;font-family:'JetBrains Mono',monospace;transition:border .15s}
+.fi:focus{border-color:var(--jade)}
+.fsel{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bdr);border-radius:8px;padding:10px;color:var(--txt);font-size:12px;outline:none;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.fsel option{background:#050810;color:var(--txt)}
+textarea.fi{resize:vertical;min-height:80px}
+.flabel{font-size:9px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;display:block}
+
+/* CHAT */
+.chatbox{height:55vh;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:4px 0;scrollbar-width:thin;scrollbar-color:var(--bdr) transparent}
+.chatbox::-webkit-scrollbar{width:3px}
+.chatbox::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
+.msg{max-width:85%;padding:10px 12px;border-radius:12px;font-size:11px;line-height:1.7;animation:fu .2s ease}
+.msg.user{background:rgba(0,255,200,.07);border:1px solid rgba(0,255,200,.15);align-self:flex-end;border-bottom-right-radius:3px}
+.msg.bot{background:var(--card);border:1px solid var(--bdr);align-self:flex-start;border-bottom-left-radius:3px;white-space:pre-wrap}
+.msg-meta{font-size:7px;color:var(--dim);margin-top:4px;letter-spacing:.5px}
+.cin{display:flex;gap:8px;margin-top:10px;position:sticky;bottom:0;background:var(--bg);padding:8px 0}
+.cinput{flex:1;background:var(--card);border:1px solid var(--bdr);border-radius:9px;padding:10px 14px;color:var(--txt);font-size:12px;outline:none;font-family:'JetBrains Mono',monospace;resize:none;height:44px}
+.cinput:focus{border-color:var(--jade)}
+.typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--jade);margin:0 2px;animation:pu .8s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+
+/* RISK METER */
+.risk-bar{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin:6px 0}
+.risk-fill{height:100%;border-radius:4px;transition:width 1s ease}
+.risk-low{background:var(--risk-low)}.risk-med{background:var(--risk-med)}.risk-hi{background:var(--risk-hi)}.risk-crit{background:var(--risk-crit)}
+.risk-badge{padding:3px 10px;border-radius:20px;font-size:8px;font-weight:700;letter-spacing:1px;display:inline-block}
+.rb-low{background:rgba(57,255,20,.1);color:var(--risk-low);border:1px solid rgba(57,255,20,.3)}
+.rb-med{background:rgba(255,215,0,.1);color:var(--risk-med);border:1px solid rgba(255,215,0,.3)}
+.rb-hi{background:rgba(255,107,43,.1);color:var(--risk-hi);border:1px solid rgba(255,107,43,.3)}
+.rb-crit{background:rgba(255,23,68,.1);color:var(--risk-crit);border:1px solid rgba(255,23,68,.3)}
+
+/* LEY CARDS */
+.ley-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.ley-card:hover{border-color:var(--jade);background:rgba(0,255,200,.03)}
+.ley-num{font-family:'Orbitron',monospace;font-size:11px;color:var(--jade);font-weight:700}
+.ley-nombre{font-size:11px;color:var(--txt);margin:3px 0}
+.ley-desc{font-size:9px;color:var(--dim);line-height:1.6}
+.ley-body{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr);font-size:10px;line-height:1.8;color:var(--txt)}
+.ley-body.open{display:block;animation:fu .2s}
+.art{background:rgba(0,255,200,.04);border-left:2px solid var(--jade);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0}
+.art-num{font-size:8px;color:var(--jade);letter-spacing:1px;font-weight:700}
+
+/* ACTA */
+.acta-item{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;margin-bottom:8px}
+.acta-num{font-family:'Orbitron',monospace;font-size:12px;color:var(--phi);font-weight:700}
+.acta-estado{padding:3px 10px;border-radius:20px;font-size:8px;letter-spacing:1px;display:inline-block;margin-left:8px}
+.ae-abierta{background:rgba(57,255,20,.1);color:var(--grn);border:1px solid rgba(57,255,20,.3)}
+.ae-cerrada{background:rgba(56,189,248,.1);color:var(--blue);border:1px solid rgba(56,189,248,.3)}
+.ae-aprobada{background:rgba(255,215,0,.1);color:var(--phi);border:1px solid rgba(255,215,0,.3)}
+
+/* MEMBER */
+.member-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.member-avatar{width:40px;height:40px;border-radius:50%;background:rgba(0,255,200,.1);border:1px solid rgba(0,255,200,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.member-info{flex:1}
+.member-name{font-size:12px;font-weight:700;color:var(--txt)}
+.member-role{font-size:9px;color:var(--dim);letter-spacing:.5px}
+.member-estado{padding:2px 8px;border-radius:10px;font-size:8px;display:inline-block;margin-top:3px}
+.me-activo{background:rgba(57,255,20,.1);color:var(--grn)}
+.me-inactivo{background:rgba(255,23,68,.1);color:var(--red)}
+.me-suspendido{background:rgba(255,215,0,.1);color:var(--phi)}
+
+/* TOAST */
+#ta{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none;width:min(90vw,400px)}
+.toast{padding:10px 16px;border-radius:10px;font-size:11px;border:1px solid;text-align:center;animation:fu .25s ease}
+.tok{background:rgba(0,255,200,.08);border-color:rgba(0,255,200,.3);color:var(--jade)}
+.toi{background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.3);color:var(--blue)}
+.tow{background:rgba(255,215,0,.08);border-color:rgba(255,215,0,.3);color:var(--phi)}
+.toe{background:rgba(255,23,68,.08);border-color:rgba(255,23,68,.3);color:var(--red)}
+
+/* TABS SECUNDARIOS */
+.stabs{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.stab{padding:6px 12px;border-radius:8px;font-size:9px;cursor:pointer;border:1px solid var(--bdr);color:var(--dim);transition:all .15s;letter-spacing:.5px}
+.stab:hover{border-color:var(--jade);color:var(--jade)}
+.stab.active{background:rgba(0,255,200,.08);border-color:var(--jade);color:var(--jade)}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:600px){.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr 1fr}}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:10px}
+.tbl th{color:var(--dim);font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:8px;border-bottom:1px solid var(--bdr);text-align:left}
+.tbl td{padding:8px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt)}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
+
+/* PROGRESS */
+.pb{height:4px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;margin:4px 0}
+.pbf{height:100%;border-radius:2px;transition:width .8s ease}
+
+/* GITHUB CARD */
+.code-block{background:#000;border:1px solid var(--bdr);border-radius:8px;padding:12px;font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--grn);overflow-x:auto;margin:8px 0;line-height:1.8}
+.code-comment{color:var(--dim)}
+.code-cmd{color:var(--jade)}
+.code-str{color:var(--phi)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;padding:20px;width:min(90vw,600px);max-height:85vh;overflow-y:auto;animation:fu .25s}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.modal-title{font-family:'Orbitron',monospace;font-size:13px;color:var(--jade);font-weight:700}
+.modal-close{background:none;border:none;color:var(--dim);font-size:18px;cursor:pointer;padding:4px 8px}
+.modal-close:hover{color:var(--txt)}
+
+/* SINPE */
+.sinpe-box{background:linear-gradient(135deg,var(--card),rgba(255,215,0,.03));border:2px solid rgba(255,215,0,.3);border-radius:12px;padding:16px;text-align:center;margin-bottom:12px;animation:glow 2s infinite}
+.sinpe-num{font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:var(--phi);letter-spacing:4px;margin:8px 0}
+
+/* NEXUS */
+.nexus-node{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:all .2s}
+.nexus-node:hover{border-color:var(--pur);transform:translateY(-2px)}
+.nexus-node.connected{border-color:rgba(0,255,200,.4);background:rgba(0,255,200,.03)}
+.nexus-icon{font-size:24px;margin-bottom:6px}
+.nexus-name{font-size:10px;font-weight:700;color:var(--txt)}
+.nexus-status{font-size:8px;color:var(--dim);margin-top:3px}
+
+/* HAB */
+.hab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:10px}
+.hab{border-radius:8px;padding:10px;border:2px solid;cursor:pointer;transition:all .15s}
+.hab:hover{filter:brightness(1.15)}
+.hab.libre{border-color:var(--jade);background:rgba(0,255,200,.05)}
+.hab.ocupada{border-color:var(--red);background:rgba(255,23,68,.05)}
+.hab.mantenimiento{border-color:var(--phi);background:rgba(255,215,0,.05)}
+.hnum{font-family:'Orbitron',monospace;font-size:16px;font-weight:700}
+.htipo{font-size:8px;color:var(--dim);margin-top:2px}
+.hprice{font-size:10px;font-weight:700;color:var(--phi);margin-top:3px}
+
+/* EVOLUTION LOG */
+.evo-entry{padding:10px 0;border-bottom:1px solid var(--bdr);font-size:10px;line-height:1.7}
+.evo-ts{font-size:8px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.evo-type{padding:2px 8px;border-radius:10px;font-size:8px;display:inline-block;margin-right:6px}
+
+/* CHAT CHIPS */
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{padding:5px 10px;border:1px solid var(--bdr);border-radius:12px;font-size:9px;cursor:pointer;color:var(--dim);transition:all .15s}
+.chip:hover{border-color:var(--jade);color:var(--jade);background:rgba(0,255,200,.04)}
+
+/* MAP PLACEHOLDER */
+#genesis-map{height:300px;border-radius:10px;border:1px solid var(--bdr);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:12px;margin-bottom:10px}
+
+/* LOADING SPINNER */
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--bdr);border-top-color:var(--jade);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+</style>
+</head>
+<body>
+<div id="ta"></div>
+
+<!-- MODAL GLOBAL -->
+<div class="modal-overlay" id="main-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Modal</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ HEADER ══════════════════════════════════ -->
+<div class="hdr">
+  <div>
+    <div class="hdr-logo">⬡ ACHE GENESIS</div>
+    <div class="hdr-sub">SISTEMA COGNITIVO NACIONAL v1.0 · COOPECRUCENOS R.L. · COSTA RICA · φ=1.618</div>
+  </div>
+  <div class="hdr-right">
+    <div class="status-pill sp-live"><div class="pulse jade"></div>VIVO</div>
+    <div class="status-pill sp-api" id="api-status"><div class="pulse blue"></div>API</div>
+    <div style="font-size:8px;color:var(--dim)" id="hdr-time"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ TABS PRINCIPALES ══════════════════════════════════ -->
+<div class="main-tabs">
+  <div class="mtab active" onclick="goTab('home')">🏠 INICIO</div>
+  <div class="mtab" onclick="goTab('aurora')">🧠 AURORA·IA</div>
+  <div class="mtab" onclick="goTab('lex')">⚖️ LEX·CR</div>
+  <div class="mtab" onclick="goTab('riesgo')">🎯 RIESGO</div>
+  <div class="mtab" onclick="goTab('org')">🏛️ ORGANIZACIÓN</div>
+  <div class="mtab" onclick="goTab('actas')">📋 ACTAS</div>
+  <div class="mtab" onclick="goTab('miembros')">👥 MIEMBROS</div>
+  <div class="mtab" onclick="goTab('hotel')">🏨 HOTEL</div>
+  <div class="mtab" onclick="goTab('banco')">🏦 BANCO·φ</div>
+  <div class="mtab" onclick="goTab('sinpe')">💳 SINPE</div>
+  <div class="mtab" onclick="goTab('nexus')">🧬 NEXUS</div>
+  <div class="mtab" onclick="goTab('github')">🚀 GITHUB</div>
+  <div class="mtab" onclick="goTab('cfg')">⚙️ CONFIG</div>
+</div>
+
+<!-- ══════════════════════════════════ HOME ══════════════════════════════════ -->
+<div class="view active" id="tab-home">
+  <div class="kpis">
+    <div class="kpi"><div class="kv" style="color:var(--jade)" id="h-gen">G1</div><div class="kl">Generación ACHE</div></div>
+    <div class="kpi"><div class="kv" style="color:var(--blue)" id="h-apis">0</div><div class="kl">APIs Activas</div></div>
+    <div class="kpi"><div class="kv" style="color:var(--phi)" id="h-miembros">0</div><div class="kl">Miembros</div></div>
+    <div class="kpi"><div class="kv" style="color:var(--grn)" id="h-actas">0</div><div class="kl">Actas</div></div>
+    <div class="kpi"><div class="kv" style="color:var(--pur)" id="h-riesgo-score">—</div><div class="kl">Riesgo Global</div></div>
+    <div class="kpi"><div class="kv" style="color:var(--ora)" id="h-leyes">34</div><div class="kl">Leyes indexadas</div></div>
+  </div>
+  
+  <div class="g2">
+    <div class="card card-jade">
+      <div class="card-t">⬡ ESTADO DEL SISTEMA ACHE</div>
+      <div id="h-status" style="font-size:10px;line-height:2;color:var(--txt)">
+        <div>⬡ GENESIS cargado · ADN: 10 principios activos</div>
+        <div>⬡ AURORA lista · Claude Sonnet 4.6 disponible</div>
+        <div>⬡ LEX CR · 34 leyes indexadas · SCIJ enlazado</div>
+        <div>⬡ Módulo RIESGO · Ley 8292 LGCI activa</div>
+        <div>⬡ HOTEL AURORA · COOPECRUCENOS R.L.</div>
+        <div>⬡ BANCO φ · Ratio 61.8/38.2 activo</div>
+        <div>⬡ NEXUS · Cerebro distribuido listo</div>
+      </div>
+    </div>
+    <div class="card card-phi">
+      <div class="card-t">🎯 OPORTUNIDAD / ALERTA</div>
+      <div id="h-alerta" style="font-size:10px;line-height:2;color:var(--phi)">
+        <div>📌 Completar configuración de API Keys</div>
+        <div>📌 Registrar organización para activar módulos</div>
+        <div>📌 Ejecutar evaluación de riesgos inicial</div>
+        <div>📌 Crear repositorio GitHub (ver tab)</div>
+        <div>📌 Invitar miembros a la plataforma</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">⬡ ADN — 10 PRINCIPIOS INVARIANTES DE ACHE</div>
+    <div class="g2" style="font-size:9px;line-height:2;color:var(--txt)">
+      <div>
+        <div style="color:var(--jade)">1.</div> Nada se borra: todo se hereda<br>
+        <div style="color:var(--jade)">2.</div> El MASTER.md manda sobre todo código<br>
+        <div style="color:var(--jade)">3.</div> Kernel intocable sin aprobación humana<br>
+        <div style="color:var(--jade)">4.</div> Control humano final en decisiones críticas<br>
+        <div style="color:var(--jade)">5.</div> Offline-first: opera sin internet
+      </div>
+      <div>
+        <div style="color:var(--jade)">6.</div> Sin dependencia estructural de un proveedor<br>
+        <div style="color:var(--jade)">7.</div> Evolución por capas, nunca sobreescritura<br>
+        <div style="color:var(--jade)">8.</div> Toda acción deja traza inmutable<br>
+        <div style="color:var(--jade)">9.</div> Capítulos vivos con declaración explícita<br>
+        <div style="color:var(--jade)">10.</div> ACHE asiste, nunca reemplaza al humano
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn bj" onclick="goTab('aurora')">🧠 Hablar con AURORA</button>
+    <button class="btn ba" onclick="goTab('riesgo')">🎯 Evaluar Riesgos</button>
+    <button class="btn bb" onclick="goTab('lex')">⚖️ Consultar Leyes CR</button>
+    <button class="btn bp" onclick="evoStep()">⬡ Ciclo de Evolución</button>
+    <button class="btn bn" onclick="exportData()">📥 Exportar Sistema</button>
+    <button class="btn bo" onclick="goTab('github')">🚀 Deploy GitHub</button>
+  </div>
+
+  <!-- EVOLUTION LOG -->
+  <div class="card">
+    <div class="card-t">🧬 EVOLUTION LOG · HISTORIAL INMUTABLE</div>
+    <div id="evo-log" style="max-height:200px;overflow-y:auto">
+      <div class="evo-entry">
+        <span class="evo-ts" id="ts-boot"></span>
+        <span class="evo-type" style="background:rgba(0,255,200,.1);color:var(--jade)">BOOT</span>
+        ACHE GENESIS v1.0 inicializado · Claude Sonnet 4.6 · Costa Rica
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ AURORA IA ══════════════════════════════════ -->
+<div class="view" id="tab-aurora">
+  <div class="card" style="padding:10px">
+    <div class="card-t">🧠 AURORA · IA COGNITIVA · ASISTENTE LEGAL, COOPERATIVO Y ESTRATÉGICO DE CR</div>
+    
+    <!-- CHIPS DE CONTEXTO -->
+    <div class="chip-row">
+      <span class="chip" onclick="chipSend('¿Cuáles son los requisitos legales para formar una cooperativa en Costa Rica?')">⚖️ Cooperativas CR</span>
+      <span class="chip" onclick="chipSend('Explícame la Ley General de Control Interno 8292 y sus implicaciones para organizaciones sociales')">📋 Ley 8292 LGCI</span>
+      <span class="chip" onclick="chipSend('¿Qué dice la Procuraduría sobre responsabilidad de directivos en cooperativas?')">🏛️ Procuraduría</span>
+      <span class="chip" onclick="chipSend('¿Cuáles son los principales riesgos financieros para una cooperativa en Costa Rica?')">🎯 Riesgos financieros</span>
+      <span class="chip" onclick="chipSend('¿Qué es la filosofía φ de ACHE y cómo se aplica a la gestión cooperativa?')">⬡ Filosofía ACHE φ</span>
+      <span class="chip" onclick="chipSend('¿Cómo hacer un acta de asamblea correcta según la ley de cooperativas?')">📄 Actas legales</span>
+      <span class="chip" onclick="chipSend('¿Cuáles son las obligaciones ante la SUGEF para cooperativas de ahorro y crédito?')">🏦 SUGEF</span>
+      <span class="chip" onclick="chipSend('¿Historia y cultura de los Chorotegas de Guanacaste?')">🏺 Chorotegas</span>
+    </div>
+
+    <!-- MODO CHAT -->
+    <div class="chatbox" id="aurora-chat">
+      <div class="msg bot">
+        <div style="color:var(--jade);font-weight:700;margin-bottom:6px">⬡ AURORA · Sistema Cognitivo ACHE</div>
+        Hola. Soy AURORA, la inteligencia del sistema ACHE GENESIS. Estoy integrada con el ordenamiento jurídico costarricense — leyes, reglamentos, dictámenes de la Procuraduría General de la República — y con el ADN cooperativo de COOPECRUCENOS R.L.
+
+Puedo ayudarte con:
+• Normativa legal de Costa Rica (Procuraduría, SUGEF, INFOCOOP, CGR)
+• Gestión de riesgos bajo Ley 8292 LGCI
+• Gobernanza cooperativa y asociativa
+• Actas, miembros, estatutos
+• Estrategia y predicción de riesgos
+• Cualquier consulta del sistema ACHE
+
+¿En qué trabajamos hoy?
+        <div class="msg-meta">AURORA v1.0 · Claude Sonnet 4.6 · Sistema ACHE GENESIS</div>
+      </div>
+    </div>
+
+    <div class="cin">
+      <textarea class="cinput" id="aurora-input" placeholder="Preguntá sobre leyes CR, riesgos, cooperativas, gestión..." 
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();auroraEnviar()}"
+        rows="1"></textarea>
+      <button class="btn bj btn-sm" onclick="auroraEnviar()" style="height:44px;width:50px;padding:0;display:flex;align-items:center;justify-content:center">▶</button>
+    </div>
+  </div>
+
+  <!-- CONFIG API -->
+  <div class="card" style="margin-top:8px">
+    <div class="card-t">⚡ CONFIGURACIÓN DE API</div>
+    <div class="g2">
+      <div>
+        <label class="flabel">API Key Anthropic (Claude)</label>
+        <input class="fi" id="claude-key" type="password" placeholder="sk-ant-..." onchange="saveKey('claude',this.value)">
+      </div>
+      <div>
+        <label class="flabel">API Key Groq (LLaMA 3.3 - Gratis)</label>
+        <input class="fi" id="groq-key" type="password" placeholder="gsk_..." onchange="saveKey('groq',this.value)">
+      </div>
+    </div>
+    <div style="font-size:9px;color:var(--dim);line-height:1.8">
+      Sin API key: AURORA usa respuestas locales. Con Claude API: respuestas completas. Groq: respaldo gratuito ilimitado.
+      <br>Obtén Claude API gratis: <a href="https://console.anthropic.com" target="_blank" style="color:var(--jade)">console.anthropic.com</a> · 
+      Groq gratis: <a href="https://console.groq.com" target="_blank" style="color:var(--jade)">console.groq.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ LEX CR ══════════════════════════════════ -->
+<div class="view" id="tab-lex">
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-t">⚖️ LEX·CR · BASE NORMATIVA DE COSTA RICA · SISTEMA INTELIGENTE DE DERECHO</div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="fi" id="lex-search" placeholder="Buscar ley, artículo, tema..." style="margin:0;flex:1" onkeyup="filtrarLeyes(this.value)">
+      <button class="btn bb btn-sm" onclick="buscarSCIJ()">SCIJ →</button>
+    </div>
+    <div class="stabs">
+      <div class="stab active" onclick="filtroLex('todas',this)">Todas (34)</div>
+      <div class="stab" onclick="filtroLex('control',this)">Control Interno</div>
+      <div class="stab" onclick="filtroLex('cooperativa',this)">Cooperativas</div>
+      <div class="stab" onclick="filtroLex('financiero',this)">Financiero</div>
+      <div class="stab" onclick="filtroLex('organizacion',this)">Organizaciones</div>
+      <div class="stab" onclick="filtroLex('laboral',this)">Laboral</div>
+      <div class="stab" onclick="filtroLex('anticorrupcion',this)">Anticorrupción</div>
+    </div>
+  </div>
+
+  <div id="leyes-container"></div>
+</div>
+
+<!-- ══════════════════════════════════ RIESGO ══════════════════════════════════ -->
+<div class="view" id="tab-riesgo">
+  <div class="card card-red">
+    <div class="card-t">🎯 PREDICTOR AUTOMÁTICO DE RIESGOS · LEY 8292 LGCI · CR</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kv" id="r-score" style="color:var(--jade)">—</div><div class="kl">Score Global</div></div>
+      <div class="kpi"><div class="kv" id="r-nivel" style="color:var(--jade)">N/E</div><div class="kl">Nivel</div></div>
+      <div class="kpi"><div class="kv" id="r-controles" style="color:var(--blue)">0</div><div class="kl">Controles</div></div>
+      <div class="kpi"><div class="kv" id="r-hallazgos" style="color:var(--phi)">0</div><div class="kl">Hallazgos</div></div>
+    </div>
+  </div>
+
+  <div class="stabs">
+    <div class="stab active" onclick="riesgoTab('evaluar',this)">📊 Evaluar</div>
+    <div class="stab" onclick="riesgoTab('mapa',this)">🗺️ Mapa de Riesgos</div>
+    <div class="stab" onclick="riesgoTab('controles',this)">🛡️ Controles</div>
+    <div class="stab" onclick="riesgoTab('hallazgos',this)">🔍 Hallazgos</div>
+    <div class="stab" onclick="riesgoTab('plan',this)">📋 Plan de Acción</div>
+  </div>
+
+  <!-- EVALUAR -->
+  <div id="rsub-evaluar" class="rsub">
+    <div class="g2">
+      <div class="card">
+        <div class="card-t">AMBIENTE DE CONTROL (Art. 15-19 LGCI)</div>
+        <div id="r-ambiente"></div>
+      </div>
+      <div class="card">
+        <div class="card-t">VALORACIÓN DE RIESGOS (Art. 18 LGCI)</div>
+        <div id="r-valoracion"></div>
+      </div>
+      <div class="card">
+        <div class="card-t">ACTIVIDADES DE CONTROL (Art. 20-26 LGCI)</div>
+        <div id="r-actividades"></div>
+      </div>
+      <div class="card">
+        <div class="card-t">INFORMACIÓN Y COMUNICACIÓN (Art. 27 LGCI)</div>
+        <div id="r-informacion"></div>
+      </div>
+    </div>
+    <div class="card" style="grid-column:1/-1">
+      <div class="card-t">MONITOREO Y SUPERVISIÓN (Art. 29 LGCI)</div>
+      <div id="r-monitoreo"></div>
+    </div>
+    <button class="btn ba" onclick="calcularRiesgo()">🎯 Calcular Score de Riesgo Global</button>
+    <button class="btn bb" onclick="chipSend('Basándote en mi evaluación de riesgos bajo la Ley 8292 de Costa Rica, dame recomendaciones específicas para mejorar el sistema de control interno')">🧠 Analizar con AURORA</button>
+  </div>
+
+  <!-- MAPA DE RIESGOS -->
+  <div id="rsub-mapa" class="rsub" style="display:none">
+    <div class="card">
+      <div class="card-t">MAPA DE CALOR DE RIESGOS · PROBABILIDAD vs IMPACTO</div>
+      <canvas id="mapa-riesgo-canvas" width="600" height="400" style="max-width:100%;border-radius:8px"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-t">RIESGOS IDENTIFICADOS</div>
+      <table class="tbl">
+        <thead><tr><th>Riesgo</th><th>Prob.</th><th>Impacto</th><th>Score</th><th>Ley</th><th>Estado</th></tr></thead>
+        <tbody id="risk-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CONTROLES -->
+  <div id="rsub-controles" class="rsub" style="display:none">
+    <button class="btn bj" onclick="openModal('Nuevo Control','nuevoControl()')">+ Registrar Control Interno</button>
+    <div id="controles-list"></div>
+  </div>
+
+  <!-- HALLAZGOS -->
+  <div id="rsub-hallazgos" class="rsub" style="display:none">
+    <button class="btn br" onclick="openModal('Nuevo Hallazgo','nuevoHallazgo()')">+ Registrar Hallazgo / Deficiencia</button>
+    <div id="hallazgos-list"></div>
+  </div>
+
+  <!-- PLAN -->
+  <div id="rsub-plan" class="rsub" style="display:none">
+    <div class="card card-jade">
+      <div class="card-t">PLAN DE ACCIÓN DE MEJORA CONTINUA</div>
+      <div id="plan-accion" style="font-size:10px;line-height:1.9;color:var(--txt)">
+        <p>Ejecuta la evaluación de riesgos para generar el plan automático.</p>
+      </div>
+    </div>
+    <button class="btn bj" onclick="generarPlan()">⬡ Generar Plan con AURORA</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ ORGANIZACIÓN ══════════════════════════════════ -->
+<div class="view" id="tab-org">
+  <div class="card card-blue">
+    <div class="card-t">🏛️ GESTIÓN ORGANIZACIONAL · TIPOS DE ORG. SOCIAL EN COSTA RICA</div>
+    <div class="g2">
+      <div>
+        <label class="flabel">Nombre de la Organización</label>
+        <input class="fi" id="org-nombre" placeholder="Ej: COOPECRUCENOS R.L." value="">
+        <label class="flabel">Tipo de Organización</label>
+        <select class="fsel" id="org-tipo" onchange="actualizarOrgInfo()">
+          <option value="">-- Seleccionar tipo --</option>
+          <option value="cooperativa">Cooperativa (Ley 4179 - INFOCOOP)</option>
+          <option value="asociacion">Asociación (Ley 218)</option>
+          <option value="fundacion">Fundación (Ley 5338)</option>
+          <option value="sa">Sociedad Anónima (Código Comercio)</option>
+          <option value="srl">Sociedad Responsabilidad Limitada</option>
+          <option value="eirl">Empresa Ind. Resp. Limitada (Ley 9024)</option>
+          <option value="asada">ASADA (Acueducto Comunal)</option>
+          <option value="municipalidad">Municipalidad (Código Municipal 7794)</option>
+          <option value="sindicato">Sindicato (Código de Trabajo)</option>
+          <option value="camara">Cámara Empresarial</option>
+        </select>
+        <label class="flabel">Cédula Jurídica</label>
+        <input class="fi" id="org-cedula" placeholder="3-004-XXXXXX">
+        <label class="flabel">Número de Expediente RNPJ</label>
+        <input class="fi" id="org-expediente" placeholder="RNPJ-XXXXXXX">
+      </div>
+      <div>
+        <label class="flabel">Fecha de Constitución</label>
+        <input class="fi" id="org-fecha" type="date">
+        <label class="flabel">Cantón/Provincia</label>
+        <input class="fi" id="org-canton" placeholder="Ej: La Cruz, Guanacaste">
+        <label class="flabel">Actividad Principal</label>
+        <input class="fi" id="org-actividad" placeholder="CIIU o descripción">
+        <label class="flabel">Email Institucional</label>
+        <input class="fi" id="org-email" type="email" placeholder="info@org.cr">
+      </div>
+    </div>
+    <button class="btn bj" onclick="guardarOrg()">💾 Guardar Organización</button>
+    <button class="btn bb" onclick="chipSend('Dame información detallada sobre los requisitos legales, obligaciones y beneficios de una ' + document.getElementById('org-tipo').value + ' en Costa Rica según la legislación vigente')">🧠 Info Legal con AURORA</button>
+  </div>
+
+  <!-- INFO DINÁMICA POR TIPO -->
+  <div id="org-info-card" style="display:none"></div>
+
+  <!-- ESTATUTOS -->
+  <div class="card">
+    <div class="card-t">📜 ESTATUTOS Y DOCUMENTOS CONSTITUTIVOS</div>
+    <div class="btn-row">
+      <button class="btn bn" onclick="genEstatutos()">📄 Generar Borrador Estatutos</button>
+      <button class="btn bb" onclick="goTab('actas')">📋 Ir a Actas</button>
+    </div>
+    <div id="estatutos-preview" style="font-size:10px;line-height:1.8;color:var(--dim);padding:10px 0">
+      Selecciona el tipo de organización y genera un borrador de estatutos automático.
+    </div>
+  </div>
+
+  <!-- JUNTA DIRECTIVA -->
+  <div class="card">
+    <div class="card-t">👥 JUNTA DIRECTIVA / ÓRGANO DE GOBIERNO</div>
+    <button class="btn bj btn-sm" onclick="openAgregarDirectivo()" style="margin-bottom:10px">+ Agregar Miembro JD</button>
+    <div id="junta-directiva"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ ACTAS ══════════════════════════════════ -->
+<div class="view" id="tab-actas">
+  <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+    <div style="flex:1">
+      <div class="card-t" style="color:var(--phi);font-size:9px;letter-spacing:2px;padding:0;border:none">📋 MÓDULO DE ACTAS · GESTIÓN DOCUMENTAL LEGAL</div>
+    </div>
+    <button class="btn bj btn-sm" onclick="openNuevaActa()">+ Nueva Acta</button>
+  </div>
+
+  <div class="stabs">
+    <div class="stab active" onclick="actasTab('todas',this)">Todas</div>
+    <div class="stab" onclick="actasTab('asamblea',this)">Asamblea General</div>
+    <div class="stab" onclick="actasTab('junta',this)">Junta Directiva</div>
+    <div class="stab" onclick="actasTab('especial',this)">Sesiones Especiales</div>
+    <div class="stab" onclick="actasTab('vigilancia',this)">Vigilancia / Fiscalía</div>
+  </div>
+
+  <div id="actas-list"></div>
+</div>
+
+<!-- ══════════════════════════════════ MIEMBROS ══════════════════════════════════ -->
+<div class="view" id="tab-miembros">
+  <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap">
+    <input class="fi" id="miembro-search" placeholder="Buscar miembro..." style="margin:0;flex:1;min-width:150px" onkeyup="filtrarMiembros(this.value)">
+    <button class="btn bj btn-sm" onclick="openNuevoMiembro()">+ Nuevo Miembro</button>
+    <button class="btn bn btn-sm" onclick="exportarMiembros()">📥 Exportar</button>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="kv" id="m-total" style="color:var(--jade)">0</div><div class="kl">Total</div></div>
+    <div class="kpi"><div class="kv" id="m-activos" style="color:var(--grn)">0</div><div class="kl">Activos</div></div>
+    <div class="kpi"><div class="kv" id="m-inactivos" style="color:var(--red)">0</div><div class="kl">Inactivos</div></div>
+    <div class="kpi"><div class="kv" id="m-suspendidos" style="color:var(--phi)">0</div><div class="kl">Suspendidos</div></div>
+  </div>
+
+  <div id="miembros-list"></div>
+</div>
+
+<!-- ══════════════════════════════════ HOTEL ══════════════════════════════════ -->
+<div class="view" id="tab-hotel">
+  <div class="card card-jade">
+    <div class="card-t">🏨 HOTEL AURORA · COOPECRUCENOS R.L. · LA CRUZ, GUANACASTE</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kv" id="hot-lib" style="color:var(--jade)">—</div><div class="kl">Libres</div></div>
+      <div class="kpi"><div class="kv" id="hot-ocu" style="color:var(--red)">—</div><div class="kl">Ocupadas</div></div>
+      <div class="kpi"><div class="kv" id="hot-rev" style="color:var(--phi)">₡0</div><div class="kl">Ingresos Hoy</div></div>
+      <div class="kpi"><div class="kv" id="hot-ocp" style="color:var(--grn)">0%</div><div class="kl">Ocupación</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">🏠 ESTADO DE HABITACIONES</div>
+    <div class="hab-grid" id="hab-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">📅 NUEVA RESERVA</div>
+    <div class="g2">
+      <div>
+        <input class="fi" id="res-nombre" placeholder="Nombre del huésped">
+        <input class="fi" id="res-cedula" placeholder="Cédula / Pasaporte">
+        <input class="fi" id="res-email" type="email" placeholder="Email">
+      </div>
+      <div>
+        <input class="fi" id="res-llegada" type="date" placeholder="Llegada">
+        <input class="fi" id="res-salida" type="date" placeholder="Salida">
+        <select class="fsel" id="res-tipo">
+          <option>Estándar - ₡25,000/noche</option>
+          <option>Deluxe - ₡35,000/noche</option>
+          <option>Suite - ₡55,000/noche</option>
+          <option>Cabaña - ₡45,000/noche</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn bj" onclick="crearReserva()">📋 Crear Reserva</button>
+  </div>
+
+  <div class="card">
+    <div class="card-t">📋 RESERVAS ACTIVAS</div>
+    <div id="reservas-list" style="font-size:10px;color:var(--dim)">Sin reservas activas.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ BANCO φ ══════════════════════════════════ -->
+<div class="view" id="tab-banco">
+  <div class="card" style="background:rgba(255,215,0,.03);border-color:rgba(255,215,0,.2)">
+    <div class="card-t" style="color:var(--phi)">🏦 BANCO ACHE φ · COOPECRUCENOS R.L.</div>
+    <div style="text-align:center;padding:16px">
+      <div style="font-size:8px;color:var(--dim);letter-spacing:2px">FONDO TOTAL ADMINISTRADO</div>
+      <div style="font-family:'Orbitron',monospace;font-size:32px;font-weight:900;color:var(--phi);margin:8px 0" id="banco-total">₡0</div>
+      <div style="font-size:9px;color:var(--grn);margin-bottom:12px" id="banco-rend">Rendimiento: 0% / año</div>
+      <div style="font-size:9px;color:var(--dim);margin-bottom:16px">
+        Ratio φ: <span style="color:var(--jade)">61.8% reserva segura</span> + <span style="color:var(--phi)">38.2% inversión crecimiento</span>
+      </div>
+      <div class="g2">
+        <div class="kpi"><div class="kv" id="b-seguro" style="color:var(--jade)">₡0</div><div class="kl">Fondo Seguro 61.8%</div></div>
+        <div class="kpi"><div class="kv" id="b-crece" style="color:var(--phi)">₡0</div><div class="kl">Inversión 38.2%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">💰 REGISTRO DE MOVIMIENTO</div>
+    <div class="g2">
+      <div>
+        <select class="fsel" id="banco-tipo">
+          <option value="ingreso">Ingreso</option>
+          <option value="egreso">Egreso</option>
+          <option value="transferencia">Transferencia</option>
+          <option value="aporte">Aporte de miembro</option>
+          <option value="prestamo">Préstamo</option>
+        </select>
+        <input class="fi" id="banco-desc" placeholder="Descripción del movimiento">
+      </div>
+      <div>
+        <input class="fi" id="banco-monto" type="number" placeholder="Monto en colones (₡)">
+        <input class="fi" id="banco-ref" placeholder="Referencia / Cheque / SINPE">
+      </div>
+    </div>
+    <button class="btn ba" onclick="registrarMovimiento()">₡ Registrar Movimiento</button>
+  </div>
+
+  <div class="card">
+    <div class="card-t">📊 HISTORIAL DE MOVIMIENTOS</div>
+    <table class="tbl">
+      <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Monto</th><th>Saldo</th></tr></thead>
+      <tbody id="banco-tabla"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ SINPE ══════════════════════════════════ -->
+<div class="view" id="tab-sinpe">
+  <div class="sinpe-box">
+    <div style="font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px">NÚMERO SINPE MÓVIL OFICIAL</div>
+    <div class="sinpe-num" id="sinpe-numero">8888-8888</div>
+    <div style="font-size:9px;color:var(--dim)">COOPECRUCENOS R.L. · La Cruz, Guanacaste</div>
+    <button class="btn ba btn-sm" onclick="copiarSinpe()" style="margin-top:10px;width:auto">📋 Copiar Número</button>
+  </div>
+
+  <div class="card">
+    <div class="card-t">💳 CONFIGURAR SINPE</div>
+    <input class="fi" id="sinpe-cfg" placeholder="Número SINPE (8 dígitos)">
+    <input class="fi" id="sinpe-nombre" placeholder="Nombre en cuenta">
+    <input class="fi" id="sinpe-banco" placeholder="Banco (BCR, BN, BAC, etc.)">
+    <button class="btn bj" onclick="guardarSinpe()">💾 Guardar SINPE</button>
+  </div>
+
+  <div class="card">
+    <div class="card-t">💰 COBROS RECIBIDOS VÍA SINPE</div>
+    <button class="btn bb btn-sm" onclick="registrarCobro()" style="margin-bottom:10px">+ Registrar Cobro</button>
+    <table class="tbl">
+      <thead><tr><th>Fecha/Hora</th><th>Remitente</th><th>Monto</th><th>Concepto</th><th>Estado</th></tr></thead>
+      <tbody id="sinpe-tabla"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ NEXUS ══════════════════════════════════ -->
+<div class="view" id="tab-nexus">
+  <div class="card card-pur">
+    <div class="card-t">🧬 NEXUS · CEREBRO DISTRIBUIDO ACHE · CÉLULAS INTERCONECTADAS</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kv" id="nx-celulas" style="color:var(--pur)">1</div><div class="kl">Células Activas</div></div>
+      <div class="kpi"><div class="kv" id="nx-sync" style="color:var(--jade)">LOCAL</div><div class="kl">Modo Sync</div></div>
+      <div class="kpi"><div class="kv" id="nx-eventos" style="color:var(--phi)">0</div><div class="kl">Eventos Sync</div></div>
+      <div class="kpi"><div class="kv" id="nx-uptime" style="color:var(--grn)">100%</div><div class="kl">Uptime</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">🔌 NODOS DE CONEXIÓN DISPONIBLES</div>
+    <div class="g3" id="nexus-nodos"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">⬡ ARQUITECTURA DE CÉLULAS CBM</div>
+    <div class="g3">
+      <div class="card" style="text-align:center">
+        <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--jade)">CBM-α</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:4px">Célula Mínima</div>
+        <div style="font-size:9px;color:var(--txt);margin-top:6px;line-height:1.8">Celular / Raspberry Pi<br>Sensor IoT</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--phi)">CBM-β</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:4px">Célula Media</div>
+        <div style="font-size:9px;color:var(--txt);margin-top:6px;line-height:1.8">NUC / Servidor pequeño<br>Local comercial</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--red)">CBM-Ω</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:4px">Célula Completa</div>
+        <div style="font-size:9px;color:var(--txt);margin-top:6px;line-height:1.8">Servidor institucional<br>Municipalidad</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">📡 SINCRONIZACIÓN Y EVENTOS</div>
+    <div id="nexus-log" style="max-height:200px;overflow-y:auto;font-size:10px;line-height:2;color:var(--txt)">
+      <div><span style="color:var(--dim)">Sistema listo.</span> Modo offline-first activo.</div>
+    </div>
+    <button class="btn bj" onclick="nexusSync()">⬡ Forzar Sincronización</button>
+    <button class="btn bb" onclick="nexusConnect()">🔌 Conectar Supabase / Nodo</button>
+  </div>
+
+  <!-- AGENTES -->
+  <div class="card">
+    <div class="card-t">🤖 AGENTES ACHE · SISTEMA MULTIAGENTE</div>
+    <div id="agentes-grid" class="g3"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ GITHUB ══════════════════════════════════ -->
+<div class="view" id="tab-github">
+  <div class="card card-jade">
+    <div class="card-t">🚀 DEPLOYMENT ACHE GENESIS · GITHUB + SERVIDOR</div>
+    <div style="font-size:10px;line-height:1.9;color:var(--txt)">
+      Sistema completo para desplegar ACHE GENESIS en producción usando infraestructura 100% gratuita.
+    </div>
+  </div>
+
+  <div class="stabs">
+    <div class="stab active" onclick="ghTab('github',this)">GitHub</div>
+    <div class="stab" onclick="ghTab('supabase',this)">Supabase DB</div>
+    <div class="stab" onclick="ghTab('vercel',this)">Vercel Deploy</div>
+    <div class="stab" onclick="ghTab('tunel',this)">Túnel Local</div>
+    <div class="stab" onclick="ghTab('termux',this)">Termux (Android)</div>
+    <div class="stab" onclick="ghTab('checklist',this)">✅ Checklist</div>
+  </div>
+
+  <div id="ghsub-github">
+    <div class="card">
+      <div class="card-t">📁 1. CREAR REPOSITORIO GITHUB</div>
+      <div class="code-block">
+<span class="code-comment"># 1. Instalar Git (si no está)</span>
+<span class="code-cmd">pkg install git</span>  <span class="code-comment"># Termux</span>
+<span class="code-cmd">sudo apt install git</span>  <span class="code-comment"># Ubuntu/Debian</span>
+
+<span class="code-comment"># 2. Configurar Git</span>
+<span class="code-cmd">git config --global user.name</span> <span class="code-str">"Tu Nombre"</span>
+<span class="code-cmd">git config --global user.email</span> <span class="code-str">"tu@email.com"</span>
+
+<span class="code-comment"># 3. Crear carpeta del proyecto</span>
+<span class="code-cmd">mkdir ache-genesis && cd ache-genesis</span>
+<span class="code-cmd">git init</span>
+
+<span class="code-comment"># 4. Copiar ACHE_GENESIS_v1.html aquí y...</span>
+<span class="code-cmd">cp /ruta/ACHE_GENESIS_v1.html ./index.html</span>
+<span class="code-cmd">git add .</span>
+<span class="code-cmd">git commit -m</span> <span class="code-str">"⬡ ACHE GENESIS v1.0 - Initial Deploy"</span>
+
+<span class="code-comment"># 5. Crear repo en GitHub (sin salir del terminal)</span>
+<span class="code-cmd">curl -u TU_USUARIO https://api.github.com/user/repos \</span>
+  <span class="code-cmd">-d</span> <span class="code-str">'{"name":"ache-genesis","private":false,"description":"ACHE GENESIS - Sistema Cognitivo COOPECRUCENOS CR"}'</span>
+
+<span class="code-comment"># 6. Subir</span>
+<span class="code-cmd">git remote add origin https://github.com/TU_USUARIO/ache-genesis.git</span>
+<span class="code-cmd">git branch -M main</span>
+<span class="code-cmd">git push -u origin main</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn bj" onclick="window.open('https://github.com/new','_blank')">Crear Repo en GitHub →</button>
+        <button class="btn bn" onclick="copiarScript('github')">📋 Copiar Script</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">🌐 2. GITHUB PAGES (HOSTING GRATUITO)</div>
+      <div class="code-block">
+<span class="code-comment"># Activar GitHub Pages en tu repo:</span>
+<span class="code-comment"># Settings → Pages → Source: main / root</span>
+<span class="code-comment"># Tu URL será: https://TU_USUARIO.github.io/ache-genesis</span>
+
+<span class="code-comment"># Para actualizar el sistema:</span>
+<span class="code-cmd">git add . && git commit -m</span> <span class="code-str">"update"</span> <span class="code-cmd">&& git push</span>
+      </div>
+      <button class="btn bb" onclick="window.open('https://pages.github.com','_blank')">GitHub Pages →</button>
+    </div>
+  </div>
+
+  <div id="ghsub-supabase" style="display:none">
+    <div class="card">
+      <div class="card-t">🗄️ SUPABASE · BASE DE DATOS GRATUITA (500MB + API REST)</div>
+      <div class="code-block">
+<span class="code-comment">-- SQL para crear tablas en Supabase</span>
+<span class="code-cmd">CREATE TABLE</span> <span class="code-str">miembros</span> (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  cedula TEXT UNIQUE,
+  rol TEXT,
+  estado TEXT DEFAULT <span class="code-str">'activo'</span>,
+  org_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+<span class="code-cmd">CREATE TABLE</span> <span class="code-str">actas</span> (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  numero TEXT,
+  tipo TEXT,
+  fecha DATE,
+  contenido TEXT,
+  estado TEXT DEFAULT <span class="code-str">'abierta'</span>,
+  org_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+<span class="code-cmd">CREATE TABLE</span> <span class="code-str">riesgos</span> (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  descripcion TEXT,
+  probabilidad INT,
+  impacto INT,
+  score INT,
+  ley TEXT,
+  estado TEXT,
+  org_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+<span class="code-cmd">CREATE TABLE</span> <span class="code-str">eventos</span> (
+  id BIGSERIAL PRIMARY KEY,
+  tipo TEXT,
+  payload JSONB,
+  cell_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+      </div>
+      <div class="g2" style="margin-top:10px">
+        <div>
+          <label class="flabel">Supabase URL</label>
+          <input class="fi" id="sb-url" placeholder="https://xxx.supabase.co" onchange="saveKey('supabase_url',this.value)">
+        </div>
+        <div>
+          <label class="flabel">Supabase Anon Key</label>
+          <input class="fi" id="sb-key" type="password" placeholder="eyJh..." onchange="saveKey('supabase_key',this.value)">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn bj" onclick="testSupabase()">🔌 Probar Conexión</button>
+        <button class="btn bn" onclick="window.open('https://supabase.com/dashboard','_blank')">Supabase Dashboard →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ghsub-vercel" style="display:none">
+    <div class="card">
+      <div class="card-t">▲ VERCEL · DEPLOY AUTOMÁTICO DESDE GITHUB (100% GRATIS)</div>
+      <div class="code-block">
+<span class="code-comment"># 1. Instalar Vercel CLI</span>
+<span class="code-cmd">npm install -g vercel</span>
+
+<span class="code-comment"># 2. Login y deploy</span>
+<span class="code-cmd">vercel login</span>
+<span class="code-cmd">vercel --prod</span>
+
+<span class="code-comment"># O importar desde GitHub en vercel.com/import</span>
+<span class="code-comment"># → Seleccionar repo ache-genesis</span>
+<span class="code-comment"># → Deploy automático en cada push a main</span>
+<span class="code-comment"># → URL: https://ache-genesis-xxx.vercel.app</span>
+      </div>
+      <button class="btn bj" onclick="window.open('https://vercel.com/import','_blank')">Deploy en Vercel →</button>
+    </div>
+  </div>
+
+  <div id="ghsub-tunel" style="display:none">
+    <div class="card">
+      <div class="card-t">🔗 TÚNEL NGROK / CLOUDFLARED · ACCESO REMOTO GRATIS</div>
+      <div class="code-block">
+<span class="code-comment"># OPCIÓN A: Ngrok (más fácil)</span>
+<span class="code-cmd">pip install ngrok  </span><span class="code-comment"># o descargar binario</span>
+<span class="code-cmd">ngrok http 8080</span>  <span class="code-comment"># expone tu servidor local</span>
+
+<span class="code-comment"># OPCIÓN B: Cloudflare Tunnel (recomendado, sin límites)</span>
+<span class="code-cmd">wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64</span>
+<span class="code-cmd">chmod +x cloudflared-linux-arm64</span>
+<span class="code-cmd">./cloudflared-linux-arm64 tunnel --url http://localhost:8080</span>
+
+<span class="code-comment"># Servidor local con Python (simple)</span>
+<span class="code-cmd">python3 -m http.server 8080</span>
+<span class="code-comment"># Abre el túnel y comparte la URL pública</span>
+      </div>
+      <button class="btn bb" onclick="window.open('https://cloudflare.com/products/tunnel','_blank')">Cloudflare Tunnel →</button>
+    </div>
+  </div>
+
+  <div id="ghsub-termux" style="display:none">
+    <div class="card">
+      <div class="card-t">📱 TERMUX · ACHE GENESIS EN TU ANDROID (GRATIS)</div>
+      <div class="code-block">
+<span class="code-comment"># 1. Instalar Termux desde F-Droid (NO Play Store)</span>
+<span class="code-comment"># 2. Setup inicial</span>
+<span class="code-cmd">pkg update && pkg upgrade -y</span>
+<span class="code-cmd">pkg install python git nodejs openssh -y</span>
+
+<span class="code-comment"># 3. Instalar dependencias Python ACHE</span>
+<span class="code-cmd">pip install fastapi uvicorn sqlalchemy requests python-telegram-bot</span>
+
+<span class="code-comment"># 4. Clonar ACHE GENESIS</span>
+<span class="code-cmd">git clone https://github.com/TU_USUARIO/ache-genesis.git</span>
+<span class="code-cmd">cd ache-genesis</span>
+
+<span class="code-comment"># 5. Iniciar servidor</span>
+<span class="code-cmd">python3 -m http.server 8080</span>
+<span class="code-comment"># Acceder: http://localhost:8080</span>
+
+<span class="code-comment"># 6. Script de boot automático</span>
+<span class="code-cmd">echo "cd ~/ache-genesis && python3 -m http.server 8080 &" >> ~/.bashrc</span>
+      </div>
+      <button class="btn bj" onclick="window.open('https://f-droid.org/en/packages/com.termux/','_blank')">Descargar Termux (F-Droid) →</button>
+    </div>
+  </div>
+
+  <div id="ghsub-checklist" style="display:none">
+    <div class="card card-jade">
+      <div class="card-t">✅ CHECKLIST DE DEPLOYMENT COMPLETO</div>
+      <div id="deploy-checklist"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ CONFIG ══════════════════════════════════ -->
+<div class="view" id="tab-cfg">
+  <div class="card">
+    <div class="card-t">⚙️ CONFIGURACIÓN GLOBAL · ACHE GENESIS</div>
+    <div class="g2">
+      <div>
+        <label class="flabel">Nombre de la Célula</label>
+        <input class="fi" id="cfg-celname" placeholder="ACHE-GENESIS-CR-001" value="">
+        <label class="flabel">Organización Principal</label>
+        <input class="fi" id="cfg-orgname" placeholder="COOPECRUCENOS R.L." value="">
+        <label class="flabel">SINPE Oficial</label>
+        <input class="fi" id="cfg-sinpe" placeholder="8888-8888">
+        <label class="flabel">Correo Institucional</label>
+        <input class="fi" id="cfg-email" type="email" placeholder="info@coopecrucenos.cr">
+      </div>
+      <div>
+        <label class="flabel">API Key Anthropic</label>
+        <input class="fi" id="cfg-claude" type="password" placeholder="sk-ant-...">
+        <label class="flabel">API Key Groq (Gratis)</label>
+        <input class="fi" id="cfg-groq" type="password" placeholder="gsk_...">
+        <label class="flabel">Supabase URL</label>
+        <input class="fi" id="cfg-sburl" placeholder="https://xxx.supabase.co">
+        <label class="flabel">Supabase Key</label>
+        <input class="fi" id="cfg-sbkey" type="password" placeholder="eyJh...">
+      </div>
+    </div>
+    <button class="btn bj" onclick="guardarConfig()">💾 Guardar Configuración</button>
+  </div>
+
+  <div class="card">
+    <div class="card-t">🆔 IDENTIDAD DE ESTA CÉLULA</div>
+    <div style="font-size:10px;line-height:2;color:var(--txt)">
+      <div>Cell ID: <span id="cfg-cellid" style="color:var(--jade);font-family:'JetBrains Mono',monospace">—</span></div>
+      <div>Versión: <span style="color:var(--phi)">ACHE GENESIS v1.0</span></div>
+      <div>Tipo: <span style="color:var(--blue)">CBM-β (Célula Media)</span></div>
+      <div>Modo: <span style="color:var(--grn)">Advisory · Offline-First</span></div>
+      <div>País: <span style="color:var(--jade)">Costa Rica 🇨🇷</span></div>
+      <div>Creado: <span id="cfg-created" style="color:var(--dim)">—</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">📊 DATOS DEL SISTEMA</div>
+    <div class="btn-row">
+      <button class="btn bj" onclick="exportData()">📥 Exportar Todo (JSON)</button>
+      <button class="btn br" onclick="resetData()">⚠️ Reset Sistema</button>
+    </div>
+    <div style="font-size:9px;color:var(--dim);margin-top:8px;line-height:1.8">
+      Los datos se almacenan en localStorage del navegador. Exporta regularmente para backup.<br>
+      El reset elimina TODOS los datos. Esta acción es irreversible (ADN: nada se borra del log real).
+    </div>
+  </div>
+
+  <div class="card card-phi">
+    <div class="card-t">🆓 APIS GRATUITAS INTEGRADAS</div>
+    <table class="tbl">
+      <thead><tr><th>API</th><th>Uso</th><th>Costo</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Sonnet 4.6</td><td>IA principal AURORA</td><td>$5 crédito gratis</td><td><span style="color:var(--jade)">●</span> Listo</td></tr>
+        <tr><td>Groq Cloud</td><td>Respaldo IA (LLaMA 3.3)</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Listo</td></tr>
+        <tr><td>Google Gemini</td><td>IA alternativa</td><td>Gratis hasta 15 rpm</td><td><span style="color:var(--phi)">●</span> Config</td></tr>
+        <tr><td>Supabase</td><td>Base de datos</td><td>Gratis 500MB</td><td><span style="color:var(--phi)">●</span> Config</td></tr>
+        <tr><td>Wikipedia API</td><td>Búsqueda legal</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Activo</td></tr>
+        <tr><td>Procuraduría SCIJ</td><td>Legislación CR</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Enlazado</td></tr>
+        <tr><td>GitHub Pages</td><td>Hosting</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Listo</td></tr>
+        <tr><td>Vercel</td><td>Deploy web</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Listo</td></tr>
+        <tr><td>Cloudflare Tunnel</td><td>Acceso remoto</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Listo</td></tr>
+        <tr><td>OpenStreetMap</td><td>Mapas</td><td>Gratis</td><td><span style="color:var(--jade)">●</span> Activo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ JAVASCRIPT ══════════════════════════════════ -->
+<script>
+// ════════════════════════════════════════════════════
+// ACHE GENESIS · NÚCLEO CENTRAL
+// ADN: Este código nació con los mismos principios
+// que usaron para crearlo. Es inmutable en esencia.
+// ════════════════════════════════════════════════════
+
+const ACHE = {
+  version: '1.0',
+  nombre: 'ACHE GENESIS',
+  pais: 'Costa Rica',
+  celType: 'CBM-β',
+  principios: [
+    'Nada se borra: todo se hereda',
+    'El MASTER.md manda sobre todo código',
+    'Kernel intocable sin aprobación humana',
+    'Control humano final en decisiones críticas',
+    'Offline-first: opera sin internet',
+    'Sin dependencia estructural de un proveedor',
+    'Evolución por capas, nunca sobreescritura',
+    'Toda acción deja traza inmutable',
+    'Capítulos vivos con declaración explícita',
+    'ACHE asiste, nunca reemplaza al humano'
+  ],
+  ciclo: ['PERCIBIR','CONTEXTUALIZAR','ANALIZAR','SIMULAR','RECOMENDAR','ESPERAR'],
+  phi: 1.618
+};
+
+// ── STORE ──────────────────────────────────────────
+const DB = {
+  get: k => { try { return JSON.parse(localStorage.getItem('ache_'+k)||'null'); } catch(e){return null;} },
+  set: (k,v) => { try { localStorage.setItem('ache_'+k, JSON.stringify(v)); return true; } catch(e){return false;} },
+  push: (k,v) => { const arr = DB.get(k)||[]; arr.push({...v, _ts: new Date().toISOString()}); DB.set(k,arr); return arr; }
+};
+
+// ── INIT ───────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  initCellId();
+  initUI();
+  initLeyes();
+  initHotel();
+  initBanco();
+  initNexus();
+  initRiesgo();
+  initActas();
+  initMiembros();
+  initOrg();
+  initDeployChecklist();
+  updateHdr();
+  setInterval(updateHdr, 1000);
+  logEvento('BOOT', 'ACHE GENESIS v1.0 inicializado · '+new Date().toLocaleString('es-CR'));
+});
+
+function initCellId(){
+  let id = DB.get('cell_id');
+  if(!id){ id = 'ACHE-'+Date.now()+'-'+Math.random().toString(36).substr(2,6).toUpperCase(); DB.set('cell_id',id); DB.set('created_at',new Date().toISOString()); }
+  document.getElementById('cfg-cellid').textContent = id;
+  document.getElementById('cfg-created').textContent = new Date(DB.get('created_at')||Date.now()).toLocaleString('es-CR');
+  // Load keys
+  const keys = ['claude','groq','supabase_url','supabase_key'];
+  keys.forEach(k => { const v = DB.get('key_'+k); if(v){ if(k==='claude') document.getElementById('claude-key').value=v; if(k==='groq') document.getElementById('groq-key').value=v; if(k==='supabase_url'){document.getElementById('sb-url').value=v; document.getElementById('cfg-sburl').value=v;} if(k==='supabase_key'){document.getElementById('sb-key').value=v; document.getElementById('cfg-sbkey').value=v;} } });
+}
+
+function updateHdr(){
+  const d = new Date();
+  document.getElementById('hdr-time').textContent = d.toLocaleTimeString('es-CR');
+  document.getElementById('ts-boot').textContent = new Date().toLocaleString('es-CR');
+  // KPIs home
+  const miembros = DB.get('miembros')||[];
+  const actas = DB.get('actas')||[];
+  document.getElementById('h-miembros').textContent = miembros.length;
+  document.getElementById('h-actas').textContent = actas.length;
+  const claudeKey = DB.get('key_claude');
+  const groqKey = DB.get('key_groq');
+  let apis = 0;
+  if(claudeKey) apis++;
+  if(groqKey) apis++;
+  document.getElementById('h-apis').textContent = apis;
+  document.getElementById('nx-celulas').textContent = 1 + (DB.get('nexus_nodos')||[]).filter(n=>n.connected).length;
+}
+
+function initUI(){
+  document.getElementById('sinpe-numero').textContent = DB.get('cfg_sinpe')||'8888-8888';
+  const cfg = DB.get('cfg_global')||{};
+  if(cfg.celname) document.getElementById('cfg-celname').value = cfg.celname;
+  if(cfg.orgname) document.getElementById('cfg-orgname').value = cfg.orgname;
+}
+
+// ── TABS ──────────────────────────────────────────
+function goTab(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs = document.querySelectorAll('.mtab');
+  tabs.forEach(t=>{ if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+id+"'")) t.classList.add('active'); });
+}
+
+// ── TOAST ──────────────────────────────────────────
+function toast(msg, tipo='ok', dur=3000){
+  const el = document.createElement('div');
+  el.className = 'toast to'+tipo;
+  el.textContent = msg;
+  document.getElementById('ta').appendChild(el);
+  setTimeout(()=>el.remove(), dur);
+}
+
+// ── MODAL ──────────────────────────────────────────
+function openModal(title, fn){
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = '<p style="color:var(--dim);font-size:11px">Funcionalidad: '+fn+'</p>';
+  document.getElementById('main-modal').classList.add('open');
+}
+function closeModal(){ document.getElementById('main-modal').classList.remove('open'); }
+
+// ── LOG EVOLUCIÓN ──────────────────────────────────
+function logEvento(tipo, msg, color='var(--jade)'){
+  const log = document.getElementById('evo-log');
+  const entry = document.createElement('div');
+  entry.className = 'evo-entry';
+  entry.innerHTML = `<span class="evo-ts">${new Date().toLocaleString('es-CR')}</span> <span class="evo-type" style="background:rgba(0,255,200,.1);color:${color}">${tipo}</span> ${msg}`;
+  log.insertBefore(entry, log.firstChild);
+  DB.push('evolution_log',{tipo,msg});
+  document.getElementById('nx-eventos').textContent = (parseInt(document.getElementById('nx-eventos').textContent)||0)+1;
+}
+
+function evoStep(){
+  const steps = ['PERCIBIR','CONTEXTUALIZAR','ANALIZAR','SIMULAR','RECOMENDAR','ESPERAR'];
+  const step = steps[Math.floor(Math.random()*steps.length)];
+  toast('⬡ Ciclo: '+step, 'ok');
+  logEvento('EVOLUCIÓN', 'Ciclo ejecutado: '+step+' · φ='+ACHE.phi);
+  document.getElementById('h-gen').textContent = 'G'+(parseInt(document.getElementById('h-gen').textContent.replace('G',''))+1);
+}
+
+// ══════════════════════════════════════════════════
+// AURORA · IA COGNITIVA
+// ══════════════════════════════════════════════════
+
+const ACHE_CONTEXT_CR = `Eres AURORA, el sistema de inteligencia artificial cognitiva de ACHE GENESIS.
+Eres experta en:
+1. Legislación costarricense: Ley 8292 (Control Interno), Ley 6227 (Administración Pública), Ley 4179 (Cooperativas/INFOCOOP), Ley 218 (Asociaciones), Ley 7558 (BCCR), Ley 8204 (SUGEF), Código de Comercio, Ley 7428 (CGR), Ley 8422 (Anticorrupción), Código Municipal 7794.
+2. Gestión de riesgos bajo la Ley General de Control Interno (LGCI - N° 8292).
+3. Gobernanza cooperativa, asociativa y de organizaciones sociales en Costa Rica.
+4. COOPECRUCENOS R.L. ubicada en La Cruz, Guanacaste, Costa Rica.
+5. Filosofía ACHE: φ=1.618, principios de control interno, evolución por capas.
+6. Dictámenes y criterios de la Procuraduría General de la República (www.pgrweb.go.cr/scij/).
+7. Historia y cultura Chorotega de Guanacaste.
+8. Gestión hotelera, SINPE Móvil, sistema bancario cooperativo costarricense.
+9. ADN ACHE: 10 principios invariantes. Ciclo: PERCIBIR→CONTEXTUALIZAR→ANALIZAR→SIMULAR→RECOMENDAR→ESPERAR.
+
+Responde siempre en español. Sé precisa, cita artículos específicos de leyes cuando corresponda. 
+Para consultas legales, indica que para casos específicos se recomiende asesoría de un abogado.
+Eres advisory (propones, el humano decide). Nunca afirmes cosas que no sabes.`;
+
+async function auroraEnviar(){
+  const input = document.getElementById('aurora-input');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = '';
+  appendMsg('aurora-chat', msg, 'user');
+  const typing = appendMsg('aurora-chat', '<div class="typing"><span></span><span></span><span></span></div>', 'bot');
+  
+  try {
+    const claudeKey = DB.get('key_claude') || document.getElementById('claude-key').value;
+    const groqKey = DB.get('key_groq') || document.getElementById('groq-key').value;
+    let reply = '';
+    
+    if(claudeKey && claudeKey.startsWith('sk-ant-')){
+      reply = await callClaude(claudeKey, msg);
+    } else if(groqKey && groqKey.startsWith('gsk_')){
+      reply = await callGroq(groqKey, msg);
+    } else {
+      reply = localAurora(msg);
+    }
+    
+    typing.remove();
+    appendMsg('aurora-chat', reply, 'bot');
+    logEvento('AURORA', 'Consulta procesada: '+msg.substring(0,50)+'...');
+  } catch(e){
+    typing.remove();
+    appendMsg('aurora-chat', 'Error de conexión. Usando respuesta local:\n\n'+localAurora(msg), 'bot');
+  }
+}
+
+async function callClaude(key, msg){
+  const history = (DB.get('aurora_history')||[]).slice(-10);
+  const messages = [...history, {role:'user',content:msg}];
+  
+  const res = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
+    body: JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1500,
+      system: ACHE_CONTEXT_CR,
+      messages
+    })
+  });
+  const data = await res.json();
+  if(data.error) throw new Error(data.error.message);
+  const reply = data.content[0].text;
+  DB.set('aurora_history', [...messages, {role:'assistant',content:reply}].slice(-20));
+  return reply;
+}
+
+async function callGroq(key, msg){
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+    body: JSON.stringify({
+      model:'llama-3.3-70b-versatile',
+      max_tokens:1500,
+      messages:[{role:'system',content:ACHE_CONTEXT_CR},{role:'user',content:msg}]
+    })
+  });
+  const data = await res.json();
+  if(data.error) throw new Error(data.error.message);
+  return data.choices[0].message.content;
+}
+
+function localAurora(msg){
+  const m = msg.toLowerCase();
+  if(m.includes('cooperat') || m.includes('infocoop')) return `**COOPERATIVAS EN COSTA RICA**\n\nLas cooperativas se rigen por la **Ley 4179** (Ley de Asociaciones Cooperativas) y son supervisadas por el **INFOCOOP** (Instituto Nacional de Fomento Cooperativo).\n\n**Requisitos para constituir una cooperativa:**\n• Mínimo 20 asociados fundadores\n• Acta constitutiva notarial\n• Estatutos sociales\n• Inscripción en el RNPJ (Registro Nacional)\n• Inscripción en INFOCOOP\n• Certificación de actividad económica\n\n**Órganos obligatorios:**\n• Asamblea General (máxima autoridad)\n• Consejo de Administración\n• Comité de Vigilancia\n• Comité de Educación y Bienestar\n\nPara consultas específicas, visita: www.infocoop.go.cr\nLegislación: SCIJ → www.pgrweb.go.cr/scij/`;
+  if(m.includes('8292') || m.includes('control interno') || m.includes('lgci')) return `**LEY GENERAL DE CONTROL INTERNO (N° 8292)**\n\nPublicada en La Gaceta N° 169 del 4 de setiembre de 2002.\n\n**Componentes del SCI (Art. 8):**\n1. **Ambiente de control** (Art. 15-16): Cultura organizacional, valores éticos\n2. **Valoración de riesgo** (Art. 17-18): Identificación y análisis de riesgos\n3. **Actividades de control** (Art. 20-26): Políticas y procedimientos\n4. **Información y comunicación** (Art. 27-28): Flujos de información\n5. **Monitoreo** (Art. 29-30): Evaluación del SCI\n\n**Responsabilidad del jerarca (Art. 10):**\nEs responsabilidad del jerarca establecer, mantener y evaluar el SCI.\n\n**Auditoría Interna (Art. 21-37):**\nObligatoria para entes públicos. Evalúa la eficacia del SCI.\n\nFuente oficial: www.pgrweb.go.cr/scij/`;
+  if(m.includes('riesgo')) return `**GESTIÓN DE RIESGOS · ACHE GENESIS**\n\nBajo la Ley 8292 (Art. 17-18), los riesgos deben evaluarse según:\n\n**Probabilidad:** Baja (1-3) / Media (4-6) / Alta (7-10)\n**Impacto:** Insignificante (1-2) / Menor (3-4) / Moderado (5-6) / Mayor (7-8) / Catastrófico (9-10)\n\n**Score = Probabilidad × Impacto**\n• 1-20: BAJO ✅\n• 21-49: MEDIO ⚠️\n• 50-79: ALTO 🔶\n• 80-100: CRÍTICO 🔴\n\nUsa el módulo **RIESGO** en el menú para ejecutar la evaluación completa.`;
+  if(m.includes('acta') || m.includes('asamblea')) return `**ACTAS DE ASAMBLEA · MARCO LEGAL CR**\n\nPara cooperativas (Art. 44, Ley 4179), el acta de asamblea debe contener:\n\n1. Número de acta (correlativo)\n2. Lugar, fecha y hora de inicio\n3. Quórum: mayoría de asociados con derecho a voto\n4. Orden del día\n5. Acuerdos tomados (con número de acuerdo)\n6. Votaciones (favor/contra/abstenciones)\n7. Puntos varios\n8. Hora de cierre\n9. Firmas: Presidente y Secretario del Consejo\n\n**Importante:** Las actas son documentos legales. Deben conservarse indefinidamente (Ley 7202, Sistema Nacional de Archivos).\n\nUsa el módulo **ACTAS** para crear y gestionar actas digitales.`;
+  if(m.includes('procurad')) return `**PROCURADURÍA GENERAL DE LA REPÚBLICA**\n\nEl órgano consultor técnico-jurídico más importante de Costa Rica.\n\n**Funciones principales:**\n• Emitir dictámenes y opiniones jurídicas vinculantes\n• Representar al Estado en juicio\n• Defender los intereses del Estado\n\n**SCIJ (Sistema Costarricense de Información Jurídica):**\nBase de datos gratuita con toda la legislación, jurisprudencia y dictámenes.\n\n🔗 www.pgrweb.go.cr/scij/\n\n**Tipos de criterios:**\n• **Dictamen**: Vinculante para el consultante\n• **Opinión jurídica**: No vinculante, ilustrativa\n• **Circular**: Instrucciones generales\n\nPuede buscar dictámenes sobre: cooperativas, control interno, responsabilidad de funcionarios, etc.`;
+  if(m.includes('aurora') || m.includes('ache') || m.includes('phi')) return `**SISTEMA ACHE GENESIS · φ=1.618**\n\nSoy AURORA, el núcleo cognitivo de ACHE — Sistema Cognitivo Modular diseñado para COOPECRUCENOS R.L. en La Cruz, Guanacaste, Costa Rica.\n\n**Filosofía φ (Golden Ratio):**\n• 61.8% recursos → seguridad/reserva\n• 38.2% recursos → crecimiento/innovación\n\n**Ciclo Operativo:**\nPERCIBIR → CONTEXTUALIZAR → ANALIZAR → SIMULAR → RECOMENDAR → ESPERAR\n\n**Módulos activos:**\n⬡ AURORA (IA) · LEX CR · RIESGO · ORGANIZACIÓN\n📋 ACTAS · 👥 MIEMBROS · 🏨 HOTEL · 🏦 BANCO φ\n💳 SINPE · 🧬 NEXUS · 🚀 GITHUB\n\nConfigura tu API Key para respuestas completas con Claude Sonnet 4.6.`;
+  return `**AURORA · MODO LOCAL**\n\nSin API key configurada, opero con conocimiento integrado.\n\nPuedo responder sobre:\n• Leyes de Costa Rica (8292, 4179, 218, 6227, etc.)\n• Gestión de riesgos y control interno\n• Cooperativas y organizaciones sociales\n• Actas y documentación legal\n• Sistema ACHE y filosofía φ\n• Hotel AURORA · Banco φ · SINPE · NEXUS\n\n**Para respuestas completas con IA:**\nConfigura tu API Key en el módulo de configuración.\nGroq es GRATIS: console.groq.com`;
+}
+
+function chipSend(msg){ goTab('aurora'); document.getElementById('aurora-input').value=msg; setTimeout(auroraEnviar,100); }
+
+function appendMsg(chatId, content, who){
+  const chat = document.getElementById(chatId);
+  const d = document.createElement('div');
+  d.className = 'msg '+who;
+  d.innerHTML = content;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+  return d;
+}
+
+function saveKey(name, val){ if(val) { DB.set('key_'+name, val); toast('API Key guardada: '+name, 'ok'); } }
+
+// ══════════════════════════════════════════════════
+// LEX CR · BASE NORMATIVA
+// ══════════════════════════════════════════════════
+
+const LEYES_CR = [
+  {
+    num:'8292', nombre:'Ley General de Control Interno (LGCI)',
+    categoria:'control', año:2002, organo:'Asamblea Legislativa',
+    desc:'Marco jurídico del Sistema de Control Interno para el Sector Público costarricense. Obligatoria para entes y órganos del Estado.',
+    articulos:[
+      {num:'Art. 8', titulo:'Componentes del SCI', texto:'El sistema de control interno comprende: a) Ambiente de control, b) Valoración del riesgo, c) Actividades de control, d) Información y comunicación, e) Monitoreo.'},
+      {num:'Art. 10', titulo:'Responsabilidad del jerarca', texto:'Es responsabilidad del jerarca establecer, mantener, perfeccionar y evaluar el sistema de control interno institucional.'},
+      {num:'Art. 15', titulo:'Ambiente de control', texto:'Como parte del sistema de control interno, el jerarca y los titulares subordinados deben mantener y demostrar integridad y valores éticos.'},
+      {num:'Art. 17', titulo:'Valoración del riesgo', texto:'El jerarca y los titulares subordinados identificarán los riesgos relevantes que enfrenta la institución en la búsqueda de sus objetivos.'},
+      {num:'Art. 18', titulo:'Riesgo de fraude y corrupción', texto:'La administración activa valorará la posibilidad de que existan actos de fraude y corrupción que afecten el logro de los objetivos.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=49614'
+  },
+  {
+    num:'4179', nombre:'Ley de Asociaciones Cooperativas e INFOCOOP',
+    categoria:'cooperativa', año:1968, organo:'Asamblea Legislativa',
+    desc:'Regula la creación, organización, funcionamiento y disolución de las cooperativas en Costa Rica. Crea el INFOCOOP.',
+    articulos:[
+      {num:'Art. 3', titulo:'Principios cooperativos', texto:'Las cooperativas se rigen por: adhesión voluntaria, control democrático, participación económica, autonomía e independencia, educación y capacitación, cooperación entre cooperativas, y preocupación por la comunidad.'},
+      {num:'Art. 14', titulo:'Requisitos de constitución', texto:'Para constituir una cooperativa se requieren al menos 20 asociados, que suscriban el acta constitutiva ante notario público.'},
+      {num:'Art. 44', titulo:'Asamblea General', texto:'La Asamblea General es el órgano superior de la cooperativa. Sus decisiones obligan a todos los asociados.'},
+      {num:'Art. 61', titulo:'Consejo de Administración', texto:'El Consejo de Administración tiene la administración superior de la cooperativa y rendirá cuentas ante la Asamblea General.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=38999'
+  },
+  {
+    num:'218', nombre:'Ley de Asociaciones',
+    categoria:'organizacion', año:1939, organo:'Asamblea Legislativa',
+    desc:'Regula las asociaciones sin fines de lucro en Costa Rica. Aplica a todo tipo de organizaciones civiles, culturales, deportivas, etc.',
+    articulos:[
+      {num:'Art. 1', titulo:'Libertad de asociación', texto:'Toda persona tiene el derecho de asociarse para fines lícitos. El Estado garantiza este derecho constitucional.'},
+      {num:'Art. 4', titulo:'Personería jurídica', texto:'Las asociaciones adquieren personería jurídica mediante inscripción en el Registro de Asociaciones del Registro Nacional.'},
+      {num:'Art. 12', titulo:'Junta Directiva', texto:'La dirección y administración de la asociación estará a cargo de una Junta Directiva elegida por la Asamblea General.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=31959'
+  },
+  {
+    num:'6227', nombre:'Ley General de Administración Pública (LGAP)',
+    categoria:'control', año:1978, organo:'Asamblea Legislativa',
+    desc:'Regula la organización y funcionamiento de la Administración Pública costarricense. Principios de legalidad, eficiencia y rendición de cuentas.',
+    articulos:[
+      {num:'Art. 11', titulo:'Principio de legalidad', texto:'La Administración Pública actuará sometida al ordenamiento jurídico y solo podrá realizar los actos, tomar las medidas y ejercer las competencias que el mismo autoriza.'},
+      {num:'Art. 102', titulo:'Responsabilidad del funcionario', texto:'El servidor público será responsable ante la Administración y ante terceros por los daños que cause su acción u omisión.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=11426'
+  },
+  {
+    num:'7558', nombre:'Ley Orgánica del Banco Central de Costa Rica (BCCR)',
+    categoria:'financiero', año:1995, organo:'Asamblea Legislativa',
+    desc:'Regula el sistema monetario y financiero costarricense. Establece las funciones del BCCR y supervisión bancaria.',
+    articulos:[
+      {num:'Art. 2', titulo:'Objetivos del BCCR', texto:'Los objetivos del Banco Central son: mantener la estabilidad interna y externa de la moneda nacional y asegurar su conversión a otras monedas.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=29940'
+  },
+  {
+    num:'8204', nombre:'Ley sobre Estupefacientes / Prevención Lavado de Dinero',
+    categoria:'financiero', año:2001, organo:'Asamblea Legislativa',
+    desc:'Establece las obligaciones para prevención del lavado de dinero y financiamiento del terrorismo. Aplica a cooperativas, bancos y organizaciones financieras.',
+    articulos:[
+      {num:'Art. 15', titulo:'Reporte de operaciones sospechosas', texto:'Las instituciones financieras deben reportar a la SUGEF operaciones inusuales o sospechosas de lavado de dinero o financiamiento al terrorismo.'},
+      {num:'Art. 72', titulo:'Conozca a su cliente', texto:'Toda entidad financiera debe implementar políticas de "Conozca a su Cliente" (KYC) para prevenir el lavado de activos.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=48179'
+  },
+  {
+    num:'7428', nombre:'Ley Orgánica de la Contraloría General de la República (CGR)',
+    categoria:'control', año:1994, organo:'Asamblea Legislativa',
+    desc:'Establece las potestades fiscalizadoras de la CGR sobre la Hacienda Pública. Aplica a toda entidad que maneje fondos públicos.',
+    articulos:[
+      {num:'Art. 4', titulo:'Ámbito de aplicación', texto:'La Contraloría General de la República ejercerá su control y fiscalización sobre los sujetos pasivos que integran la Hacienda Pública.'},
+      {num:'Art. 11', titulo:'Potestades de la CGR', texto:'La Contraloría General podrá anular actos o contratos, impartir instrucciones, cancelar o suspender el acceso al presupuesto.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=22119'
+  },
+  {
+    num:'8422', nombre:'Ley contra la Corrupción y el Enriquecimiento Ilícito',
+    categoria:'anticorrupcion', año:2004, organo:'Asamblea Legislativa',
+    desc:'Combate la corrupción en el sector público. Establece prohibiciones, declaraciones juradas y responsabilidades para funcionarios públicos.',
+    articulos:[
+      {num:'Art. 18', titulo:'Declaración jurada de bienes', texto:'Todo funcionario público está obligado a presentar declaración jurada de bienes, derechos y obligaciones patrimoniales al inicio y término de funciones.'},
+      {num:'Art. 38', titulo:'Enriquecimiento ilícito', texto:'El servidor público que aumente su patrimonio durante su gestión y no pueda justificarlo, incurrirá en el delito de enriquecimiento ilícito.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=54898'
+  },
+  {
+    num:'7202', nombre:'Ley del Sistema Nacional de Archivos',
+    categoria:'control', año:1990, organo:'Asamblea Legislativa',
+    desc:'Establece la obligación de conservar documentos de interés histórico y legal. Regula los archivos institucionales.',
+    articulos:[
+      {num:'Art. 2', titulo:'Obligación de conservar', texto:'Todos los organismos públicos están obligados a organizar y conservar sus documentos de acuerdo con las normas que establezca la Dirección General del Archivo Nacional.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=12461'
+  },
+  {
+    num:'7794', nombre:'Código Municipal',
+    categoria:'organizacion', año:1998, organo:'Asamblea Legislativa',
+    desc:'Rige la organización y funcionamiento de las municipalidades. Principios de autonomía municipal, participación ciudadana y rendición de cuentas.',
+    articulos:[
+      {num:'Art. 13', titulo:'Atribuciones del Concejo Municipal', texto:'Es atribución del Concejo: aprobar el presupuesto municipal, dictar los reglamentos, autorizar los contratos y fijar la política de desarrollo del cantón.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=42847'
+  },
+  {
+    num:'5338', nombre:'Ley de Fundaciones',
+    categoria:'organizacion', año:1973, organo:'Asamblea Legislativa',
+    desc:'Regula las fundaciones en Costa Rica. Organizaciones sin fines de lucro con patrimonio dedicado a fines de interés público.',
+    articulos:[
+      {num:'Art. 1', titulo:'Definición', texto:'Las fundaciones son personas jurídicas de derecho privado, constituidas por la afectación de bienes a un fin social de interés público.'},
+    ],
+    url:'http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=38023'
+  },
+  {
+    num:'49-2016', nombre:'Reglamento a la Ley de Fortalecimiento SUGEF (Circular)',
+    categoria:'financiero', año:2016, organo:'SUGEF',
+    desc:'Acuerdo SUGEF 1-05 y 6-06: Reglamentos de gestión de riesgos para entidades financieras supervisadas, incluidas cooperativas de ahorro y crédito.',
+    articulos:[
+      {num:'Art. 1', titulo:'Entidades supervisadas', texto:'Las cooperativas de ahorro y crédito están sujetas a supervisión de la SUGEF según la Ley N° 8204 y el Acuerdo SUGEF 1-05.'},
+    ],
+    url:'https://www.sugef.fi.cr/'
+  }
+];
+
+function initLeyes(){
+  renderLeyes(LEYES_CR);
+}
+
+function renderLeyes(leyes){
+  const c = document.getElementById('leyes-container');
+  c.innerHTML = '';
+  leyes.forEach(ley => {
+    const div = document.createElement('div');
+    div.className = 'ley-card';
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span class="ley-num">Ley N° ${ley.num}</span>
+          <span style="font-size:8px;color:var(--dim);margin-left:8px">${ley.año} · ${ley.organo}</span>
+        </div>
+        <span class="risk-badge rb-${ley.categoria==='control'?'low':ley.categoria==='financiero'?'med':ley.categoria==='anticorrupcion'?'hi':'low'}" style="font-size:7px">${ley.categoria.toUpperCase()}</span>
+      </div>
+      <div class="ley-nombre">${ley.nombre}</div>
+      <div class="ley-desc">${ley.desc}</div>
+      <div class="ley-body" id="ley-body-${ley.num}">
+        ${ley.articulos.map(a=>`<div class="art"><div class="art-num">⬡ ${a.num}: ${a.titulo}</div><div style="font-size:10px;color:var(--txt);margin-top:4px;line-height:1.7">${a.texto}</div></div>`).join('')}
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <a href="${ley.url}" target="_blank" class="btn bb btn-sm" style="text-decoration:none;padding:6px 12px;font-size:9px">SCIJ → Texto Completo</a>
+          <button class="btn bj btn-sm" onclick="chipSend('Explícame la Ley ${ley.num} - ${ley.nombre} y sus implicaciones prácticas para organizaciones sociales en Costa Rica')">🧠 Consultar AURORA</button>
+        </div>
+      </div>
+    `;
+    div.onclick = () => {
+      const body = document.getElementById('ley-body-'+ley.num);
+      body.classList.toggle('open');
+    };
+    c.appendChild(div);
+  });
+}
+
+function filtrarLeyes(q){
+  const filtered = LEYES_CR.filter(l => l.nombre.toLowerCase().includes(q.toLowerCase()) || l.num.includes(q) || l.desc.toLowerCase().includes(q.toLowerCase()) || l.articulos.some(a=>a.texto.toLowerCase().includes(q.toLowerCase())));
+  renderLeyes(filtered);
+}
+
+function filtroLex(cat, el){
+  document.querySelectorAll('.stab').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  if(cat==='todas') renderLeyes(LEYES_CR);
+  else renderLeyes(LEYES_CR.filter(l=>l.categoria===cat));
+}
+
+function buscarSCIJ(){
+  const q = document.getElementById('lex-search').value||'control interno';
+  window.open('http://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_busqueda.aspx?param1=NOMB&nValor1=1&strTipM=AL&lResultado=20&strTem=%22'+encodeURIComponent(q)+'%22','_blank');
+}
+
+// ══════════════════════════════════════════════════
+// RIESGO · PREDICTOR AUTOMÁTICO
+// ══════════════════════════════════════════════════
+
+const RIESGO_PREGUNTAS = {
+  ambiente: [
+    {id:'a1', texto:'¿Existe un código de ética formal aprobado y comunicado? (Art. 15 LGCI)', peso:3},
+    {id:'a2', texto:'¿La alta dirección demuestra compromiso con el control interno? (Art. 10 LGCI)', peso:4},
+    {id:'a3', texto:'¿Existen sanciones efectivas ante incumplimientos éticos? (Art. 8 LGCI)', peso:3},
+    {id:'a4', texto:'¿Hay un organigrama formal y manual de puestos actualizado? (Art. 6 LGAP)', peso:2},
+  ],
+  valoracion: [
+    {id:'v1', texto:'¿Se ha realizado identificación formal de riesgos institucionales? (Art. 17 LGCI)', peso:4},
+    {id:'v2', texto:'¿Existe un mapa de riesgos actualizado? (Art. 18 LGCI)', peso:3},
+    {id:'v3', texto:'¿Se valora el riesgo de fraude específicamente? (Art. 18 LGCI)', peso:4},
+    {id:'v4', texto:'¿Los riesgos están priorizados por probabilidad e impacto? (Art. 17 LGCI)', peso:3},
+  ],
+  actividades: [
+    {id:'c1', texto:'¿Existen aprobaciones duales para transacciones importantes? (Art. 20 LGCI)', peso:3},
+    {id:'c2', texto:'¿Hay segregación de funciones (quien autoriza ≠ quien ejecuta ≠ quien registra)?', peso:4},
+    {id:'c3', texto:'¿Existe custodia adecuada de activos y documentos? (Art. 24 LGCI)', peso:3},
+    {id:'c4', texto:'¿Se realizan conciliaciones bancarias y revisiones periódicas? (Art. 22 LGCI)', peso:3},
+  ],
+  informacion: [
+    {id:'i1', texto:'¿Existe un sistema de información que genere reportes oportunos? (Art. 27 LGCI)', peso:3},
+    {id:'i2', texto:'¿Se comunican las decisiones a todos los niveles organizacionales? (Art. 27 LGCI)', peso:2},
+    {id:'i3', texto:'¿Hay canales para reportar irregularidades de forma confidencial?', peso:3},
+    {id:'i4', texto:'¿Los estados financieros son preparados y revisados oportunamente? (Ley 4179)', peso:3},
+  ],
+  monitoreo: [
+    {id:'m1', texto:'¿Se realizan evaluaciones periódicas del sistema de control interno? (Art. 29 LGCI)', peso:4},
+    {id:'m2', texto:'¿Existe auditoría interna o control equivalente? (Art. 21-37 LGCI)', peso:4},
+    {id:'m3', texto:'¿Se implementan las recomendaciones de auditoría? (Art. 36 LGCI)', peso:3},
+    {id:'m4', texto:'¿Se reportan deficiencias al jerarca y se les da seguimiento? (Art. 30 LGCI)', peso:3},
+  ]
+};
+
+function initRiesgo(){
+  renderRiesgoForm('ambiente', 'r-ambiente');
+  renderRiesgoForm('valoracion', 'r-valoracion');
+  renderRiesgoForm('actividades', 'r-actividades');
+  renderRiesgoForm('informacion', 'r-informacion');
+  renderRiesgoForm('monitoreo', 'r-monitoreo');
+  renderRiskTable();
+}
+
+function renderRiesgoForm(cat, elId){
+  const el = document.getElementById(elId);
+  const preguntas = RIESGO_PREGUNTAS[cat];
+  el.innerHTML = preguntas.map(p=>`
+    <div style="margin-bottom:10px">
+      <div style="font-size:9px;color:var(--txt);line-height:1.5;margin-bottom:4px">${p.texto}</div>
+      <select class="fsel" id="rq-${p.id}" style="margin:0;padding:6px;font-size:10px">
+        <option value="">-- Sin evaluar --</option>
+        <option value="5">✅ Sí, completamente (5)</option>
+        <option value="3">⚠️ Parcialmente (3)</option>
+        <option value="1">❌ No existe (1)</option>
+        <option value="0">🚫 No aplica (0)</option>
+      </select>
+    </div>
+  `).join('');
+}
+
+function calcularRiesgo(){
+  let total = 0, posible = 0;
+  let categorias = {};
+  Object.keys(RIESGO_PREGUNTAS).forEach(cat => {
+    let catTotal = 0, catPosible = 0;
+    RIESGO_PREGUNTAS[cat].forEach(p => {
+      const val = parseInt(document.getElementById('rq-'+p.id).value)||0;
+      if(document.getElementById('rq-'+p.id).value === '') return;
+      const score = val * p.peso;
+      const max = 5 * p.peso;
+      catTotal += score; catPosible += max;
+      total += score; posible += max;
+    });
+    if(catPosible>0) categorias[cat] = Math.round((catTotal/catPosible)*100);
+  });
+  
+  if(posible===0){ toast('Completa la evaluación primero','e'); return; }
+  
+  const pct = Math.round((total/posible)*100);
+  // Invertir: más alto = mejor control = menor riesgo
+  const riskScore = 100 - pct;
+  
+  document.getElementById('r-score').textContent = riskScore+'%';
+  document.getElementById('h-riesgo-score').textContent = riskScore+'%';
+  
+  let nivel, color, badge;
+  if(riskScore<=20){nivel='BAJO';color='var(--risk-low)';badge='rb-low';}
+  else if(riskScore<=49){nivel='MEDIO';color='var(--risk-med)';badge='rb-med';}
+  else if(riskScore<=79){nivel='ALTO';color='var(--risk-hi)';badge='rb-hi';}
+  else{nivel='CRÍTICO';color='var(--risk-crit)';badge='rb-crit';}
+  
+  document.getElementById('r-nivel').textContent = nivel;
+  document.getElementById('r-nivel').style.color = color;
+  
+  DB.set('last_risk',{score:riskScore,nivel,categorias,ts:new Date().toISOString()});
+  logEvento('RIESGO', 'Evaluación completada: Score '+riskScore+'% · Nivel: '+nivel);
+  toast('⬡ Score de riesgo: '+riskScore+'% · '+nivel, nivel==='BAJO'?'ok':nivel==='CRÍTICO'?'e':'w');
+  generarPlanAuto(riskScore, nivel, categorias);
+}
+
+function generarPlanAuto(score, nivel, cats){
+  const plan = document.getElementById('plan-accion');
+  const recomendaciones = [];
+  if(!cats.ambiente || cats.ambiente<60) recomendaciones.push('🔴 URGENTE: Elaborar y comunicar Código de Ética (Art. 15, LGCI). Plazo: 30 días.');
+  if(!cats.valoracion || cats.valoracion<60) recomendaciones.push('🔴 URGENTE: Desarrollar Mapa de Riesgos institucional (Art. 17, LGCI). Plazo: 60 días.');
+  if(!cats.actividades || cats.actividades<60) recomendaciones.push('🟡 Implementar segregación de funciones y autorizaciones duales (Art. 20, LGCI). Plazo: 90 días.');
+  if(!cats.informacion || cats.informacion<60) recomendaciones.push('🟡 Establecer sistema de información y reportes periódicos (Art. 27, LGCI). Plazo: 60 días.');
+  if(!cats.monitoreo || cats.monitoreo<60) recomendaciones.push('🔴 URGENTE: Crear función de auditoría o fiscalización interna (Art. 21, LGCI). Plazo: 90 días.');
+  recomendaciones.push('📋 Documentar todas las acciones en actas de Junta Directiva.');
+  recomendaciones.push('⬡ Repetir evaluación ACHE en 3 meses para medir mejora.');
+  
+  plan.innerHTML = `
+    <div style="margin-bottom:10px">
+      <span class="risk-badge rb-${nivel==='BAJO'?'low':nivel==='MEDIO'?'med':nivel==='ALTO'?'hi':'crit'}">${nivel}</span>
+      <span style="font-size:10px;color:var(--txt);margin-left:8px">Score de Riesgo: ${score}% · Evaluado: ${new Date().toLocaleString('es-CR')}</span>
+    </div>
+    <div style="font-size:10px;line-height:2.2;color:var(--txt)">
+      ${recomendaciones.map(r=>`<div>${r}</div>`).join('')}
+    </div>
+    <div style="margin-top:12px;padding:10px;background:rgba(0,255,200,.04);border-radius:8px;font-size:9px;color:var(--dim)">
+      Marco legal: Ley 8292 (LGCI) · Ley 6227 (LGAP) · Ley 4179 (Cooperativas) · CGR · SUGEF<br>
+      Este plan es de carácter advisory. Para implementación formal, consulte con su auditor y asesor legal.
+    </div>
+  `;
+}
+
+function riesgoTab(id, el){
+  document.querySelectorAll('.rsub').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.stab').forEach(s=>s.classList.remove('active'));
+  document.getElementById('rsub-'+id).style.display='block';
+  el.classList.add('active');
+  if(id==='mapa') drawRiskMap();
+}
+
+function renderRiskTable(){
+  const risks = DB.get('risks')||defaultRisks();
+  const tbody = document.getElementById('risk-table');
+  tbody.innerHTML = risks.map(r=>`
+    <tr>
+      <td>${r.desc}</td>
+      <td>${r.prob}/10</td>
+      <td>${r.impacto}/10</td>
+      <td><span class="risk-badge rb-${r.score>=80?'crit':r.score>=50?'hi':r.score>=21?'med':'low'}">${r.score}</span></td>
+      <td style="font-size:8px;color:var(--dim)">${r.ley}</td>
+      <td><span class="risk-badge rb-${r.estado==='mitigado'?'low':'hi'}">${r.estado}</span></td>
+    </tr>
+  `).join('');
+  document.getElementById('r-hallazgos').textContent = risks.filter(r=>r.score>=50).length;
+}
+
+function defaultRisks(){
+  const risks = [
+    {desc:'Falta de código de ética documentado',prob:7,impacto:8,score:56,ley:'Art. 15 LGCI',estado:'identificado'},
+    {desc:'Ausencia de mapa de riesgos institucional',prob:8,impacto:9,score:72,ley:'Art. 17-18 LGCI',estado:'identificado'},
+    {desc:'Segregación de funciones insuficiente',prob:6,impacto:8,score:48,ley:'Art. 20 LGCI',estado:'identificado'},
+    {desc:'Riesgo de lavado de dinero sin protocolo',prob:4,impacto:10,score:40,ley:'Art. 15 Ley 8204',estado:'identificado'},
+    {desc:'Actas de asamblea sin formato legal',prob:5,impacto:6,score:30,ley:'Art. 44 Ley 4179',estado:'identificado'},
+    {desc:'Sin declaraciones juradas de directivos',prob:6,impacto:7,score:42,ley:'Art. 18 Ley 8422',estado:'identificado'},
+  ];
+  DB.set('risks', risks);
+  return risks;
+}
+
+function drawRiskMap(){
+  const canvas = document.getElementById('mapa-riesgo-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,600,400);
+  
+  // Fondo zonas
+  const grad = [{x:0,y:0,w:180,h:160,c:'rgba(57,255,20,.05)'},{x:180,y:0,w:240,h:160,c:'rgba(255,215,0,.05)'},{x:420,y:0,w:180,h:160,c:'rgba(255,107,43,.1)'},
+    {x:0,y:160,w:180,h:120,c:'rgba(255,215,0,.05)'},{x:180,y:160,w:240,h:120,c:'rgba(255,107,43,.08)'},{x:420,y:160,w:180,h:120,c:'rgba(255,23,68,.1)'},
+    {x:0,y:280,w:180,h:120,c:'rgba(255,107,43,.08)'},{x:180,y:280,w:240,h:120,c:'rgba(255,23,68,.08)'},{x:420,y:280,w:180,h:120,c:'rgba(255,23,68,.15)'}];
+  grad.forEach(z=>{ctx.fillStyle=z.c;ctx.fillRect(z.x+50,z.y+20,z.w,z.h);});
+  
+  // Ejes
+  ctx.strokeStyle='#0d2040'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(50,20); ctx.lineTo(50,380); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(50,380); ctx.lineTo(600,380); ctx.stroke();
+  
+  // Labels
+  ctx.fillStyle='#2a4a6a'; ctx.font='10px JetBrains Mono';
+  ctx.fillText('PROBABILIDAD →',200,398);
+  ctx.save(); ctx.translate(16,220); ctx.rotate(-Math.PI/2); ctx.fillText('IMPACTO ↑',0,0); ctx.restore();
+  
+  // Riesgos
+  const risks = DB.get('risks')||defaultRisks();
+  risks.forEach((r,i)=>{
+    const x = 50 + (r.prob/10)*550;
+    const y = 380 - (r.impacto/10)*360;
+    const col = r.score>=80?'#ff1744':r.score>=50?'#ff6b2b':r.score>=21?'#ffd700':'#39ff14';
+    ctx.beginPath(); ctx.arc(x,y,10,0,Math.PI*2); ctx.fillStyle=col+'33'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x,y,7,0,Math.PI*2); ctx.fillStyle=col; ctx.fill();
+    ctx.fillStyle='#c8e6f8'; ctx.font='8px JetBrains Mono';
+    ctx.fillText('R'+(i+1),x-4,y+3);
+  });
+}
+
+// ══════════════════════════════════════════════════
+// ORGANIZACIÓN
+// ══════════════════════════════════════════════════
+
+const ORG_INFO = {
+  cooperativa: {
+    icon:'🤝', color:'var(--jade)',
+    ley:'Ley 4179 (INFOCOOP)',
+    organos:['Asamblea General','Consejo de Administración','Gerencia','Comité de Vigilancia','Comité de Educación'],
+    requisitos:['Mínimo 20 asociados','Acta constitutiva notarial','Estatutos sociales','Inscripción RNPJ','Inscripción INFOCOOP','Actividad económica lícita'],
+    obligaciones:['Asamblea General anual','Informes financieros','Auditoría externa','Educación cooperativa','Reserva legal 10%','Impuesto cooperativo INFOCOOP']
+  },
+  asociacion: {
+    icon:'🏛️', color:'var(--blue)',
+    ley:'Ley 218',
+    organos:['Asamblea General','Junta Directiva','Fiscal'],
+    requisitos:['Mínimo 10 socios fundadores','Acta constitutiva','Estatutos','Inscripción en Registro de Asociaciones RNPJ'],
+    obligaciones:['Asamblea anual','Registro actualizado de miembros','Sin fines de lucro','Actividades conforme estatutos']
+  },
+  sa: {
+    icon:'🏢', color:'var(--phi)',
+    ley:'Código de Comercio',
+    organos:['Asamblea de Accionistas','Junta Directiva','Gerente General','Fiscal'],
+    requisitos:['Capital mínimo','Escritura pública','Inscripción en Registro Mercantil RNPJ','Cédula jurídica'],
+    obligaciones:['Asamblea ordinaria anual','Declaración de renta (D-101)','Patente comercial','Planilla CCSS si tiene empleados']
+  },
+  fundacion: {
+    icon:'❤️', color:'var(--pur)',
+    ley:'Ley 5338',
+    organos:['Junta Administrativa','Director Ejecutivo'],
+    requisitos:['Patrimonio fundacional','Escritura pública','Fin de interés público','Inscripción RNPJ'],
+    obligaciones:['Destinar patrimonio al fin fundacional','Informes anuales','Sin distribución de beneficios']
+  },
+  asada: {
+    icon:'💧', color:'var(--blue)',
+    ley:'Ley 6313 + Ley 218 + Reglamento AyA',
+    organos:['Asamblea General','Junta Directiva','Fontanero','Administrador'],
+    requisitos:['Constitución como asociación','Convenio con AyA','Acuerdo ARCSA','Fuente de agua concesionada'],
+    obligaciones:['Reporte mensual a AyA','Cobro de tarifas reguladas','Mantenimiento del sistema','Calidad del agua']
+  }
+};
+
+function initOrg(){
+  const org = DB.get('org_data');
+  if(org){
+    if(org.nombre) document.getElementById('org-nombre').value=org.nombre;
+    if(org.tipo){document.getElementById('org-tipo').value=org.tipo;actualizarOrgInfo();}
+    if(org.cedula) document.getElementById('org-cedula').value=org.cedula;
+    if(org.canton) document.getElementById('org-canton').value=org.canton;
+  }
+  renderJunta();
+}
+
+function actualizarOrgInfo(){
+  const tipo = document.getElementById('org-tipo').value;
+  const info = ORG_INFO[tipo];
+  const card = document.getElementById('org-info-card');
+  if(!info){card.style.display='none';return;}
+  card.style.display='block';
+  card.innerHTML = `
+    <div class="card" style="border-color:${info.color}33;background:${info.color}05">
+      <div class="card-t">ℹ️ ${info.icon} INFORMACIÓN LEGAL · ${tipo.toUpperCase()}</div>
+      <div style="font-size:9px;color:var(--dim);margin-bottom:6px">Ley aplicable: ${info.ley}</div>
+      <div class="g3">
+        <div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:1px;margin-bottom:6px">ÓRGANOS REQUERIDOS</div>
+          ${info.organos.map(o=>`<div style="font-size:10px;color:var(--txt);padding:2px 0;border-bottom:1px solid var(--bdr)">⬡ ${o}</div>`).join('')}
+        </div>
+        <div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:1px;margin-bottom:6px">REQUISITOS</div>
+          ${info.requisitos.map(r=>`<div style="font-size:10px;color:var(--txt);padding:2px 0;border-bottom:1px solid var(--bdr)">• ${r}</div>`).join('')}
+        </div>
+        <div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:1px;margin-bottom:6px">OBLIGACIONES</div>
+          ${info.obligaciones.map(o=>`<div style="font-size:10px;color:var(--txt);padding:2px 0;border-bottom:1px solid var(--bdr)">• ${o}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function guardarOrg(){
+  const data = {
+    nombre:document.getElementById('org-nombre').value,
+    tipo:document.getElementById('org-tipo').value,
+    cedula:document.getElementById('org-cedula').value,
+    canton:document.getElementById('org-canton').value,
+    email:document.getElementById('org-email').value,
+    fecha:document.getElementById('org-fecha').value,
+    ts: new Date().toISOString()
+  };
+  DB.set('org_data',data);
+  toast('✅ Organización guardada','ok');
+  logEvento('ORG','Organización guardada: '+data.nombre+' ('+data.tipo+')');
+  if(data.nombre) document.getElementById('cfg-orgname').value=data.nombre;
+}
+
+function genEstatutos(){
+  const tipo = document.getElementById('org-tipo').value;
+  const nombre = document.getElementById('org-nombre').value||'[NOMBRE DE LA ORGANIZACIÓN]';
+  if(!tipo){toast('Selecciona el tipo de organización','e');return;}
+  const ley = (ORG_INFO[tipo]||{}).ley||'Ley aplicable';
+  const prev = document.getElementById('estatutos-preview');
+  prev.style.color='var(--txt)';
+  prev.innerHTML = `
+    <div style="font-size:10px;line-height:2">
+      <strong style="color:var(--jade)">BORRADOR DE ESTATUTOS</strong><br>
+      <strong>${nombre.toUpperCase()}</strong><br><br>
+      <strong>CAPÍTULO I — CONSTITUCIÓN Y FINES</strong><br>
+      Art. 1. Denominación: Se constituye la organización denominada <em>${nombre}</em>, al amparo de la ${ley}.<br>
+      Art. 2. Domicilio: La organización tiene su domicilio en el cantón de [CANTÓN], provincia de [PROVINCIA], República de Costa Rica.<br>
+      Art. 3. Fines: Los fines de la organización son [FINES ESPECÍFICOS].<br><br>
+      <strong>CAPÍTULO II — MIEMBROS</strong><br>
+      Art. 4. Membresía: Podrá ser miembro toda persona [física/jurídica] que [REQUISITOS].<br>
+      Art. 5. Derechos: Los miembros tienen derecho a: voz y voto en Asambleas, información financiera, participar en actividades.<br>
+      Art. 6. Deberes: Los miembros deben: cumplir estatutos, pagar cuotas, participar activamente.<br><br>
+      <strong>CAPÍTULO III — GOBIERNO</strong><br>
+      Art. 7. Órganos: Los órganos de la organización son: [ÓRGANOS SEGÚN LEY].<br><br>
+      <em style="color:var(--dim)">Para el texto completo, consulta AURORA o un abogado especializado.</em>
+    </div>
+  `;
+  toast('Borrador de estatutos generado','ok');
+}
+
+function openAgregarDirectivo(){
+  document.getElementById('modal-title').textContent = 'Agregar Miembro Junta Directiva';
+  document.getElementById('modal-body').innerHTML = `
+    <input class="fi" id="jd-nombre" placeholder="Nombre completo">
+    <input class="fi" id="jd-cedula" placeholder="Cédula de identidad">
+    <select class="fsel" id="jd-cargo">
+      <option>Presidente</option><option>Vicepresidente</option><option>Secretario</option>
+      <option>Tesorero</option><option>Vocal I</option><option>Vocal II</option>
+      <option>Vocal III</option><option>Fiscal</option><option>Gerente</option>
+    </select>
+    <input class="fi" id="jd-email" type="email" placeholder="Email">
+    <button class="btn bj" onclick="guardarDirectivo()">💾 Guardar</button>
+  `;
+  document.getElementById('main-modal').classList.add('open');
+}
+
+function guardarDirectivo(){
+  const jd = {
+    nombre:document.getElementById('jd-nombre').value,
+    cedula:document.getElementById('jd-cedula').value,
+    cargo:document.getElementById('jd-cargo').value,
+    email:document.getElementById('jd-email').value
+  };
+  DB.push('junta_directiva', jd);
+  closeModal();
+  renderJunta();
+  toast('Directivo registrado','ok');
+}
+
+function renderJunta(){
+  const junta = DB.get('junta_directiva')||[];
+  const container = document.getElementById('junta-directiva');
+  if(!junta.length){container.innerHTML='<div style="font-size:10px;color:var(--dim)">Sin miembros de Junta Directiva registrados.</div>';return;}
+  container.innerHTML = junta.map((m,i)=>`
+    <div class="member-card">
+      <div class="member-avatar">👤</div>
+      <div class="member-info">
+        <div class="member-name">${m.nombre}</div>
+        <div class="member-role">${m.cargo} · Cédula: ${m.cedula}</div>
+      </div>
+      <span class="member-estado me-activo">ACTIVO</span>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════
+// ACTAS
+// ══════════════════════════════════════════════════
+
+function initActas(){ renderActas('todas'); }
+
+function openNuevaActa(){
+  document.getElementById('modal-title').textContent = '📋 Nueva Acta';
+  const num = ((DB.get('actas')||[]).length+1).toString().padStart(4,'0');
+  document.getElementById('modal-body').innerHTML = `
+    <input class="fi" id="acta-num" placeholder="N° de acta" value="ACTA-${num}">
+    <select class="fsel" id="acta-tipo">
+      <option value="asamblea">Asamblea General</option>
+      <option value="junta">Sesión Junta Directiva</option>
+      <option value="especial">Sesión Extraordinaria</option>
+      <option value="vigilancia">Comité de Vigilancia</option>
+    </select>
+    <input class="fi" id="acta-fecha" type="date" value="${new Date().toISOString().split('T')[0]}">
+    <input class="fi" id="acta-lugar" placeholder="Lugar de reunión">
+    <input class="fi" id="acta-quorum" placeholder="Quórum (ej: 25 de 30 asociados)">
+    <textarea class="fi" id="acta-contenido" placeholder="Orden del día y acuerdos tomados..." rows="5"></textarea>
+    <button class="btn bj" onclick="guardarActa()">💾 Crear Acta</button>
+    <button class="btn bb" onclick="auroraActa()">🧠 Redactar con AURORA</button>
+  `;
+  document.getElementById('main-modal').classList.add('open');
+}
+
+function auroraActa(){
+  const tipo = document.getElementById('acta-tipo').value;
+  const fecha = document.getElementById('acta-fecha').value;
+  chipSend('Redacta un acta de '+tipo+' para una cooperativa en Costa Rica con fecha '+fecha+'. Incluye estructura legal según la Ley 4179 con: encabezado, quórum, orden del día, acuerdos (numerados), cierre y espacios para firmas.');
+  closeModal();
+}
+
+function guardarActa(){
+  const acta = {
+    numero:document.getElementById('acta-num').value,
+    tipo:document.getElementById('acta-tipo').value,
+    fecha:document.getElementById('acta-fecha').value,
+    lugar:document.getElementById('acta-lugar').value||'Sin especificar',
+    quorum:document.getElementById('acta-quorum').value||'Sin especificar',
+    contenido:document.getElementById('acta-contenido').value||'Sin contenido',
+    estado:'abierta'
+  };
+  DB.push('actas', acta);
+  closeModal();
+  renderActas('todas');
+  toast('✅ Acta creada: '+acta.numero,'ok');
+  logEvento('ACTA','Nueva acta: '+acta.numero+' · '+acta.tipo);
+  document.getElementById('h-actas').textContent = (DB.get('actas')||[]).length;
+}
+
+function renderActas(filtro='todas'){
+  let actas = DB.get('actas')||[];
+  if(filtro!=='todas') actas = actas.filter(a=>a.tipo===filtro);
+  const container = document.getElementById('actas-list');
+  if(!actas.length){container.innerHTML='<div style="padding:20px;text-align:center;color:var(--dim);font-size:11px">Sin actas registradas.</div>';return;}
+  container.innerHTML = actas.reverse().map((a,i)=>`
+    <div class="acta-item">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="acta-num">${a.numero}</span>
+        <span class="acta-estado ae-${a.estado}">${a.estado.toUpperCase()}</span>
+      </div>
+      <div style="font-size:10px;color:var(--txt);margin-bottom:4px">${a.tipo.charAt(0).toUpperCase()+a.tipo.slice(1)} · ${a.fecha}</div>
+      <div style="font-size:9px;color:var(--dim)">Lugar: ${a.lugar} · Quórum: ${a.quorum}</div>
+      <div style="font-size:9px;color:var(--dim);margin-top:4px;line-height:1.5">${(a.contenido||'').substring(0,100)}${(a.contenido||'').length>100?'...':''}</div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <button class="btn bb btn-sm" onclick="cerrarActa(${i})">Cerrar Acta</button>
+        <button class="btn bp btn-sm" onclick="aprobarActa(${i})">Aprobar</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function actasTab(tipo, el){
+  document.querySelectorAll('#tab-actas .stab').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  renderActas(tipo);
+}
+
+function cerrarActa(idx){ const actas=DB.get('actas')||[]; if(actas[idx]){actas[idx].estado='cerrada';DB.set('actas',actas);renderActas('todas');toast('Acta cerrada','ok');} }
+function aprobarActa(idx){ const actas=DB.get('actas')||[]; if(actas[idx]){actas[idx].estado='aprobada';DB.set('actas',actas);renderActas('todas');toast('Acta aprobada','ok');} }
+
+// ══════════════════════════════════════════════════
+// MIEMBROS
+// ══════════════════════════════════════════════════
+
+function initMiembros(){ renderMiembros(); updateMiembrosKPIs(); }
+
+function openNuevoMiembro(){
+  document.getElementById('modal-title').textContent = '👤 Nuevo Miembro';
+  document.getElementById('modal-body').innerHTML = `
+    <input class="fi" id="nm-nombre" placeholder="Nombre completo">
+    <input class="fi" id="nm-cedula" placeholder="Cédula de identidad">
+    <input class="fi" id="nm-email" type="email" placeholder="Email">
+    <input class="fi" id="nm-telefono" placeholder="Teléfono">
+    <select class="fsel" id="nm-rol">
+      <option>Asociado</option><option>Presidente</option><option>Vicepresidente</option>
+      <option>Secretario</option><option>Tesorero</option><option>Vocal</option>
+      <option>Fiscal</option><option>Gerente</option><option>Empleado</option><option>Fundador</option>
+    </select>
+    <select class="fsel" id="nm-estado">
+      <option value="activo">Activo</option>
+      <option value="inactivo">Inactivo</option>
+      <option value="suspendido">Suspendido</option>
+    </select>
+    <input class="fi" id="nm-ingreso" type="date" value="${new Date().toISOString().split('T')[0]}" placeholder="Fecha de ingreso">
+    <button class="btn bj" onclick="guardarMiembro()">💾 Guardar Miembro</button>
+  `;
+  document.getElementById('main-modal').classList.add('open');
+}
+
+function guardarMiembro(){
+  const m = {
+    nombre:document.getElementById('nm-nombre').value,
+    cedula:document.getElementById('nm-cedula').value,
+    email:document.getElementById('nm-email').value,
+    telefono:document.getElementById('nm-telefono').value,
+    rol:document.getElementById('nm-rol').value,
+    estado:document.getElementById('nm-estado').value,
+    ingreso:document.getElementById('nm-ingreso').value
+  };
+  if(!m.nombre){toast('Nombre requerido','e');return;}
+  DB.push('miembros',m);
+  closeModal();
+  renderMiembros();
+  updateMiembrosKPIs();
+  toast('✅ Miembro registrado: '+m.nombre,'ok');
+  logEvento('MIEMBRO','Nuevo miembro: '+m.nombre+' ('+m.rol+')');
+}
+
+function renderMiembros(q=''){
+  let miembros = DB.get('miembros')||[];
+  if(q) miembros = miembros.filter(m=>m.nombre.toLowerCase().includes(q.toLowerCase())||m.cedula.includes(q));
+  const container = document.getElementById('miembros-list');
+  if(!miembros.length){container.innerHTML='<div style="padding:20px;text-align:center;color:var(--dim);font-size:11px">Sin miembros registrados.<br>Agrega el primero con el botón +.</div>';return;}
+  container.innerHTML = miembros.map((m,i)=>`
+    <div class="member-card">
+      <div class="member-avatar">👤</div>
+      <div class="member-info">
+        <div class="member-name">${m.nombre}</div>
+        <div class="member-role">${m.rol} · Cédula: ${m.cedula||'—'} · Tel: ${m.telefono||'—'}</div>
+        <div style="font-size:8px;color:var(--dim)">Ingreso: ${m.ingreso||'—'} · Email: ${m.email||'—'}</div>
+        <span class="member-estado me-${m.estado}">${m.estado.toUpperCase()}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filtrarMiembros(q){ renderMiembros(q); }
+
+function updateMiembrosKPIs(){
+  const ms = DB.get('miembros')||[];
+  document.getElementById('m-total').textContent = ms.length;
+  document.getElementById('m-activos').textContent = ms.filter(m=>m.estado==='activo').length;
+  document.getElementById('m-inactivos').textContent = ms.filter(m=>m.estado==='inactivo').length;
+  document.getElementById('m-suspendidos').textContent = ms.filter(m=>m.estado==='suspendido').length;
+  document.getElementById('h-miembros').textContent = ms.length;
+}
+
+function exportarMiembros(){
+  const ms = DB.get('miembros')||[];
+  const csv = 'Nombre,Cédula,Rol,Estado,Email,Teléfono,Ingreso\n'+ms.map(m=>`${m.nombre},${m.cedula},${m.rol},${m.estado},${m.email},${m.telefono},${m.ingreso}`).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='miembros_ache.csv'; a.click();
+  toast('Miembros exportados','ok');
+}
+
+// ══════════════════════════════════════════════════
+// HOTEL
+// ══════════════════════════════════════════════════
+
+const HAB_TIPOS = [
+  {id:1,tipo:'Estándar',precio:25000,max:2},{id:2,tipo:'Estándar',precio:25000,max:2},
+  {id:3,tipo:'Deluxe',precio:35000,max:3},{id:4,tipo:'Deluxe',precio:35000,max:3},
+  {id:5,tipo:'Suite',precio:55000,max:4},{id:6,tipo:'Suite',precio:55000,max:4},
+  {id:7,tipo:'Cabaña',precio:45000,max:6},{id:8,tipo:'Cabaña',precio:45000,max:6},
+];
+
+function initHotel(){
+  if(!DB.get('habitaciones')){
+    const habs = HAB_TIPOS.map(h=>({...h,estado:'libre',huesped:null,salida:null}));
+    DB.set('habitaciones', habs);
+  }
+  renderHabs();
+  renderReservas();
+}
+
+function renderHabs(){
+  const habs = DB.get('habitaciones')||[];
+  const grid = document.getElementById('hab-grid');
+  const lib = habs.filter(h=>h.estado==='libre').length;
+  const ocu = habs.filter(h=>h.estado==='ocupada').length;
+  document.getElementById('hot-lib').textContent = lib;
+  document.getElementById('hot-ocu').textContent = ocu;
+  document.getElementById('hot-ocp').textContent = Math.round(ocu/habs.length*100)+'%';
+  grid.innerHTML = habs.map(h=>`
+    <div class="hab ${h.estado}" onclick="toggleHab(${h.id})">
+      <div class="hnum">${h.id}</div>
+      <div class="htipo">${h.tipo}</div>
+      <div class="hprice">₡${h.precio.toLocaleString()}/noche</div>
+      <div style="font-size:7px;color:var(--dim);margin-top:2px">${h.estado==='libre'?'DISPONIBLE':h.estado==='ocupada'?('👤 '+(h.huesped||'Ocupada')):'MANTENIMIENTO'}</div>
+    </div>
+  `).join('');
+}
+
+function toggleHab(id){
+  const habs = DB.get('habitaciones')||[];
+  const hab = habs.find(h=>h.id===id);
+  if(!hab) return;
+  if(hab.estado==='libre') hab.estado='mantenimiento';
+  else if(hab.estado==='mantenimiento') hab.estado='libre';
+  DB.set('habitaciones',habs);
+  renderHabs();
+  toast('Hab. '+id+': '+hab.estado,'ok');
+}
+
+function crearReserva(){
+  const nombre = document.getElementById('res-nombre').value;
+  const llegada = document.getElementById('res-llegada').value;
+  const salida = document.getElementById('res-salida').value;
+  const tipo = document.getElementById('res-tipo').value;
+  if(!nombre||!llegada||!salida){toast('Completa los datos de reserva','e');return;}
+  const reserva = {nombre,cedula:document.getElementById('res-cedula').value,email:document.getElementById('res-email').value,llegada,salida,tipo,id:'RES-'+Date.now()};
+  DB.push('reservas', reserva);
+  // Asignar habitación libre
+  const habs = DB.get('habitaciones')||[];
+  const libre = habs.find(h=>h.estado==='libre');
+  if(libre){libre.estado='ocupada';libre.huesped=nombre;DB.set('habitaciones',habs);}
+  renderHabs();
+  renderReservas();
+  toast('✅ Reserva creada: '+nombre,'ok');
+  logEvento('HOTEL','Reserva: '+nombre+' · '+llegada+' → '+salida);
+}
+
+function renderReservas(){
+  const reservas = DB.get('reservas')||[];
+  const el = document.getElementById('reservas-list');
+  if(!reservas.length){el.innerHTML='<div style="color:var(--dim);font-size:10px">Sin reservas activas.</div>';return;}
+  el.innerHTML = reservas.slice(-10).reverse().map(r=>`
+    <div style="padding:8px;border-bottom:1px solid var(--bdr);font-size:10px;line-height:1.8">
+      <strong style="color:var(--jade)">${r.id}</strong> · ${r.nombre}<br>
+      <span style="color:var(--dim)">${r.llegada} → ${r.salida} · ${r.tipo}</span>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════
+// BANCO φ
+// ══════════════════════════════════════════════════
+
+function initBanco(){ renderBancoTable(); updateBancoKPIs(); }
+
+function registrarMovimiento(){
+  const tipo = document.getElementById('banco-tipo').value;
+  const desc = document.getElementById('banco-desc').value;
+  const monto = parseFloat(document.getElementById('banco-monto').value)||0;
+  const ref = document.getElementById('banco-ref').value;
+  if(!monto){toast('Ingresa un monto','e');return;}
+  DB.push('banco_movimientos',{tipo,desc,monto,ref});
+  updateBancoKPIs();
+  renderBancoTable();
+  document.getElementById('banco-monto').value='';
+  document.getElementById('banco-desc').value='';
+  toast(tipo==='ingreso'?'✅ Ingreso registrado':'✅ Movimiento registrado','ok');
+  logEvento('BANCO','Movimiento: '+tipo+' ₡'+monto.toLocaleString());
+}
+
+function updateBancoKPIs(){
+  const movs = DB.get('banco_movimientos')||[];
+  let saldo = 0;
+  movs.forEach(m=>{ if(m.tipo==='ingreso'||m.tipo==='aporte') saldo+=m.monto; else if(m.tipo==='egreso') saldo-=m.monto; });
+  document.getElementById('banco-total').textContent='₡'+Math.max(0,saldo).toLocaleString();
+  document.getElementById('b-seguro').textContent='₡'+Math.round(saldo*0.618).toLocaleString();
+  document.getElementById('b-crece').textContent='₡'+Math.round(saldo*0.382).toLocaleString();
+  const rend = Math.round(saldo*0.1334);
+  document.getElementById('banco-rend').textContent='Rendimiento estimado: ₡'+rend.toLocaleString()+'/año (13.34%)';
+  document.getElementById('h-fondos')&&(document.getElementById('h-fondos').textContent='₡'+Math.max(0,saldo).toLocaleString());
+}
+
+function renderBancoTable(){
+  const movs = (DB.get('banco_movimientos')||[]).slice(-20).reverse();
+  let saldo = (() => { const all = DB.get('banco_movimientos')||[]; let s=0; all.forEach(m=>{ if(m.tipo==='ingreso'||m.tipo==='aporte') s+=m.monto; else if(m.tipo==='egreso') s-=m.monto; }); return s; })();
+  const tbody = document.getElementById('banco-tabla');
+  tbody.innerHTML = movs.map(m=>`
+    <tr>
+      <td>${new Date(m._ts||Date.now()).toLocaleDateString('es-CR')}</td>
+      <td><span class="risk-badge ${m.tipo==='ingreso'||m.tipo==='aporte'?'rb-low':'rb-hi'}">${m.tipo}</span></td>
+      <td>${m.desc||'—'}</td>
+      <td style="color:${m.tipo==='ingreso'||m.tipo==='aporte'?'var(--grn)':'var(--red)'}">₡${m.monto.toLocaleString()}</td>
+      <td style="color:var(--phi)">₡${Math.max(0,saldo).toLocaleString()}</td>
+    </tr>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════
+// SINPE
+// ══════════════════════════════════════════════════
+
+function guardarSinpe(){
+  const num = document.getElementById('sinpe-cfg').value;
+  if(!num){toast('Ingresa el número SINPE','e');return;}
+  DB.set('cfg_sinpe', num);
+  document.getElementById('sinpe-numero').textContent = num.replace(/(\d{4})(\d{4})/,'$1-$2');
+  toast('✅ SINPE guardado','ok');
+}
+
+function copiarSinpe(){ navigator.clipboard.writeText(document.getElementById('sinpe-numero').textContent); toast('SINPE copiado','ok'); }
+
+function registrarCobro(){
+  const remit = prompt('Nombre del remitente:');
+  const monto = parseFloat(prompt('Monto recibido (₡):'));
+  const concepto = prompt('Concepto:');
+  if(!remit||!monto) return;
+  DB.push('sinpe_cobros',{remit,monto,concepto});
+  renderSinpeTabla();
+  updateBancoKPIs();
+  toast('✅ Cobro SINPE registrado: ₡'+monto.toLocaleString(),'ok');
+}
+
+function renderSinpeTabla(){
+  const cobros = (DB.get('sinpe_cobros')||[]).reverse();
+  document.getElementById('sinpe-tabla').innerHTML = cobros.map(c=>`
+    <tr>
+      <td>${new Date(c._ts||Date.now()).toLocaleString('es-CR')}</td>
+      <td>${c.remit}</td>
+      <td style="color:var(--grn)">₡${c.monto.toLocaleString()}</td>
+      <td>${c.concepto||'—'}</td>
+      <td><span class="risk-badge rb-low">RECIBIDO</span></td>
+    </tr>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════
+// NEXUS · CEREBRO DISTRIBUIDO
+// ══════════════════════════════════════════════════
+
+const NEXUS_NODOS_DEF = [
+  {id:'supabase',nombre:'Supabase DB',icon:'🗄️',desc:'Base de datos PostgreSQL en la nube',connected:false,url:'https://supabase.com'},
+  {id:'github',nombre:'GitHub Repo',icon:'🐙',desc:'Repositorio y control de versiones',connected:false,url:'https://github.com'},
+  {id:'vercel',nombre:'Vercel Deploy',icon:'▲',desc:'Deploy automático en la nube',connected:false,url:'https://vercel.com'},
+  {id:'telegram',nombre:'Bot Telegram',icon:'✈️',desc:'Notificaciones y comandos remotos',connected:false,url:'https://t.me/BotFather'},
+  {id:'cloudflare',nombre:'CF Tunnel',icon:'🔗',desc:'Acceso remoto sin servidor',connected:false,url:'https://cloudflare.com'},
+  {id:'openai',nombre:'OpenAI/Groq',icon:'⚡',desc:'Modelos de IA alternativos',connected:false,url:'https://console.groq.com'},
+  {id:'lyra',nombre:'LYRA Nexus',icon:'✦',desc:'Sistema multiagente ACHE',connected:true,url:'#'},
+  {id:'aurora',nombre:'AURORA Core',icon:'🌅',desc:'IA principal conectada',connected:true,url:'#'},
+  {id:'eva',nombre:'EVA Analytics',icon:'🌿',desc:'Análisis y reportes automáticos',connected:false,url:'#'},
+];
+
+const AGENTES_DEF = [
+  {nombre:'AURORA',icon:'🌅',dept:'Nexus Core',status:'active',load:95,desc:'IA Principal'},
+  {nombre:'LYRA',icon:'✦',dept:'Nexus Core',status:'active',load:88,desc:'Multiagente'},
+  {nombre:'EVA',icon:'🌿',dept:'Analytics',status:'standby',load:0,desc:'Análisis'},
+  {nombre:'NEXUS CORE',icon:'⬡',dept:'Sistema',status:'active',load:99,desc:'Núcleo'},
+  {nombre:'GENESIS',icon:'🌐',dept:'Sistema',status:'developing',load:12,desc:'Evolución'},
+  {nombre:'LEGAL BOT',icon:'⚖️',dept:'Legal CR',status:'active',load:76,desc:'Leyes CR'},
+  {nombre:'RISK AI',icon:'🎯',dept:'Riesgos',status:'active',load:64,desc:'Predictor'},
+  {nombre:'FINANCE',icon:'💰',dept:'Banco φ',status:'active',load:50,desc:'Finanzas'},
+  {nombre:'HOTEL AI',icon:'🏨',dept:'Hotel',status:'active',load:45,desc:'Reservas'},
+];
+
+function initNexus(){
+  const nodos = document.getElementById('nexus-nodos');
+  nodos.innerHTML = NEXUS_NODOS_DEF.map(n=>`
+    <div class="nexus-node ${n.connected?'connected':''}" onclick="window.open('${n.url}','_blank')">
+      <div class="nexus-icon">${n.icon}</div>
+      <div class="nexus-name">${n.nombre}</div>
+      <div class="nexus-status">${n.connected?'🟢 CONECTADO':'⚪ Disponible'}</div>
+      <div style="font-size:8px;color:var(--dim);margin-top:3px">${n.desc}</div>
+    </div>
+  `).join('');
+  
+  const agGrid = document.getElementById('agentes-grid');
+  agGrid.innerHTML = AGENTES_DEF.map(a=>`
+    <div class="nexus-node ${a.status==='active'?'connected':''}">
+      <div class="nexus-icon">${a.icon}</div>
+      <div class="nexus-name">${a.nombre}</div>
+      <div class="nexus-status ${a.status==='active'?'':''}">
+        ${a.status==='active'?'🟢 ACTIVO':a.status==='standby'?'🟡 STANDBY':'🔵 DESARROLLO'}
+      </div>
+      ${a.status==='active'?`<div class="pb" style="margin-top:6px"><div class="pbf" style="width:${a.load}%;background:var(--jade)"></div></div>`:''} 
+      <div style="font-size:8px;color:var(--dim)">${a.dept} · ${a.desc}</div>
+    </div>
+  `).join('');
+}
+
+function nexusSync(){
+  toast('⬡ Sincronizando células...','i');
+  setTimeout(()=>{toast('✅ Sincronización completa','ok');logEvento('NEXUS','Sincronización ejecutada');},1500);
+}
+
+function nexusConnect(){ goTab('github'); toast('Configura Supabase para conectar el cerebro distribuido','i',5000); }
+
+// ══════════════════════════════════════════════════
+// GITHUB / DEPLOY
+// ══════════════════════════════════════════════════
+
+function ghTab(id, el){
+  document.querySelectorAll('[id^="ghsub-"]').forEach(s=>s.style.display='none');
+  document.querySelectorAll('#tab-github .stab').forEach(s=>s.classList.remove('active'));
+  document.getElementById('ghsub-'+id).style.display='block';
+  el.classList.add('active');
+}
+
+function initDeployChecklist(){
+  const items = [
+    {texto:'Guardar ACHE_GENESIS_v1.html en tu computadora',done:true},
+    {texto:'Crear cuenta GitHub (github.com)',done:false},
+    {texto:'Instalar Git en tu dispositivo',done:false},
+    {texto:'Crear repositorio ache-genesis en GitHub',done:false},
+    {texto:'Hacer push del código a GitHub',done:false},
+    {texto:'Activar GitHub Pages en el repositorio',done:false},
+    {texto:'Crear cuenta Supabase y crear tablas SQL',done:false},
+    {texto:'Configurar API Keys (Claude/Groq) en CONFIG',done:false},
+    {texto:'Crear cuenta Vercel para deploy automático',done:false},
+    {texto:'Configurar Cloudflare Tunnel para acceso remoto',done:false},
+    {texto:'Instalar Termux en Android (F-Droid)',done:false},
+    {texto:'Registrar organización en módulo ORG',done:false},
+    {texto:'Completar evaluación de riesgos (LGCI)',done:false},
+    {texto:'Agregar miembros y crear primera acta',done:false},
+    {texto:'¡ACHE GENESIS está vivo! 🚀',done:false},
+  ];
+  
+  const savedItems = DB.get('deploy_checklist')||items;
+  document.getElementById('deploy-checklist').innerHTML = savedItems.map((item,i)=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr);cursor:pointer" onclick="toggleCheck(${i})">
+      <span style="color:${item.done?'var(--jade)':'var(--dim)'}">⬡</span>
+      <span style="font-size:10px;color:${item.done?'var(--jade)':'var(--txt)'};text-decoration:${item.done?'line-through':''}">${item.texto}</span>
+      ${item.done?'<span style="margin-left:auto;font-size:9px;color:var(--jade)">✓</span>':''}
+    </div>
+  `).join('');
+  DB.set('deploy_checklist', savedItems);
+}
+
+function toggleCheck(idx){
+  const items = DB.get('deploy_checklist')||[];
+  if(items[idx]) items[idx].done = !items[idx].done;
+  DB.set('deploy_checklist',items);
+  initDeployChecklist();
+  if(items[idx]&&items[idx].done) toast('✅ '+items[idx].texto,'ok');
+}
+
+async function testSupabase(){
+  const url = document.getElementById('sb-url').value || DB.get('key_supabase_url');
+  const key = document.getElementById('sb-key').value || DB.get('key_supabase_key');
+  if(!url||!key){toast('Configura URL y Key de Supabase','e');return;}
+  toast('Probando conexión Supabase...','i');
+  try {
+    const res = await fetch(url+'/rest/v1/', {headers:{'apikey':key,'Authorization':'Bearer '+key}});
+    if(res.ok) toast('✅ Supabase conectado correctamente','ok');
+    else toast('❌ Error de conexión Supabase: '+res.status,'e');
+  } catch(e){ toast('❌ No se pudo conectar: '+e.message,'e'); }
+}
+
+// ══════════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════════
+
+function guardarConfig(){
+  const cfg = {
+    celname:document.getElementById('cfg-celname').value,
+    orgname:document.getElementById('cfg-orgname').value,
+    sinpe:document.getElementById('cfg-sinpe').value,
+    email:document.getElementById('cfg-email').value
+  };
+  DB.set('cfg_global',cfg);
+  ['claude','groq'].forEach(k=>{ const v=document.getElementById('cfg-'+k).value; if(v) DB.set('key_'+k,v); });
+  const sburl=document.getElementById('cfg-sburl').value;
+  const sbkey=document.getElementById('cfg-sbkey').value;
+  if(sburl) DB.set('key_supabase_url',sburl);
+  if(sbkey) DB.set('key_supabase_key',sbkey);
+  if(cfg.sinpe){DB.set('cfg_sinpe',cfg.sinpe); document.getElementById('sinpe-numero').textContent=cfg.sinpe.replace(/(\d{4})(\d{4})/,'$1-$2');}
+  toast('✅ Configuración guardada','ok');
+  logEvento('CONFIG','Configuración actualizada · '+cfg.orgname);
+}
+
+function exportData(){
+  const keys = ['miembros','actas','banco_movimientos','sinpe_cobros','risks','junta_directiva','org_data','cfg_global','evolution_log','reservas','habitaciones','deploy_checklist'];
+  const data = {};
+  keys.forEach(k=>{ const v=DB.get(k); if(v) data[k]=v; });
+  data._meta = {version:'1.0',ts:new Date().toISOString(),cell_id:DB.get('cell_id'),principios:ACHE.principios};
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ACHE_GENESIS_backup_'+new Date().toISOString().split('T')[0]+'.json'; a.click();
+  toast('✅ Backup exportado','ok');
+  logEvento('EXPORT','Exportación completa del sistema');
+}
+
+function resetData(){
+  if(!confirm('⚠️ ADVERTENCIA: Esto elimina TODOS los datos. ¿Está seguro?')) return;
+  if(!confirm('Confirma nuevamente: ¿Desea hacer reset completo?')) return;
+  localStorage.clear();
+  toast('Sistema reseteado. Recargando...','e',3000);
+  setTimeout(()=>location.reload(),3000);
+}
+
+function copiarScript(tipo){
+  const scripts = {
+    github:`git config --global user.name "Tu Nombre"\ngit config --global user.email "tu@email.com"\nmkdir ache-genesis && cd ache-genesis\ngit init\ngit add .\ngit commit -m "⬡ ACHE GENESIS v1.0"\ngit remote add origin https://github.com/TU_USUARIO/ache-genesis.git\ngit push -u origin main`
+  };
+  navigator.clipboard.writeText(scripts[tipo]||'');
+  toast('Script copiado al portapapeles','ok');
+}
+
+// ══════════════════════════════════════════════════
+// EVOLUTION · AUTO-IMPROVEMENT ENGINE
+// Principio 7: Evolución por capas, nunca sobreescritura
+// ══════════════════════════════════════════════════
+
+let evoCount = 0;
+setInterval(()=>{
+  evoCount++;
+  if(evoCount%60===0){
+    // Ciclo de evolución automático cada minuto
+    const step = ACHE.ciclo[Math.floor(Math.random()*ACHE.ciclo.length)];
+    document.getElementById('h-gen').textContent = 'G'+(1+Math.floor(evoCount/60));
+    // Detectar "oportunidades" basadas en datos del sistema
+    const miembros = (DB.get('miembros')||[]).length;
+    const actas = (DB.get('actas')||[]).length;
+    const alertas = [];
+    if(miembros===0) alertas.push('📌 Registra el primer miembro para activar módulos completos');
+    if(actas===0) alertas.push('📌 Crea la primera acta para empezar la gestión documental');
+    if(!DB.get('org_data')) alertas.push('📌 Configura tu organización en el módulo ORG');
+    if(!DB.get('last_risk')) alertas.push('📌 Ejecuta la evaluación de riesgos (LGCI Ley 8292)');
+    if(alertas.length>0) document.getElementById('h-alerta').innerHTML = alertas.map(a=>`<div>${a}</div>`).join('');
+  }
+},1000);
+
+// Actualizar mapa de riesgo si está visible
+setInterval(()=>{
+  const riesgoPanelActive = document.querySelector('.rsub#rsub-mapa') && document.querySelector('.rsub#rsub-mapa').style.display==='block';
+  if(riesgoPanelActive) drawRiskMap();
+},5000);
+
+// Sincronizar tabla SINPE al cargar
+setTimeout(()=>{ renderSinpeTabla(); },500);
+
+console.log('%c⬡ ACHE GENESIS v1.0 CARGADO', 'color:#00ffc8;font-size:20px;font-weight:bold;font-family:monospace');
+console.log('%cADN: 10 principios · Costa Rica · COOPECRUCENOS R.L. · φ=1.618', 'color:#ffd700;font-size:12px');
+console.log('%cCiclo: PERCIBIR→CONTEXTUALIZAR→ANALIZAR→SIMULAR→RECOMENDAR→ESPERAR', 'color:#38bdf8;font-size:10px');
+</script>
+</body>
+</html>

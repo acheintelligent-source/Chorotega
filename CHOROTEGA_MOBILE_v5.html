@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#000">
+<title>⬡ CHOROTEGA · Mobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--card:#050f22;--jade:#00ffc8;--phi:#ffd700;--red:#ff1744;--grn:#39ff14;--pur:#bf5fff;--txt:#c8e6f8;--dim:#1a3a5a;--bdr:#0a1f3a}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+body{background:var(--bg);color:var(--txt);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
+.hdr{background:rgba(0,255,200,.06);border-bottom:1px solid var(--bdr);padding:12px 15px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px)}
+.hdr-logo{font-family:'Orbitron',monospace;font-size:14px;font-weight:900;color:var(--jade);letter-spacing:2px}
+.hdr-sub{font-size:8px;color:var(--dim);margin-top:1px}
+.hdr-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--jade);animation:pu 1.5s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1}}
+
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--bdr);background:var(--bg);position:sticky;top:54px;z-index:99}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:10px 14px;font-size:10px;cursor:pointer;border-bottom:2px solid transparent;color:var(--dim);transition:all .15s;white-space:nowrap}
+.tab.active{border-bottom-color:var(--jade);color:var(--jade);background:rgba(0,255,200,.04)}
+
+.view{display:none;padding:12px;animation:fu .2s ease}.view.active{display:block}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px;margin-bottom:10px}
+.card-t{font-size:7px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:10px;text-align:center}
+.kv{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;color:var(--jade);margin-bottom:2px}
+.kl{font-size:7px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+
+/* Buttons */
+.btn{padding:10px 16px;border-radius:8px;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;cursor:pointer;border:none;width:100%;display:block;text-align:center;transition:all .15s;margin-bottom:8px}
+.btn:active{transform:scale(.97)}
+.bj{background:var(--jade);color:#000}.ba{background:var(--phi);color:#000}.br{background:var(--red);color:#fff}.bn{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--bdr)}.bp{background:rgba(191,95,255,.15);color:var(--pur);border:1px solid rgba(191,95,255,.3)}
+.btn-half{display:inline-block;width:calc(50% - 4px);margin-bottom:8px}
+.btn-half:first-child{margin-right:8px}
+
+/* Chat */
+.chatbox{height:50vh;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:4px 0}
+.msg{max-width:88%;padding:8px 10px;border-radius:10px;font-size:11px;line-height:1.5;animation:fu .15s}
+.msg.user{background:rgba(0,255,200,.08);border:1px solid rgba(0,255,200,.2);align-self:flex-end}
+.msg.bot{background:var(--card);border:1px solid var(--bdr);align-self:flex-start}
+.msg.jade{background:rgba(0,255,200,.05);border:1px solid rgba(0,255,200,.18);align-self:flex-start;color:var(--jade)}
+.mtime{font-size:7px;color:var(--dim);margin-top:2px}
+.cin{display:flex;gap:8px;margin-top:8px;position:sticky;bottom:0;background:var(--bg);padding:8px 0}
+.cinput{flex:1;background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:10px;color:var(--txt);font-size:12px;outline:none}
+.cinput:focus{border-color:var(--jade)}
+.typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--jade);margin:0 2px;animation:pu .8s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+
+/* SINPE box */
+.sinpe-box{background:linear-gradient(135deg,var(--card),rgba(255,215,0,.04));border:2px solid rgba(255,215,0,.4);border-radius:12px;padding:16px;text-align:center;margin-bottom:10px}
+.sinpe-num{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--phi);letter-spacing:4px;margin:6px 0}
+
+/* Form */
+.fi,.fsel{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bdr);border-radius:8px;padding:10px;color:var(--txt);font-size:12px;outline:none;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.fi:focus,.fsel:focus{border-color:var(--jade)}
+
+/* Hab grid */
+.hab-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.hab{border-radius:8px;padding:10px;border:2px solid;cursor:pointer;position:relative}
+.hab.libre{border-color:var(--jade);background:rgba(0,255,200,.04)}
+.hab.ocupada{border-color:var(--red);background:rgba(255,23,68,.04)}
+.hab.mantenimiento{border-color:var(--phi);background:rgba(255,215,0,.04)}
+.hnum{font-family:'Orbitron',monospace;font-size:16px;font-weight:700}
+.htipo{font-size:8px;color:var(--dim);margin-top:2px}
+.hprice{font-size:10px;font-weight:700;color:var(--phi);margin-top:3px}
+
+/* Progress */
+.pbar{height:5px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;margin-top:4px}
+.pfil{height:100%;border-radius:3px;transition:width .8s ease}
+
+/* Map */
+#map-mobile{height:280px;border-radius:9px;border:1px solid var(--bdr);background:var(--card);margin-bottom:8px}
+
+/* Watch mode */
+.watch-mode{display:none}
+@media(max-width:200px){
+  .watch-mode{display:block}
+  .normal-mode{display:none}
+  body{font-size:9px}
+  .kv{font-size:14px}
+  .hdr{padding:8px 10px}
+  .hdr-logo{font-size:11px}
+}
+
+/* Toast */
+#ta{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:4px;pointer-events:none;width:90%}
+.toast{padding:8px 12px;border-radius:8px;font-size:10px;border:1px solid;text-align:center;animation:fu .2s ease}
+.toast.ok{background:rgba(0,255,200,.09);border-color:rgba(0,255,200,.3);color:var(--jade)}
+.toast.info{background:rgba(0,229,255,.09);border-color:rgba(0,229,255,.28);color:#00e5ff}
+.toast.phi{background:rgba(255,215,0,.09);border-color:rgba(255,215,0,.28);color:var(--phi)}
+.toast.err{background:rgba(255,23,68,.09);border-color:rgba(255,23,68,.28);color:var(--red)}
+</style>
+</head>
+<body>
+<div id="ta"></div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div>
+    <div class="hdr-logo">⬡ CHOROTEGA</div>
+    <div class="hdr-sub">COOPECRUCENOS R.L. · La Cruz, CR · φ=1.618</div>
+  </div>
+  <div class="hdr-right">
+    <div class="status-dot" id="st-dot"></div>
+    <span style="font-size:8px;color:var(--jade)" id="st-txt">VIVO</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="goTab('home')">🏠 Home</div>
+  <div class="tab" onclick="goTab('aurora')">🧠 IA</div>
+  <div class="tab" onclick="goTab('hotel')">🏨 Hotel</div>
+  <div class="tab" onclick="goTab('banco')">🏦 Banco</div>
+  <div class="tab" onclick="goTab('cobro')">💳 SINPE</div>
+  <div class="tab" onclick="goTab('mapa')">🗺 Mapa</div>
+  <div class="tab" onclick="goTab('cfg')">⚙ Config</div>
+</div>
+
+<!-- HOME -->
+<div class="view active" id="tab-home">
+  <div class="kpis">
+    <div class="kpi"><div class="kv" id="m-lib" style="color:var(--jade)">—</div><div class="kl">Hab Libres</div></div>
+    <div class="kpi"><div class="kv" id="m-fondos" style="color:var(--phi)">₡0</div><div class="kl">Banco φ</div></div>
+    <div class="kpi"><div class="kv" id="m-cobros" style="color:var(--grn)">₡0</div><div class="kl">Cobros</div></div>
+    <div class="kpi"><div class="kv" id="m-gen" style="color:var(--pur)">G1</div><div class="kl">Gen ACHE</div></div>
+  </div>
+  <div class="card">
+    <div class="card-t">⬡ ESTADO DEL SISTEMA</div>
+    <div id="m-status" style="font-size:10px;line-height:1.9;color:var(--txt)">Cargando...</div>
+  </div>
+  <div class="card">
+    <div class="card-t">💡 ÚLTIMA OPORTUNIDAD DETECTADA</div>
+    <div id="m-oport" style="font-size:10px;line-height:1.7;color:var(--jade)">Analizando...</div>
+  </div>
+  <button class="btn bj" onclick="goTab('aurora')">🧠 Hablar con AURORA</button>
+  <button class="btn ba" onclick="mEvoStep()">⬡ Evolucionar sistema</button>
+  <button class="btn bn" onclick="mExport()">📥 Backup JSON</button>
+</div>
+
+<!-- AURORA IA -->
+<div class="view" id="tab-aurora">
+  <div class="card" style="padding:8px">
+    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+      <span onclick="mChip('¿Habitaciones libres?')" style="padding:5px 9px;border:1px solid var(--bdr);border-radius:10px;font-size:10px;cursor:pointer;color:var(--dim)">🏨 Hotel</span>
+      <span onclick="mChip('Estado banco φ')" style="padding:5px 9px;border:1px solid var(--bdr);border-radius:10px;font-size:10px;cursor:pointer;color:var(--dim)">🏦 Banco</span>
+      <span onclick="mChip('Leyes Costa Rica')" style="padding:5px 9px;border:1px solid var(--bdr);border-radius:10px;font-size:10px;cursor:pointer;color:var(--dim)">⚖ Leyes</span>
+      <span onclick="mChip('Historia Chorotega')" style="padding:5px 9px;border:1px solid var(--bdr);border-radius:10px;font-size:10px;cursor:pointer;color:var(--dim)">🏺 Chorotegas</span>
+      <span onclick="mChip('DUCA-T Peñas Blancas')" style="padding:5px 9px;border:1px solid var(--bdr);border-radius:10px;font-size:10px;cursor:pointer;color:var(--dim)">🚛 Aduana</span>
+    </div>
+    <div class="chatbox" id="m-chatbox"></div>
+    <div class="cin">
+      <input class="cinput" id="m-in" placeholder="Preguntá..." onkeydown="if(event.key==='Enter')mSend()">
+      <button class="btn bj" style="width:auto;padding:10px 14px;margin:0" onclick="mSend()">▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOTEL -->
+<div class="view" id="tab-hotel">
+  <div class="card">
+    <div class="card-t">🏨 HOTEL AURORA · COOPECRUCENOS</div>
+    <div class="kpis">
+      <div class="kpi"><div class="kv" id="m-hab-lib" style="color:var(--jade)">—</div><div class="kl">Libres</div></div>
+      <div class="kpi"><div class="kv" id="m-hab-ocu" style="color:var(--red)">—</div><div class="kl">Ocupadas</div></div>
+    </div>
+    <div class="card-t">HABITACIONES · TAP PARA RESERVAR</div>
+    <div class="hab-grid" id="m-habs"></div>
+  </div>
+  <div class="card">
+    <div class="card-t">MIS RESERVAS</div>
+    <div id="m-mis-res" style="font-size:10px;color:var(--dim)">Sin reservas activas.</div>
+  </div>
+</div>
+
+<!-- BANCO -->
+<div class="view" id="tab-banco">
+  <div class="card" style="background:rgba(255,215,0,.04);border-color:rgba(255,215,0,.2)">
+    <div class="card-t" style="color:var(--phi)">🏦 BANCO ACHE φ</div>
+    <div style="text-align:center;margin:10px 0">
+      <div style="font-size:8px;color:var(--dim)">FONDO TOTAL</div>
+      <div style="font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:var(--phi)" id="m-banco-total">₡0</div>
+      <div style="font-size:9px;color:var(--grn);margin-top:4px" id="m-banco-rend">+₡0/mes</div>
+    </div>
+    <div style="font-size:8px;color:var(--dim);line-height:1.8;margin-bottom:12px">Ratio φ: <span style="color:var(--jade)">61.8% seguro</span> + <span style="color:var(--phi)">38.2% crecimiento</span><br>Retorno: <span style="color:var(--grn)" id="m-retorno">13.34%/año</span></div>
+    <div class="fi"><input class="fi" id="m-b-nom" placeholder="Nombre completo" style="margin:0"></div>
+    <input class="fi" id="m-b-correo" type="email" placeholder="correo@email.com">
+    <input class="fi" id="m-b-monto" type="number" placeholder="Monto inicial (₡)">
+    <input class="fi" id="m-b-sinpe" placeholder="SINPE de origen">
+    <button class="btn ba" onclick="mAfiliarBanco()">φ Afiliar al Banco ACHE</button>
+  </div>
+</div>
+
+<!-- COBROS SINPE -->
+<div class="view" id="tab-cobro">
+  <div class="sinpe-box">
+    <div style="font-size:8px;color:var(--dim);margin-bottom:4px">SINPE MÓVIL · COOPECRUCENOS R.L.</div>
+    <div class="sinpe-num" id="m-sinpe-num">8301-0520</div>
+    <div style="font-size:8px;color:var(--dim)">Cédula: 3-004-757068</div>
+    <div style="font-family:'Orbitron',monospace;font-size:18px;font-weight:700;color:var(--phi);margin-top:8px" id="m-sinpe-monto">₡0</div>
+    <div style="font-size:9px;color:var(--txt);margin-top:3px" id="m-sinpe-concepto">—</div>
+  </div>
+  <div class="card">
+    <input class="fi" id="m-co-cliente" placeholder="Cliente / Concepto" oninput="mUpdCobro()">
+    <input class="fi" id="m-co-monto" type="number" placeholder="Monto (₡)" oninput="mUpdCobro()">
+    <select class="fsel" id="m-co-srv">
+      <option>🏨 Hospedaje Hotel Aurora</option>
+      <option>💡 Consultoría ACHE</option>
+      <option>⚙ Desarrollo módulos</option>
+      <option>🏦 Afiliación Banco φ</option>
+      <option>🎓 Capacitación digital</option>
+      <option>🚛 Servicios aduaneros</option>
+      <option>📋 Otro</option>
+    </select>
+    <button class="btn ba" onclick="mRegCobro()">✅ Registrar cobro</button>
+  </div>
+  <div class="card">
+    <div class="card-t">COBROS RECIBIDOS</div>
+    <div id="m-cobros-list" style="font-size:10px"></div>
+  </div>
+</div>
+
+<!-- MAPA -->
+<div class="view" id="tab-mapa">
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+    <button class="btn bj btn-half" onclick="mMapGo(11.033,-85.613,15)" style="width:auto;padding:8px 10px;font-size:9px;flex:1">⬡ GONZAGA</button>
+    <button class="btn bn btn-half" onclick="mMapGo(10.968,-85.614,14)" style="width:auto;padding:8px 10px;font-size:9px;flex:1">🚛 PB</button>
+    <button class="btn bn btn-half" onclick="mMapGo(10.142,-85.651,12)" style="width:auto;padding:8px 10px;font-size:9px;flex:1">🌴 Nicoya</button>
+    <button class="btn bn btn-half" onclick="mMapGo(9.933,-84.083,11)" style="width:auto;padding:8px 10px;font-size:9px;flex:1">🏛 SJ</button>
+  </div>
+  <div id="map-mobile"></div>
+  <div style="font-size:8px;color:var(--dim);font-family:JetBrains Mono,monospace" id="m-map-info">⬡ Cargando mapa...</div>
+</div>
+
+<!-- CONFIG -->
+<div class="view" id="tab-cfg">
+  <div class="card">
+    <div class="card-t">⚙ CONFIGURACIÓN IA</div>
+    <select class="fsel" id="m-prov">
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="groq">Groq (GRATIS 🎁)</option>
+      <option value="openai">OpenAI</option>
+    </select>
+    <input class="fi" id="m-key" type="password" placeholder="API Key (gsk_... / sk-ant-...)">
+    <input class="fi" id="m-sinpe-cfg" placeholder="SINPE: 8301-0520">
+    <button class="btn bj" onclick="mSaveCfg()">💾 Guardar config</button>
+    <div style="margin-top:10px;font-size:8px;color:var(--dim);line-height:1.8">
+      💡 Groq.com = GRATIS<br>
+      🌐 Railway: <a href="https://web-production-5f8ef.up.railway.app" target="_blank" style="color:var(--jade)">web-production-5f8ef.up.railway.app</a><br>
+      φ = 1.6180339887
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t">ℹ INSTALAR COMO APP</div>
+    <div style="font-size:10px;line-height:1.8;color:var(--txt)">
+      <strong style="color:var(--jade)">Android Chrome:</strong><br>
+      Menú (⋮) → "Agregar a pantalla de inicio"<br><br>
+      <strong style="color:var(--jade)">iPhone Safari:</strong><br>
+      Compartir (↑) → "Añadir a inicio"<br><br>
+      <strong style="color:var(--jade)">Samsung Watch:</strong><br>
+      Galaxy Wearable → Web Apps<br>
+      URL: <span style="color:var(--phi)">web-production-5f8ef.up.railway.app</span>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const PHI=1.6180339887,SINPE='8301-0520',RAILWAY='https://web-production-5f8ef.up.railway.app';
+let S={prov:'groq',key:'',sinpe:SINPE,AI_hist:[]};
+let HABS_M=[
+  {id:1,num:'101',tipo:'Estándar Simple',base:18000,estado:'libre'},{id:2,num:'102',tipo:'Est. Doble',base:25000,estado:'libre'},
+  {id:3,num:'103',tipo:'Est. Doble',base:25000,estado:'libre'},{id:4,num:'104',tipo:'Familiar',base:35000,estado:'libre'},
+  {id:5,num:'105',tipo:'Familiar',base:35000,estado:'ocupada'},{id:6,num:'201',tipo:'Sup. Doble',base:32000,estado:'libre'},
+  {id:7,num:'202',tipo:'Sup. Doble',base:32000,estado:'libre'},{id:8,num:'203',tipo:'Suite Jr',base:48000,estado:'ocupada'},
+  {id:9,num:'204',tipo:'Suite Jr',base:48000,estado:'libre'},{id:10,num:'205',tipo:'Suite Fam.',base:58000,estado:'libre'},
+  {id:11,num:'301',tipo:'Suite Eje.',base:65000,estado:'libre'},{id:12,num:'302',tipo:'Penthouse',base:85000,estado:'mantenimiento'},
+  {id:13,num:'303',tipo:'Accesible',base:22000,estado:'libre'},
+];
+let GEN=1,EVO_C=0;
+const fmt=n=>Math.round(n).toLocaleString('es-CR');
+const fCRC=n=>'₡'+fmt(n);
+const ts=()=>new Date().toLocaleTimeString('es-CR',{hour:'2-digit',minute:'2-digit'});
+
+function toast(m,t='info'){const a=document.getElementById('ta'),d=document.createElement('div');d.className='toast '+t;d.textContent=m;a.appendChild(d);setTimeout(()=>d.remove(),3000);}
+
+// LocalStorage
+function ls(k,v){if(v!==undefined)localStorage.setItem('cho_m_'+k,JSON.stringify(v));else try{return JSON.parse(localStorage.getItem('cho_m_'+k));}catch(e){return null;}}
+
+function loadCfg(){const c=ls('cfg')||{};if(c.prov)S.prov=c.prov;if(c.key)S.key=c.key;if(c.sinpe)S.sinpe=c.sinpe;try{document.getElementById('m-prov').value=S.prov;document.getElementById('m-key').value=S.key;document.getElementById('m-sinpe-cfg').value=S.sinpe;document.getElementById('m-sinpe-num').textContent=S.sinpe;}catch(e){}}
+function mSaveCfg(){S.prov=document.getElementById('m-prov').value;S.key=document.getElementById('m-key').value.trim();S.sinpe=document.getElementById('m-sinpe-cfg').value.trim()||SINPE;ls('cfg',S);document.getElementById('m-sinpe-num').textContent=S.sinpe;toast('Config guardada','ok');}
+
+// Tabs
+function goTab(v){document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));document.getElementById('tab-'+v)?.classList.add('active');document.querySelectorAll('.tab').forEach(el=>{if(el.textContent.toLowerCase().includes(v.substring(0,3)))el.classList.add('active');});const renders={home:mRenderHome,hotel:mRenderHotel,banco:mRenderBanco,cobro:mRenderCobros,mapa:mInitMap};if(renders[v])renders[v]();}
+
+// Home
+function mRenderHome(){
+  const lib=HABS_M.filter(h=>h.estado==='libre').length;
+  const fondos=parseFloat(ls('banco_total')||0);const cobros=parseFloat(ls('cobros_total')||0);
+  document.getElementById('m-lib').textContent=lib;
+  document.getElementById('m-fondos').textContent=fCRC(fondos);
+  document.getElementById('m-cobros').textContent=fCRC(cobros);
+  document.getElementById('m-gen').textContent='G'+GEN;
+  document.getElementById('m-status').innerHTML=`⬡ CHOROTEGA v5 activo<br>Hotel: ${lib}/13 hab libres<br>SINPE: <strong style="color:var(--phi)">${S.sinpe}</strong><br>Railway: <a href="${RAILWAY}" target="_blank" style="color:var(--jade)">activo ↗</a><br>Gen ACHE: <strong style="color:var(--pur)">${GEN}</strong>`;
+  document.getElementById('m-oport').textContent=ls('last_oport')||'Ejecutá la IA para detectar oportunidades.';
+}
+
+// IA Chat
+const ADN_M=`Sos AURORA CHOROTEGA SUPREMO v5, IA de COOPECRUCENOS R.L., La Cruz, Guanacaste, CR. φ=1.618. ADN Claude (Anthropic). 13 CCPs. Hotel Aurora 13 hab. SINPE ${SINPE}. Cédula 3-004-757068. Railway: ${RAILWAY}. Hablás en español CR, usás "mae". Sos cálida y directa.`;
+function mAddMsg(m,role){const box=document.getElementById('m-chatbox');if(!box)return;const d=document.createElement('div');d.className='msg '+role;d.textContent=m;box.appendChild(d);box.scrollTop=box.scrollHeight;}
+async function mSend(){const inp=document.getElementById('m-in'),msg=inp.value.trim();if(!msg)return;inp.value='';mAddMsg(msg,'user');const resp=await mCallAI(msg);mAddMsg(resp,'bot');}
+function mChip(msg){document.getElementById('m-in').value=msg;mSend();}
+async function mCallAI(msg){
+  if(!S.key){return mKB(msg);}
+  try{
+    const msgs=[{role:'system',content:ADN_M},...S.AI_hist,{role:'user',content:msg}];
+    let url,headers,body;
+    if(S.prov==='groq'){url='https://api.groq.com/openai/v1/chat/completions';headers={'Content-Type':'application/json','Authorization':'Bearer '+S.key};body=JSON.stringify({model:'llama-3.3-70b-versatile',messages:msgs,max_tokens:512});}
+    else{url='https://api.anthropic.com/v1/messages';headers={'Content-Type':'application/json','x-api-key':S.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'};body=JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:512,system:ADN_M,messages:S.AI_hist.concat([{role:'user',content:msg}])});}
+    const r=await fetch(url,{method:'POST',headers,body});const d=await r.json();
+    const text=S.prov==='groq'?(d.choices?.[0]?.message?.content||'Sin respuesta'):(d.content?.[0]?.text||'Sin respuesta');
+    S.AI_hist=[...S.AI_hist,{role:'user',content:msg},{role:'assistant',content:text}].slice(-10);return text;
+  }catch(e){return mKB(msg);}
+}
+function mKB(msg){
+  const t=msg.toLowerCase();
+  const lib=HABS_M.filter(h=>h.estado==='libre').length;
+  if(/hab|hotel|libre|cuarto/.test(t)) return `🏨 Hotel Aurora: ${lib}/13 libres. SINPE: ${S.sinpe}. ¡Tocá una hab para reservar!`;
+  if(/banco|fondo|invers|dinero/.test(t)) return `🏦 Banco φ: ratio áureo 61.8/38.2. Retorno φ: 13.34%/año. Black-Scholes+Monte Carlo.`;
+  if(/duca|aduana|peña|trailero/.test(t)) return `🚛 DUCA-T: Sistema TICA tica.hacienda.go.cr. PIF Peñas Blancas A-235. 24h frontera, 18h interno. Ley 7557 CR.`;
+  if(/ley|cooperat|4179/.test(t)) return `⚖ Ley 4179: Cooperativas CR. Mín. 20 asociados. INFOCOOP supervisa. COOPECRUCENOS R.L. Cédula 3-004-757068.`;
+  if(/choroteg|indigena|historia/.test(t)) return `🏺 Chorotegas: primeros habitantes de Guanacaste. Del náhuatl "choluteca". Cerámica hexagonal ⬡. Matambú y Nicoya.`;
+  if(/railway|servidor|url|web/.test(t)) return `🌐 Railway activo: ${RAILWAY}. Servidor Python Flask. NEXUS Supremo :8080.`;
+  if(/phi|áureo|1.618/.test(t)) return `φ = ${PHI}. Ratio φ ACHE: 61.8% seguro + 38.2% crecimiento = 13.34%/año. Organiza todo el ecosistema.`;
+  return `⬡ AURORA (offline): "${msg.substring(0,30)}..." → Configurá API Key en ⚙ Config. Groq.com es GRATIS (clave gsk_...).`;
+}
+
+// Hotel
+function mRenderHotel(){
+  const lib=HABS_M.filter(h=>h.estado==='libre').length,ocu=HABS_M.filter(h=>h.estado==='ocupada').length;
+  document.getElementById('m-hab-lib').textContent=lib;document.getElementById('m-hab-ocu').textContent=ocu;
+  const grid=document.getElementById('m-habs');if(!grid)return;
+  grid.innerHTML=HABS_M.map(h=>`<div class="hab ${h.estado}" onclick="${h.estado==='libre'?`mReservar(${h.id})`:''}"><div class="hnum">${h.num}</div><div class="htipo">${h.tipo}</div><div class="hprice">${fCRC(h.base)}</div><div style="font-size:8px;margin-top:2px;color:${h.estado==='libre'?'var(--jade)':'var(--red)'}">${h.estado==='libre'?'Disponible':'No disp.'}</div></div>`).join('');
+}
+function mReservar(id){
+  const h=HABS_M.find(x=>x.id===id);if(!h)return;
+  const nom=prompt(`Reservar ${h.num} · ${fCRC(h.base)}/noche\nNombre completo:`);if(!nom)return;
+  h.estado='ocupada';
+  mAddMsg(`✅ Reserva confirmada!\nHab. ${h.num} · ${h.tipo}\nA nombre de: ${nom}\nTotal/noche: ${fCRC(h.base)} + IVA 13% = ${fCRC(h.base*1.13)}\nSINPE: ${S.sinpe}`,'jade');
+  mRenderHotel();toast('Reserva Hab.'+h.num+' confirmada','ok');
+}
+
+// Banco
+function mRenderBanco(){
+  const fondos=parseFloat(ls('banco_total')||0);
+  document.getElementById('m-banco-total').textContent=fCRC(fondos);
+  document.getElementById('m-banco-rend').textContent='+'+fCRC(fondos*0.0618/12)+'/mes';
+  document.getElementById('m-retorno').textContent=fCRC(fondos*0.1334)+'/año (13.34%)';
+}
+function mAfiliarBanco(){
+  const nom=document.getElementById('m-b-nom').value.trim(),monto=parseFloat(document.getElementById('m-b-monto').value)||0;
+  if(!nom||!monto){toast('Completá nombre y monto','err');return;}
+  const fondos=parseFloat(ls('banco_total')||0)+monto;ls('banco_total',fondos);
+  toast('Afiliado φ: '+nom,'ok');mAddMsg(`✅ Afiliado al Banco ACHE φ!\n${nom} · ${fCRC(monto)}\nRendimiento φ: +${fCRC(monto*0.0618/12)}/mes\nSINPE pagá a: ${S.sinpe}`,'jade');
+  ['m-b-nom','m-b-correo','m-b-monto','m-b-sinpe'].forEach(id=>document.getElementById(id).value='');mRenderBanco();
+}
+
+// Cobros
+function mUpdCobro(){const m=parseFloat(document.getElementById('m-co-monto').value)||0,c=document.getElementById('m-co-cliente').value||'—';document.getElementById('m-sinpe-monto').textContent=fCRC(m);document.getElementById('m-sinpe-concepto').textContent=c;}
+function mRegCobro(){
+  const cli=document.getElementById('m-co-cliente').value.trim(),m=parseFloat(document.getElementById('m-co-monto').value)||0;
+  if(!cli||!m){toast('Ingresá cliente y monto','err');return;}
+  const total=parseFloat(ls('cobros_total')||0)+m;ls('cobros_total',total);
+  ls('last_oport','Cobro registrado: '+cli+' · '+fCRC(m));
+  toast('Cobro registrado: '+fCRC(m),'ok');
+  ['m-co-cliente','m-co-monto'].forEach(id=>document.getElementById(id).value='');
+  mRenderCobros();mRenderHome();
+}
+function mRenderCobros(){const t=parseFloat(ls('cobros_total')||0);document.getElementById('m-cobros-list').innerHTML=`<div style="color:var(--phi);font-size:12px">Total recibido: <strong>${fCRC(t)}</strong></div>`;}
+
+// Mapa mobile
+let MMAP=null;
+function mInitMap(){
+  const el=document.getElementById('map-mobile');if(!el)return;
+  if(MMAP){return;}
+  if(!document.getElementById('lf-css-m')){const css=document.createElement('link');css.id='lf-css-m';css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);}
+  el.innerHTML='<div style="height:100%;display:flex;align-items:center;justify-content:center;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--jade)">⬡ Cargando mapa...</div>';
+  if(window.L){_mBuildMap();return;}
+  const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.onload=()=>_mBuildMap();s.onerror=()=>{el.innerHTML='<div style="padding:20px;text-align:center;font-size:10px;color:var(--dim)">Sin internet. La Cruz: 11.03°N 85.61°W</div>';};document.head.appendChild(s);
+}
+function _mBuildMap(){
+  try{
+    document.getElementById('map-mobile').innerHTML='';
+    MMAP=window.L.map('map-mobile').setView([11.033,-85.613],13);
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM',maxZoom:19}).addTo(MMAP);
+    [{lat:11.033,lng:-85.613,n:'⬡ GONZAGA-CBM-Ω',c:'#ffd700'},{lat:10.968,lng:-85.614,n:'🚛 Peñas Blancas',c:'#ff6600'},{lat:11.030,lng:-85.610,n:'🏛 Muni. La Cruz',c:'#00ffc8'},{lat:11.035,lng:-85.608,n:'🤝 COOPECRUCENOS',c:'#bf5fff'}].forEach(p=>{const ic=window.L.divIcon({html:`<div style="background:${p.c};width:10px;height:10px;border-radius:50%;border:2px solid #000"></div>`,className:'',iconSize:[10,10],iconAnchor:[5,5]});window.L.marker([p.lat,p.lng],{icon:ic}).addTo(MMAP).bindPopup(p.n);});
+    document.getElementById('m-map-info').textContent='⬡ La Cruz, Guanacaste, CR · Leaflet OSM · φ=1.618';
+  }catch(e){document.getElementById('m-map-info').textContent='Error: '+e.message;}
+}
+function mMapGo(lat,lng,z){if(!MMAP){mInitMap();setTimeout(()=>{if(MMAP)MMAP.setView([lat,lng],z);},1500);}else MMAP.setView([lat,lng],z);}
+
+// Auto-evolución
+function mEvoStep(){EVO_C++;GEN=Math.max(GEN,Math.floor(EVO_C/5)+1);document.getElementById('m-gen').textContent='G'+GEN;toast('⬡ Evolución G'+GEN,'phi');ls('last_oport','Ciclo evo #'+EVO_C+' · Gen '+GEN+' activo');}
+
+// Export
+function mExport(){const d={v:'CHOROTEGA-MOBILE-v1',phi:PHI,fondos:ls('banco_total'),cobros:ls('cobros_total'),habs:HABS_M,gen:GEN,ts:new Date().toISOString()};const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='CHOROTEGA_mobile_'+new Date().toISOString().split('T')[0]+'.json';a.click();toast('Backup exportado','ok');}
+
+// PWA
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();window.dPmt=e;});
+document.addEventListener('DOMContentLoaded',()=>{
+  loadCfg();mRenderHome();mRenderHotel();mRenderCobros();
+  setTimeout(()=>{document.getElementById('st-txt').textContent='VIVO · φ='+PHI;},500);
+  // Auto-send welcome
+  const box=document.getElementById('m-chatbox');
+  if(box){const d=document.createElement('div');d.className='msg jade';d.textContent='⬡ ¡Pura vida, mae! AURORA lista. Hotel '+HABS_M.filter(h=>h.estado==='libre').length+'/13 libres. SINPE: '+SINPE+'. Configurá tu API Key en ⚙.';box.appendChild(d);}
+  // Auto-evolución cada 3 min en mobile
+  setInterval(()=>{EVO_C++;if(EVO_C%3===0)GEN++;document.getElementById('m-gen').textContent='G'+GEN;},180000);
+  if(window.dPmt) setTimeout(()=>toast('📱 Instalá como App: menú → "Agregar a inicio"','phi'),2000);
+});
+</script>
+</body>
+</html>

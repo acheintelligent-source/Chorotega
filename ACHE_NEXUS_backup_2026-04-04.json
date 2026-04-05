@@ -1,0 +1,452 @@
+{
+  "version": "NEXUS-GENESIS-v1",
+  "fecha": "2026-04-04T13:29:49.549Z",
+  "phi": 1.6180339887,
+  "nodo": "GONZAGA-CBM-Ω-001",
+  "reservas": [],
+  "facturas": [],
+  "cobros": [],
+  "banco": [],
+  "memoria": [
+    {
+      "id": 1,
+      "tipo": "config",
+      "titulo": "Config ACHE NEXUS GENESIS",
+      "contenido": "{\n  \"version\": \"NEXUS-GENESIS-v1\",\n  \"phi\": 1.6180339887,\n  \"nodo\": \"GONZAGA-CBM-Ω-001\",\n  \"entidad\": \"COOPECRUCENOS-3004757068\",\n  \"sinpe\": \"8301-0520\",\n  \"hotel\": \"Hotel COOPECRUCENOS · Aurora\",\n  \"usuario\": \"PCL-φ-1618\",\n  \"habs_total\": 13,\n  \"habs_libres\": 10,\n  \"reservas\": 0,\n  \"eventos_sha\": 6,\n  \"proyectos\": [\n    {\n      \"id\": \"NEPTUNO\",\n      \"pct\": 23,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"LYRA\",\n      \"pct\": 60,\n      \"estado\": \"AVANZADO\"\n    },\n    {\n      \"id\": \"ACMONEY\",\n      \"pct\": 45,\n      \"estado\": \"BETA\"\n    },\n    {\n      \"id\": \"EVA\",\n      \"pct\": 15,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"LAB\",\n      \"pct\": 8,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"TRAILERO\",\n      \"pct\": 40,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"DIGCIT\",\n      \"pct\": 10,\n      \"estado\": \"ACTIVO\"\n    }\n  ],\n  \"archivos_detectados\": 2,\n  \"nodos_phi\": 0\n}",
+      "fuente": "sistema",
+      "importancia": 10,
+      "ts": "06:03:07 a. m.",
+      "fecha": "2026-04-03",
+      "hash": "48a3b8b8"
+    },
+    {
+      "id": 4,
+      "tipo": "config",
+      "titulo": "Config ACHE NEXUS GENESIS",
+      "contenido": "{\n  \"version\": \"NEXUS-GENESIS-v1\",\n  \"phi\": 1.6180339887,\n  \"nodo\": \"GONZAGA-CBM-Ω-001\",\n  \"entidad\": \"COOPECRUCENOS-3004757068\",\n  \"sinpe\": \"8301-0520\",\n  \"hotel\": \"Hotel COOPECRUCENOS · Aurora\",\n  \"usuario\": \"PCL-φ-1618\",\n  \"habs_total\": 13,\n  \"habs_libres\": 10,\n  \"reservas\": 0,\n  \"eventos_sha\": 14,\n  \"proyectos\": [\n    {\n      \"id\": \"NEPTUNO\",\n      \"pct\": 23,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"LYRA\",\n      \"pct\": 60,\n      \"estado\": \"AVANZADO\"\n    },\n    {\n      \"id\": \"ACMONEY\",\n      \"pct\": 45,\n      \"estado\": \"BETA\"\n    },\n    {\n      \"id\": \"EVA\",\n      \"pct\": 15,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"LAB\",\n      \"pct\": 8,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"TRAILERO\",\n      \"pct\": 40,\n      \"estado\": \"ACTIVO\"\n    },\n    {\n      \"id\": \"DIGCIT\",\n      \"pct\": 10,\n      \"estado\": \"ACTIVO\"\n    }\n  ],\n  \"archivos_detectados\": 3,\n  \"nodos_phi\": 1\n}",
+      "fuente": "sistema",
+      "importancia": 10,
+      "ts": "06:06:16 a. m.",
+      "fecha": "2026-04-03",
+      "hash": "4548a95e"
+    },
+    {
+      "id": 2,
+      "tipo": "chat_importado",
+      "titulo": "Buenos dias",
+      "contenido": "Buenos dias→⬡ AURORA NEXUS (local): \"Buenos dias...\" → Configurá tu API Key en ⚙ Config. Groq.com es GRATIS (clave gsk_...). CCP-04: modo local activo.",
+      "fuente": "ache_nexus_genesis_db",
+      "importancia": 5,
+      "ts": "06:06:14 a. m.",
+      "fecha": "2026-04-03",
+      "hash": "0e58ce5e"
+    },
+    {
+      "id": 3,
+      "tipo": "entorno",
+      "titulo": "Contexto navegador",
+      "contenido": "{\n  \"url\": \"file:///C:/Users/eduni/Downloads/ACHE_NEXUS_GENESIS_v1.html\",\n  \"titulo\": \"ACHE · NEXUS GENESIS · φ=1.618 · GONZAGA\",\n  \"ua\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 OPR/128.0.0.0\",\n  \"idioma\": \"en-US\",\n  \"plataforma\": \"Win32\",\n  \"online\": true,\n  \"hora_local\": \"3/4/2026, 6:06:15 a. m.\",\n  \"timezone\": \"America/Guatemala\"\n}",
+      "fuente": "browser",
+      "importancia": 3,
+      "ts": "06:06:15 a. m.",
+      "fecha": "2026-04-03",
+      "hash": "17e44207"
+    }
+  ],
+  "eventos": [
+    {
+      "id": 17,
+      "ts": "07:29:27 a. m.",
+      "fecha": "2026-04-04",
+      "type": "RESP",
+      "agent": "aurora",
+      "msg": "⬡ AURORA NEXUS (local): \"hola...\" → Configurá tu API Key en ",
+      "hash": "73c1d35e",
+      "cls": "ok"
+    },
+    {
+      "id": 16,
+      "ts": "07:29:27 a. m.",
+      "fecha": "2026-04-04",
+      "type": "CHAT",
+      "agent": "usuario",
+      "msg": "hola",
+      "hash": "026a8259",
+      "cls": "info"
+    },
+    {
+      "id": 15,
+      "ts": "06:06:17 a. m.",
+      "fecha": "2026-04-03",
+      "type": "RECOLECT",
+      "agent": "nexus",
+      "msg": "Recolección completa · 4 elementos",
+      "hash": "4c6c1e77",
+      "cls": "ok"
+    },
+    {
+      "id": 14,
+      "ts": "06:06:14 a. m.",
+      "fecha": "2026-04-03",
+      "type": "IMPORT-DB",
+      "agent": "nexus",
+      "msg": "DB importada desde: ache_alma_omega_db",
+      "hash": "1637d86a",
+      "cls": "data"
+    },
+    {
+      "id": 13,
+      "ts": "06:06:14 a. m.",
+      "fecha": "2026-04-03",
+      "type": "IMPORT-DB",
+      "agent": "nexus",
+      "msg": "DB importada desde: ache_nexus_genesis_db",
+      "hash": "212094aa",
+      "cls": "data"
+    },
+    {
+      "id": 12,
+      "ts": "06:06:14 a. m.",
+      "fecha": "2026-04-03",
+      "type": "RECOLECT",
+      "agent": "nexus",
+      "msg": "Iniciando recolección universal ACHE",
+      "hash": "5cc99ed3",
+      "cls": "data"
+    },
+    {
+      "id": 11,
+      "ts": "06:05:47 a. m.",
+      "fecha": "2026-04-03",
+      "type": "LAB",
+      "agent": "nicoya",
+      "msg": "Buenos dias",
+      "hash": "3c50bdc8",
+      "cls": "ok"
+    },
+    {
+      "id": 10,
+      "ts": "06:05:14 a. m.",
+      "fecha": "2026-04-03",
+      "type": "TRAILERO",
+      "agent": "aduana",
+      "msg": "Buenos dias",
+      "hash": "316f87d1",
+      "cls": "phi"
+    },
+    {
+      "id": 9,
+      "ts": "06:03:31 a. m.",
+      "fecha": "2026-04-03",
+      "type": "PHI-CONNECT",
+      "agent": "nexus",
+      "msg": "Nodo: PCL-φ-1618",
+      "hash": "2d636c29",
+      "cls": "phi"
+    },
+    {
+      "id": 8,
+      "ts": "06:03:23 a. m.",
+      "fecha": "2026-04-03",
+      "type": "RESP",
+      "agent": "aurora",
+      "msg": "⬡ AURORA NEXUS (local): \"Buenos dias...\" → Configurá tu API ",
+      "hash": "351d5110",
+      "cls": "ok"
+    },
+    {
+      "id": 7,
+      "ts": "06:03:23 a. m.",
+      "fecha": "2026-04-03",
+      "type": "CHAT",
+      "agent": "usuario",
+      "msg": "Buenos dias",
+      "hash": "2a5d4149",
+      "cls": "info"
+    },
+    {
+      "id": 6,
+      "ts": "06:03:07 a. m.",
+      "fecha": "2026-04-03",
+      "type": "IMPORT-DB",
+      "agent": "nexus",
+      "msg": "DB importada desde: ache_alma_omega_db",
+      "hash": "085b4160",
+      "cls": "data"
+    },
+    {
+      "id": 5,
+      "ts": "06:03:07 a. m.",
+      "fecha": "2026-04-03",
+      "type": "IMPORT-DB",
+      "agent": "nexus",
+      "msg": "DB importada desde: ache_nexus_genesis_db",
+      "hash": "36900de6",
+      "cls": "data"
+    },
+    {
+      "id": 4,
+      "ts": "06:03:06 a. m.",
+      "fecha": "2026-04-03",
+      "type": "INIT",
+      "agent": "nexus",
+      "msg": "Recolector Universal · Memoria ACHE · Sync entre equipos",
+      "hash": "21f31afa",
+      "cls": "data"
+    },
+    {
+      "id": 3,
+      "ts": "06:03:06 a. m.",
+      "fecha": "2026-04-03",
+      "type": "INIT",
+      "agent": "banco",
+      "msg": "Banco ACHE φ · Monte Carlo · Black-Scholes · SINPE",
+      "hash": "16e995ba",
+      "cls": "phi"
+    },
+    {
+      "id": 2,
+      "ts": "06:03:06 a. m.",
+      "fecha": "2026-04-03",
+      "type": "INIT",
+      "agent": "adn",
+      "msg": "13 CCPs · ADN Claude · Autoprogramación φ · Donado a CR",
+      "hash": "479ec1a1",
+      "cls": "ok"
+    },
+    {
+      "id": 1,
+      "ts": "06:03:06 a. m.",
+      "fecha": "2026-04-03",
+      "type": "BOOT",
+      "agent": "nexus",
+      "msg": "ACHE NEXUS GENESIS · TRL-5 · OPERACIONAL",
+      "hash": "56d12a64",
+      "cls": "ok"
+    }
+  ],
+  "archivos": [
+    {
+      "id": 1,
+      "nombre": "ache_nexus_genesis_db",
+      "ruta": "localStorage",
+      "tipo": "localStorage",
+      "tamanio": 176568,
+      "contenido_preview": "[83,81,76,105,116,101,32,102,111,114,109,97,116,32,51,0,16,0,1,1,0,64,32,32,0,0,0,19,0,0,0,21,0,0,0,0,0,0,0,0,0,0,0,15,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+      "ts": "06:03:07 a. m.",
+      "hash": "7c96437c"
+    },
+    {
+      "id": 2,
+      "nombre": "ache_alma_omega_db",
+      "ruta": "localStorage",
+      "tipo": "localStorage",
+      "tamanio": 168808,
+      "contenido_preview": "[83,81,76,105,116,101,32,102,111,114,109,97,116,32,51,0,16,0,1,1,0,64,32,32,0,0,0,24,0,0,0,20,0,0,0,0,0,0,0,0,0,0,0,14,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+      "ts": "06:03:07 a. m.",
+      "hash": "0c4f9297"
+    },
+    {
+      "id": 3,
+      "nombre": "ACHE_NEXUS_GENESIS.html",
+      "ruta": "file:///C:/Users/eduni/Downloads/ACHE_NEXUS_GENESIS_v1.html",
+      "tipo": "html",
+      "tamanio": 0,
+      "contenido_preview": "Sistema activo · NEXUS-GENESIS-v1",
+      "ts": "06:03:07 a. m.",
+      "hash": "5b98f072"
+    },
+    {
+      "id": 4,
+      "nombre": "ACHE_NEXUS_GENESIS.html",
+      "ruta": "file:///C:/Users/eduni/Downloads/ACHE_NEXUS_GENESIS_v1.html",
+      "tipo": "html",
+      "tamanio": 0,
+      "contenido_preview": "Sistema activo · NEXUS-GENESIS-v1",
+      "ts": "06:06:16 a. m.",
+      "hash": "5b98f072"
+    }
+  ],
+  "phi_nodes": [
+    {
+      "id": "phi-ACHE-20727bf6",
+      "nombre": "PCL-φ-1618",
+      "icon": "📡",
+      "status": "CONECTADO",
+      "url": "broadcast",
+      "ts": "06:03:31 a. m."
+    }
+  ],
+  "proyectos": [
+    {
+      "id": "NEPTUNO",
+      "name": "NEPTUNO · Plataforma Marítima",
+      "desc": "ZEE Pacífico CR · $256M · Fase 1 $2.3M",
+      "pct": 23,
+      "color": "#00e5ff",
+      "estado": "ACTIVO",
+      "meta": 2300000
+    },
+    {
+      "id": "LYRA",
+      "name": "LYRA · Motor Financiero",
+      "desc": "Wallet · SINPE · Hacienda CR",
+      "pct": 60,
+      "color": "#ffd700",
+      "estado": "AVANZADO",
+      "meta": 500000
+    },
+    {
+      "id": "ACMONEY",
+      "name": "ACHE MONEY · Cuántico",
+      "desc": "Black-Scholes · Monte Carlo · VaR",
+      "pct": 45,
+      "color": "#c084fc",
+      "estado": "BETA",
+      "meta": 1000000
+    },
+    {
+      "id": "EVA",
+      "name": "EVA · Drones Autónomos",
+      "desc": "ROS2/PX4 · ISO 13482 SIL3",
+      "pct": 15,
+      "color": "#ff6b35",
+      "estado": "ACTIVO",
+      "meta": 800000
+    },
+    {
+      "id": "LAB",
+      "name": "Lab Nicoya · Inclusión",
+      "desc": "CCP-07 · IDH 0.620 · Niños Guanacaste",
+      "pct": 8,
+      "color": "#00ff88",
+      "estado": "ACTIVO",
+      "meta": 50000
+    },
+    {
+      "id": "TRAILERO",
+      "name": "TRAILERO · Aduana",
+      "desc": "Peñas Blancas · DUCA-T · Ley 7557",
+      "pct": 40,
+      "color": "#ffb300",
+      "estado": "ACTIVO",
+      "meta": 200000
+    },
+    {
+      "id": "DIGCIT",
+      "name": "Digital Cities · La Cruz",
+      "desc": "$300K SOI · US State Dept",
+      "pct": 10,
+      "color": "#f97316",
+      "estado": "ACTIVO",
+      "meta": 300000
+    }
+  ],
+  "habs": [
+    {
+      "id": 1,
+      "num": "101",
+      "tipo": "Estándar Simple",
+      "cap": 2,
+      "base": 18000,
+      "estado": "libre"
+    },
+    {
+      "id": 2,
+      "num": "102",
+      "tipo": "Estándar Doble",
+      "cap": 4,
+      "base": 25000,
+      "estado": "libre"
+    },
+    {
+      "id": 3,
+      "num": "103",
+      "tipo": "Estándar Doble",
+      "cap": 4,
+      "base": 25000,
+      "estado": "libre"
+    },
+    {
+      "id": 4,
+      "num": "104",
+      "tipo": "Familiar",
+      "cap": 5,
+      "base": 35000,
+      "estado": "libre"
+    },
+    {
+      "id": 5,
+      "num": "105",
+      "tipo": "Familiar",
+      "cap": 5,
+      "base": 35000,
+      "estado": "ocupada"
+    },
+    {
+      "id": 6,
+      "num": "201",
+      "tipo": "Superior Doble",
+      "cap": 4,
+      "base": 32000,
+      "estado": "libre"
+    },
+    {
+      "id": 7,
+      "num": "202",
+      "tipo": "Superior Doble",
+      "cap": 4,
+      "base": 32000,
+      "estado": "libre"
+    },
+    {
+      "id": 8,
+      "num": "203",
+      "tipo": "Suite Junior",
+      "cap": 4,
+      "base": 48000,
+      "estado": "ocupada"
+    },
+    {
+      "id": 9,
+      "num": "204",
+      "tipo": "Suite Junior",
+      "cap": 4,
+      "base": 48000,
+      "estado": "libre"
+    },
+    {
+      "id": 10,
+      "num": "205",
+      "tipo": "Suite Familiar",
+      "cap": 5,
+      "base": 58000,
+      "estado": "libre"
+    },
+    {
+      "id": 11,
+      "num": "301",
+      "tipo": "Suite Ejecutiva",
+      "cap": 3,
+      "base": 65000,
+      "estado": "libre"
+    },
+    {
+      "id": 12,
+      "num": "302",
+      "tipo": "Penthouse",
+      "cap": 5,
+      "base": 85000,
+      "estado": "mantenimiento"
+    },
+    {
+      "id": 13,
+      "num": "303",
+      "tipo": "Accesible",
+      "cap": 4,
+      "base": 22000,
+      "estado": "libre"
+    }
+  ],
+  "chain_count": 17
+}
