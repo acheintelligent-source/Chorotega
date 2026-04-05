@@ -1,0 +1,2 @@
+# Chorotega
+Para Claude
